@@ -2,17 +2,16 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <nav className="bg-white shadow mb-8 py-4 relative">
-      {/* Logo - Top Left */}
-      <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-        <Link to="/" className="text-xl font-bold text-blue-700 hover:underline">
-          BEDSUN TECH
-        </Link>
-      </div>
+    <nav className="bg-white shadow px-4 py-3 sticky top-0 z-50">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between">
+        
+        {/* Logo */}
+        <div className="text-blue-700 font-bold text-xl sm:text-2xl text-center sm:text-left">
+          <Link to="/">BEDSUN TECH</Link>
+        </div>
 
-      {/* Centered Links */}
-      <div className="flex justify-center">
-        <div className="space-x-6">
+        {/* Nav Links */}
+        <div className="mt-3 sm:mt-0 flex justify-center sm:justify-end flex-wrap gap-x-6 text-sm sm:text-base">
           <Link to="/about" className="text-blue-600 hover:underline">About</Link>
           <Link to="/services" className="text-blue-600 hover:underline">Services</Link>
           <Link to="/contact" className="text-blue-600 hover:underline">Contact</Link>
