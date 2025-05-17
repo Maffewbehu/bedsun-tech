@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
+import Projects from './pages/Projects';
 
 import Layout from './components/Layout';
 import HomeLayout from './components/HomeLayout'; // 👈 create this if not already
@@ -25,6 +26,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="about" element={<About />} />
           <Route path="services" element={<Services />} />
           <Route path="contact" element={<Contact />} />
+          <Route path="projects" element={<Projects />} />
         </Route>
       </Routes>
     </BrowserRouter>
