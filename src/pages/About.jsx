@@ -52,7 +52,7 @@ export default function About() {
             <div className="mt-4 space-y-4 text-sm leading-relaxed text-gray-700">
               <p>
                 My name is Matthew Bedsun, and I’ve been building, supporting, and securing IT
-                environments professionally for over 14 years.
+                environments professionally for over 17+ years.
               </p>
               <p>
                 It started when I was eight years old — building my first PC to squeeze better
