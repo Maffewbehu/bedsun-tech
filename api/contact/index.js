@@ -13,10 +13,41 @@ function sanitize(value) {
 
 module.exports = async function (context, req) {
   try {
-    if (req.method !== "POST") {
+    const method = (req.method || "").toUpperCase();
+
+    context.log(`Contact API hit with method: ${method}`);
+
+    if (method === "OPTIONS") {
+      context.res = {
+        status: 204,
+        headers: {
+          Allow: "GET, POST, OPTIONS",
+        },
+      };
+      return;
+    }
+
+    if (method === "GET") {
+      context.res = {
+        status: 200,
+        body: {
+          success: true,
+          message: "Bedsun Tech contact API is online.",
+        },
+      };
+      return;
+    }
+
+    if (method !== "POST") {
       context.res = {
         status: 405,
-        body: { error: "Method not allowed" },
+        headers: {
+          Allow: "GET, POST, OPTIONS",
+        },
+        body: {
+          error: "Method not allowed",
+          method,
+        },
       };
       return;
     }
@@ -26,7 +57,9 @@ module.exports = async function (context, req) {
 
       context.res = {
         status: 500,
-        body: { error: "Email service is not configured." },
+        body: {
+          error: "Email service is not configured.",
+        },
       };
       return;
     }
@@ -53,7 +86,9 @@ module.exports = async function (context, req) {
     ) {
       context.res = {
         status: 400,
-        body: { error: "Email and message are required." },
+        body: {
+          error: "Email and message are required.",
+        },
       };
       return;
     }
@@ -130,6 +165,7 @@ ${message}
       status: 500,
       body: {
         error: "Failed to send message.",
+        details: error.message || "Unknown error",
       },
     };
   }
