@@ -45,11 +45,12 @@ export default function Navbar() {
         <nav className="hidden items-center gap-2 sm:flex">
           <NavItem to="/about">About</NavItem>
           <NavItem to="/services">Services</NavItem>
+          <NavItem to="/small-business-website-design">Websites</NavItem>
           <NavItem to="/projects">Projects</NavItem>
           <NavItem to="/contact">Contact</NavItem>
         </nav>
 
-        {/* Mobile CTA (keeps it clean without building a full hamburger menu yet) */}
+        {/* Mobile CTA */}
         <Link
           to="/contact"
           className="sm:hidden rounded-xl bg-gray-900 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-800"
