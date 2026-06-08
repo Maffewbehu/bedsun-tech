@@ -30,9 +30,9 @@ function GroupTitle({ title, desc }) {
   );
 }
 
-function ServiceCard({ title, description, badge }) {
-  return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+function ServiceCard({ title, description, badge, to }) {
+  const cardContent = (
+    <>
       <div className="flex items-start justify-between gap-3">
         <h3 className="text-base font-semibold text-gray-900">{title}</h3>
         {badge ? (
@@ -42,7 +42,45 @@ function ServiceCard({ title, description, badge }) {
         ) : null}
       </div>
       <p className="mt-2 text-sm leading-relaxed text-gray-600">{description}</p>
+      {to ? (
+        <div className="mt-4 text-sm font-semibold text-indigo-700">
+          Learn more →
+        </div>
+      ) : null}
+    </>
+  );
+
+  if (to) {
+    return (
+      <Link
+        to={to}
+        className="block rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+      >
+        {cardContent}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+      {cardContent}
     </div>
+  );
+}
+
+function DetailPageCard({ to, title, desc, cta }) {
+  return (
+    <Link
+      to={to}
+      className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+    >
+      <div className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
+        Detailed service page
+      </div>
+      <h2 className="mt-2 text-xl font-semibold text-gray-900">{title}</h2>
+      <p className="mt-2 text-sm leading-relaxed text-gray-600">{desc}</p>
+      <div className="mt-4 text-sm font-semibold text-indigo-700">{cta} →</div>
+    </Link>
   );
 }
 
@@ -62,6 +100,35 @@ export default function Services() {
           desc="Bedsun Tech helps with both everyday technology problems and bigger business systems — from websites, automation, dashboards, and Microsoft 365 to Wi-Fi, devices, cameras, networks, and infrastructure support."
         />
 
+        {/* Detailed service page navigation */}
+        <section className="mb-12">
+          <div className="mb-5">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Explore detailed service pages
+            </h2>
+            <p className="mt-1 text-sm text-gray-600">
+              These pages go deeper into the main services people search for when they need help
+              with websites, automation, and small business technology.
+            </p>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-2">
+            <DetailPageCard
+              to="/small-business-website-design"
+              title="Small Business Website Design"
+              desc="Website design, redesigns, landing pages, contact forms, SEO metadata, analytics, Search Console setup, and clean deployment."
+              cta="View website services"
+            />
+
+            <DetailPageCard
+              to="/business-automation"
+              title="Business Automation"
+              desc="Workflow automation, custom dashboards, reporting tools, forms, internal apps, and AI-assisted business systems."
+              cta="View automation services"
+            />
+          </div>
+        </section>
+
         {/* Business websites and automation */}
         <section className="mb-12">
           <GroupTitle
@@ -73,12 +140,14 @@ export default function Services() {
               badge="Growth Focus"
               title="Small Business Websites & Redesigns"
               description="Modern websites, landing pages, service pages, contact forms, SEO metadata, analytics setup, and clean deployment for small businesses that need to look professional online."
+              to="/small-business-website-design"
             />
 
             <ServiceCard
               badge="High ROI"
               title="Business Automation & Workflow Improvements"
               description="Automate repetitive tasks, intake forms, email workflows, reporting steps, spreadsheet processes, and manual business operations that slow your team down."
+              to="/business-automation"
             />
 
             <ServiceCard

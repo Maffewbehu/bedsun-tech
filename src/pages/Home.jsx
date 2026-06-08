@@ -101,7 +101,6 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Quick stats / trust signals */}
               <div className="mt-10 grid grid-cols-1 gap-4 rounded-2xl border border-gray-200 bg-white/70 p-5 text-left shadow-sm backdrop-blur sm:grid-cols-3">
                 <div>
                   <div className="text-2xl font-bold text-gray-900">17+</div>
@@ -118,7 +117,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right side highlight card */}
             <div className="md:col-span-5">
               <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
                 <div className="flex items-center justify-between">
@@ -198,7 +196,7 @@ export default function Home() {
               <Card
                 title="Business Automation & Custom Tools"
                 desc="Dashboards, forms, workflows, reporting tools, internal apps, and AI-assisted processes built around how your business actually works."
-                to="/services"
+                to="/business-automation"
                 cta="See automation services"
               />
               <Card

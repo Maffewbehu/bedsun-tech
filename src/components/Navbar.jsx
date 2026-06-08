@@ -51,7 +51,6 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-gray-200/70 bg-white/80 backdrop-blur">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="flex items-center justify-between gap-4 py-3">
-          {/* Brand */}
           <Link to="/" onClick={closeMobileMenu} className="flex items-center gap-3">
             <img
               src={logo}
@@ -68,16 +67,15 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* Desktop nav */}
           <nav className="hidden items-center gap-2 md:flex">
             <NavItem to="/about">About</NavItem>
             <NavItem to="/services">Services</NavItem>
             <NavItem to="/small-business-website-design">Websites</NavItem>
+            <NavItem to="/business-automation">Automation</NavItem>
             <NavItem to="/projects">Projects</NavItem>
             <NavItem to="/contact">Contact</NavItem>
           </nav>
 
-          {/* Mobile menu button */}
           <button
             type="button"
             onClick={() => setMobileOpen((prev) => !prev)}
@@ -97,7 +95,6 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile nav */}
         {mobileOpen ? (
           <nav className="border-t border-gray-200 py-3 md:hidden">
             <div className="grid gap-2">
@@ -112,6 +109,9 @@ export default function Navbar() {
                 onClick={closeMobileMenu}
               >
                 Websites
+              </MobileNavItem>
+              <MobileNavItem to="/business-automation" onClick={closeMobileMenu}>
+                Automation
               </MobileNavItem>
               <MobileNavItem to="/projects" onClick={closeMobileMenu}>
                 Projects

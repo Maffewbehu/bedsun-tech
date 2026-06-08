@@ -9,6 +9,7 @@ import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Projects from './pages/Projects';
 import SmallBusinessWebsiteDesign from './pages/SmallBusinessWebsiteDesign';
+import BusinessAutomation from './pages/BusinessAutomation';
 
 import Layout from './components/Layout';
 import HomeLayout from './components/HomeLayout';
@@ -28,7 +29,11 @@ createRoot(document.getElementById('root')).render(
           <Route element={<Layout />}>
             <Route path="about" element={<About />} />
             <Route path="services" element={<Services />} />
-            <Route path="small-business-website-design" element={<SmallBusinessWebsiteDesign />} />
+            <Route
+              path="small-business-website-design"
+              element={<SmallBusinessWebsiteDesign />}
+            />
+            <Route path="business-automation" element={<BusinessAutomation />} />
             <Route path="contact" element={<Contact />} />
             <Route path="projects" element={<Projects />} />
           </Route>
