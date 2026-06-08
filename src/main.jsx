@@ -10,6 +10,8 @@ import Contact from './pages/Contact';
 import Projects from './pages/Projects';
 import SmallBusinessWebsiteDesign from './pages/SmallBusinessWebsiteDesign';
 import BusinessAutomation from './pages/BusinessAutomation';
+import SmallBusinessITSupport from './pages/SmallBusinessITSupport';
+import PersonalTechHelp from './pages/PersonalTechHelp';
 
 import Layout from './components/Layout';
 import HomeLayout from './components/HomeLayout';
@@ -34,6 +36,11 @@ createRoot(document.getElementById('root')).render(
               element={<SmallBusinessWebsiteDesign />}
             />
             <Route path="business-automation" element={<BusinessAutomation />} />
+            <Route
+              path="small-business-it-support"
+              element={<SmallBusinessITSupport />}
+            />
+            <Route path="personal-tech-help" element={<PersonalTechHelp />} />
             <Route path="contact" element={<Contact />} />
             <Route path="projects" element={<Projects />} />
           </Route>

@@ -108,7 +108,7 @@ export default function Services() {
             </h2>
             <p className="mt-1 text-sm text-gray-600">
               These pages go deeper into the main services people search for when they need help
-              with websites, automation, and small business technology.
+              with websites, automation, small business IT, and personal technology support.
             </p>
           </div>
 
@@ -123,8 +123,22 @@ export default function Services() {
             <DetailPageCard
               to="/business-automation"
               title="Business Automation"
-              desc="Workflow automation, custom dashboards, reporting tools, forms, internal apps, and AI-assisted business systems."
+              desc="Workflow automation, custom dashboards, reporting tools, forms, IT operations automation, scripts, and internal business systems."
               cta="View automation services"
+            />
+
+            <DetailPageCard
+              to="/small-business-it-support"
+              title="Small Business IT Support"
+              desc="Microsoft 365, Google Workspace, business email, Wi-Fi, devices, printers, cameras, backups, documentation, and practical IT troubleshooting."
+              cta="View IT support services"
+            />
+
+            <DetailPageCard
+              to="/personal-tech-help"
+              title="Personal Tech Help"
+              desc="Email and password help, computers, phones, tablets, printers, Wi-Fi, cameras, smart devices, and personal technology cleanup."
+              cta="View personal tech help"
             />
           </div>
         </section>
@@ -146,18 +160,20 @@ export default function Services() {
             <ServiceCard
               badge="High ROI"
               title="Business Automation & Workflow Improvements"
-              description="Automate repetitive tasks, intake forms, email workflows, reporting steps, spreadsheet processes, and manual business operations that slow your team down."
+              description="Automate repetitive tasks, intake forms, email workflows, reporting steps, spreadsheet processes, IT operations, and manual business work that slows your team down."
               to="/business-automation"
             />
 
             <ServiceCard
               title="Custom Dashboards & Internal Tools"
               description="Build custom dashboards, admin panels, reporting views, job trackers, client portals, inventory tools, and database-backed business apps that fit how your business actually works."
+              to="/business-automation"
             />
 
             <ServiceCard
               title="AI-Assisted Business Systems"
               description="Practical AI workflows for small businesses, including content drafting, document processing, reporting assistance, customer intake support, and internal productivity tools."
+              to="/business-automation"
             />
           </div>
         </section>
@@ -173,21 +189,25 @@ export default function Services() {
               badge="Popular"
               title="Microsoft 365, Google Workspace & Business Email"
               description="Business email setup, domain/DNS help, Microsoft 365 or Google Workspace configuration, user onboarding, mailbox cleanup, account access, and basic security settings."
+              to="/small-business-it-support"
             />
 
             <ServiceCard
               title="Office Technology Consulting"
               description="Support for workstations, printers, scanners, conference rooms, VoIP, POS-adjacent troubleshooting, monitors, UPS devices, and everyday office technology issues."
+              to="/small-business-it-support"
             />
 
             <ServiceCard
               title="Business Wi-Fi, Network & Device Support"
               description="Wi-Fi troubleshooting, router/firewall guidance, device setup, network cleanup, remote access support, and practical recommendations for stable business connectivity."
+              to="/small-business-it-support"
             />
 
             <ServiceCard
               title="Backups, Security Basics & Documentation"
               description="Review backup needs, account recovery options, password practices, device security, documentation, and simple improvements that reduce risk and confusion."
+              to="/small-business-it-support"
             />
           </div>
         </section>
@@ -203,21 +223,25 @@ export default function Services() {
               badge="Fast Win"
               title="Account, Email & Password Help"
               description="Help organizing email accounts, password access, recovery options, app logins, cloud accounts, device accounts, and confusing technology setups."
+              to="/personal-tech-help"
             />
 
             <ServiceCard
               title="Computer, Phone, Tablet & Printer Support"
               description="Setup, troubleshooting, cleanup, recommendations, updates, printer issues, device transfers, basic training, and one-on-one guidance for everyday technology."
+              to="/personal-tech-help"
             />
 
             <ServiceCard
               title="Home Wi-Fi & Smart Device Setup"
               description="Wi-Fi troubleshooting, smart TVs, streaming devices, Blink, Ring, smart cameras, basic smart home devices, and home technology setup."
+              to="/personal-tech-help"
             />
 
             <ServiceCard
               title="Personal Tech Cleanup"
               description="Review your current technology setup, simplify what you use, remove unnecessary confusion, organize accounts, and create a cleaner plan moving forward."
+              to="/personal-tech-help"
             />
           </div>
         </section>
@@ -247,6 +271,7 @@ export default function Services() {
             <ServiceCard
               title="Monitoring & Scripting"
               description="Zabbix monitoring, SNMP discovery, dashboards, alerting, PowerShell, Bash, and Python automation for repeatable IT operations."
+              to="/business-automation"
             />
           </div>
         </section>
