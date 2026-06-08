@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import SchemaMarkup from "../components/SchemaMarkup";
 
 function Badge({ children }) {
   return (
@@ -55,6 +56,8 @@ export default function Home() {
         path="/"
       />
 
+      <SchemaMarkup />
+
       <div className="min-h-screen bg-[radial-gradient(80rem_40rem_at_50%_-10%,rgba(79,70,229,0.18),transparent_60%),radial-gradient(50rem_30rem_at_10%_20%,rgba(245,158,11,0.14),transparent_55%)]">
         <main className="mx-auto max-w-6xl px-6 pb-20 pt-8">
           {/* HERO */}
@@ -68,7 +71,10 @@ export default function Home() {
 
               <h1 className="mt-6 text-left text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
                 Technology help for everyday problems.
-                <span className="text-indigo-700"> Custom systems for growing businesses.</span>
+                <span className="text-indigo-700">
+                  {" "}
+                  Custom systems for growing businesses.
+                </span>
               </h1>
 
               <p className="mt-4 max-w-2xl text-left text-lg leading-relaxed text-gray-700">
@@ -257,6 +263,7 @@ export default function Home() {
                   We clarify the goal, current pain points, constraints, and what “done” looks like.
                 </p>
               </div>
+
               <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
                 <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Step 2
@@ -269,6 +276,7 @@ export default function Home() {
                   documentation.
                 </p>
               </div>
+
               <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
                 <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
                   Step 3
