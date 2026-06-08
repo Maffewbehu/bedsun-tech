@@ -192,7 +192,7 @@ export default function Home() {
               <Card
                 title="Websites & Redesigns"
                 desc="Modern websites, landing pages, contact forms, SEO metadata, analytics setup, and clean deployment for small businesses."
-                to="/services"
+                to="/small-business-website-design"
                 cta="See website services"
               />
               <Card
