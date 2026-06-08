@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
-import SchemaMarkup from "../components/SchemaMarkup";
 
 function Badge({ children }) {
   return (
@@ -55,8 +54,6 @@ export default function Home() {
         description="Bedsun Tech helps homes and small businesses with websites, automation, custom business tools, IT support, Wi-Fi, Microsoft 365, cameras, and practical technology systems in the Las Vegas area."
         path="/"
       />
-
-      <SchemaMarkup />
 
       <div className="min-h-screen bg-[radial-gradient(80rem_40rem_at_50%_-10%,rgba(79,70,229,0.18),transparent_60%),radial-gradient(50rem_30rem_at_10%_20%,rgba(245,158,11,0.14),transparent_55%)]">
         <main className="mx-auto max-w-6xl px-6 pb-20 pt-8">
