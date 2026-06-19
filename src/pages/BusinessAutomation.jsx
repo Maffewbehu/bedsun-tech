@@ -60,180 +60,106 @@ export default function BusinessAutomation() {
   return (
     <>
       <SEO
-        title="Business & IT Automation in Las Vegas | Bedsun Tech"
-        description="Bedsun Tech helps small businesses automate workflows, dashboards, reports, patching, monitoring, IT operations, scripts, forms, and custom business tools in the Las Vegas area."
+        title="Business Automation Services in Las Vegas | Bedsun Tech"
+        description="Bedsun Tech helps small businesses automate repetitive work, connect forms, improve follow-up, organize spreadsheets, build dashboards, and create practical AI-assisted workflows."
         path="/business-automation"
       />
 
       <div>
         <SectionTitle
-          kicker="Business Automation"
-          title="Business automation, IT workflows, and custom tools"
-          desc="Bedsun Tech helps small businesses reduce repetitive work, clean up messy processes, and build practical systems using workflow automation, dashboards, scripting, reporting, IT operations automation, and custom business tools."
+          kicker="Business Automation Services"
+          title="Automation that saves time without overcomplicating your business"
+          desc="Bedsun Tech helps small businesses clean up repetitive tasks, connect forms and spreadsheets, improve follow-up, create dashboards, and use practical AI workflows where they actually make sense."
         />
 
-        {/* Hero CTA */}
         <section className="mb-12 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
           <div className="grid gap-6 md:grid-cols-12 md:items-center">
             <div className="md:col-span-8">
               <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                If your business is running on repeated manual steps, scattered spreadsheets,
-                patching checklists, or copy/paste work, automation can help.
+                The best automation starts with one annoying manual process.
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                Small businesses often lose time because important work lives across emails,
-                spreadsheets, forms, screenshots, shared folders, disconnected apps, and manual IT
-                processes. I help turn those repeated tasks into cleaner workflows, dashboards,
-                scripts, reports, and tools that are easier to run and maintain.
+                Small businesses often waste time copying information between forms, emails,
+                spreadsheets, CRMs, calendars, files, and reports. Bedsun Tech helps identify those
+                repeated steps and turn them into cleaner workflows that are easier to run and
+                easier to track.
               </p>
+              <div className="mt-5 flex flex-wrap gap-2">
+                <Pill>Lead follow-up</Pill>
+                <Pill>Forms</Pill>
+                <Pill>Spreadsheets</Pill>
+                <Pill>Dashboards</Pill>
+                <Pill>AI assistance</Pill>
+              </div>
             </div>
 
-            <div className="md:col-span-4 md:flex md:justify-end">
+            <div className="space-y-3 md:col-span-4 md:flex md:flex-col md:items-end">
               <Link
-                to="/contact"
+                to="/business-tech-ai-opportunity-scan"
                 className="inline-flex w-full justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 md:w-auto"
               >
-                Automate My Workflow
+                Find Automation Opportunities
+              </Link>
+              <Link
+                to="/ai-integration-small-business"
+                className="inline-flex w-full justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 md:w-auto"
+              >
+                Explore AI Integration
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Two lanes */}
         <section className="mb-12">
           <div className="mb-5">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-              Two ways automation can help
+              Business workflows we can improve
             </h2>
             <p className="mt-2 max-w-3xl text-sm leading-relaxed text-gray-600">
-              Automation can improve both the business side and the IT operations side of a small
-              business. The best projects usually start with one painful process and turn it into a
-              repeatable system.
-            </p>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2">
-            <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
-              <div className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
-                Business process automation
-              </div>
-              <h3 className="mt-2 text-xl font-semibold text-gray-900">
-                Forms, dashboards, reporting, and internal tools
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                Improve repeated office workflows, spreadsheet processes, customer intake, status
-                tracking, reporting, and business tools that support day-to-day operations.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
-              <div className="text-xs font-semibold uppercase tracking-wider text-indigo-600">
-                IT operations automation
-              </div>
-              <h3 className="mt-2 text-xl font-semibold text-gray-900">
-                Patching, monitoring, scripts, reports, and runbooks
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                Standardize IT tasks like patching, maintenance checks, device reporting, account
-                cleanup, monitoring workflows, alerting, and repeatable admin scripts.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Business automation services */}
-        <section className="mb-12">
-          <div className="mb-5">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-              Business workflow automation
-            </h2>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-gray-600">
-              These services are built for small businesses that need practical tools, not bloated
-              enterprise software.
+              The goal is not to automate everything. The goal is to reduce repetitive work, improve
+              visibility, and make important tasks harder to miss.
             </p>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2">
             <Card
-              title="Workflow automation"
-              desc="Automate repeated steps across forms, spreadsheets, email, files, reports, and internal business processes."
+              title="Contact form automation"
+              desc="Route website form submissions to email, spreadsheets, CRMs, task lists, or follow-up workflows so leads are easier to manage."
             />
             <Card
-              title="Custom dashboards"
-              desc="Build dashboards that organize business data, status updates, project progress, operations, or reporting into one cleaner view."
+              title="Lead follow-up workflows"
+              desc="Create reminders, email drafts, intake summaries, and tracking steps so new leads do not get forgotten."
             />
             <Card
-              title="Forms and intake workflows"
-              desc="Create customer intake forms, internal request forms, quote forms, job trackers, and follow-up workflows."
+              title="Customer intake systems"
+              desc="Build cleaner intake forms, quote request flows, onboarding forms, and internal review processes."
             />
             <Card
-              title="Reporting and spreadsheet cleanup"
-              desc="Turn messy spreadsheets and manual reports into cleaner, repeatable workflows with better structure and fewer copy/paste steps."
+              title="Spreadsheet and CRM cleanup"
+              desc="Organize messy spreadsheets, reduce duplicate entry, improve tracking, and connect data to repeatable workflows."
+            />
+            <Card
+              title="Reporting dashboards"
+              desc="Create dashboards for leads, jobs, projects, operations, sales activity, service requests, or business health."
             />
             <Card
               title="Custom internal tools"
-              desc="Build lightweight business apps, admin panels, portals, trackers, and internal tools that fit how your business actually works."
-            />
-            <Card
-              title="AI-assisted productivity systems"
-              desc="Use AI carefully for drafting, summarizing, organizing, intake review, reporting assistance, and internal productivity workflows."
+              desc="Build lightweight portals, trackers, admin tools, scripts, or apps around the way your business actually works."
             />
           </div>
         </section>
 
-        {/* IT operations automation */}
-        <section className="mb-12">
-          <div className="mb-5">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-              IT operations automation
-            </h2>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-gray-600">
-              Automation is not only for office workflows. Bedsun Tech can also help with
-              infrastructure and IT operations tasks that need repeatability, visibility, and safer
-              execution.
-            </p>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2">
-            <Card
-              title="Patching and maintenance workflows"
-              desc="Help standardize patching steps, maintenance windows, reporting, reboot tracking, update validation, and post-maintenance checks for servers, workstations, or business systems."
-            />
-            <Card
-              title="PowerShell and scripting automation"
-              desc="Build scripts for repeatable admin tasks, user cleanup, reporting, file operations, permissions checks, system audits, and operational workflows."
-            />
-            <Card
-              title="Monitoring and alerting automation"
-              desc="Create monitoring workflows, dashboards, alert routing, discovery logic, and reporting around systems, network devices, endpoints, and business-critical services."
-            />
-            <Card
-              title="Onboarding, offboarding, and account cleanup"
-              desc="Standardize user setup, access reviews, device preparation, mailbox cleanup, license checks, and documentation for small business IT environments."
-            />
-            <Card
-              title="Infrastructure reporting"
-              desc="Create repeatable reports for servers, devices, backups, patch status, uptime, storage, network assets, and other operational health checks."
-            />
-            <Card
-              title="Runbooks and documentation"
-              desc="Turn repeated IT tasks into clear runbooks, checklists, scripts, and support notes so work can be repeated safely instead of reinvented each time."
-            />
-          </div>
-        </section>
-
-        {/* Who this is for */}
         <section className="mb-12 grid gap-6 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-semibold text-gray-900">This is a good fit if...</h2>
+              <h2 className="text-xl font-semibold text-gray-900">Good automation candidates</h2>
               <ul className="mt-4 space-y-3">
-                <Bullet>You repeat the same admin or IT task every day or every week.</Bullet>
-                <Bullet>Your business depends on spreadsheets that are hard to trust.</Bullet>
-                <Bullet>You manually copy information between apps, emails, reports, or systems.</Bullet>
-                <Bullet>You need better patching, monitoring, reporting, or maintenance workflows.</Bullet>
-                <Bullet>Your team has a process, but it is not documented or standardized.</Bullet>
-                <Bullet>You have an idea for a tool but do not need a full software company.</Bullet>
+                <Bullet>You repeat the same copy/paste task several times per week.</Bullet>
+                <Bullet>New leads or requests get lost in email or text messages.</Bullet>
+                <Bullet>Multiple people update the same spreadsheet manually.</Bullet>
+                <Bullet>You manually send the same follow-up or status message often.</Bullet>
+                <Bullet>You need a dashboard instead of checking five different places.</Bullet>
+                <Bullet>You are curious about AI but want practical use cases, not hype.</Bullet>
               </ul>
             </div>
           </div>
@@ -241,154 +167,101 @@ export default function BusinessAutomation() {
           <div className="lg:col-span-7">
             <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
               <h2 className="text-xl font-semibold text-gray-900">
-                Practical automation backed by real IT and development experience
+                Practical AI can support automation, but it should not replace the process
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                Automation is not just about connecting apps together. It also needs to be reliable,
-                understandable, secure enough for the business, and easy to support later.
+                AI is useful when it helps summarize information, draft responses, organize intake,
+                classify requests, search documents, or assist staff with repeated knowledge work.
+                It works best when the underlying workflow is clear first.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                Bedsun Tech brings together IT operations experience, scripting, databases, web
-                development, cloud hosting, monitoring, and real-world troubleshooting. That helps
-                keep automation projects grounded in how businesses and IT environments actually
-                work day to day.
+                Bedsun Tech focuses on realistic workflows: what information comes in, where it
+                should go, who needs to see it, what follow-up should happen, and where AI can save
+                time safely.
               </p>
-
               <div className="mt-5 flex flex-wrap gap-2">
-                <Pill>Workflows</Pill>
-                <Pill>Dashboards</Pill>
+                <Pill>Practical AI</Pill>
+                <Pill>Workflow cleanup</Pill>
                 <Pill>Forms</Pill>
-                <Pill>Reporting</Pill>
-                <Pill>PowerShell</Pill>
-                <Pill>Patching</Pill>
-                <Pill>Monitoring</Pill>
-                <Pill>Runbooks</Pill>
-                <Pill>AI workflows</Pill>
+                <Pill>Follow-up</Pill>
+                <Pill>Dashboards</Pill>
+                <Pill>Custom tools</Pill>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Process */}
         <section className="mb-12">
           <div className="mb-5">
             <h2 className="text-2xl font-bold tracking-tight text-gray-900">
               A simple automation process
             </h2>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-gray-600">
-              We start by understanding the process before building anything.
-            </p>
           </div>
-
-          <div className="grid gap-5 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-4">
             <Card
-              title="1. Map the workflow"
-              desc="We identify the current manual steps, tools, data sources, systems, pain points, and what the finished process should look like."
+              title="1. Map the process"
+              desc="We identify what happens today, where information starts, where it goes, and what steps are repeated."
             />
             <Card
-              title="2. Build the first useful version"
-              desc="I build a practical version of the workflow, dashboard, form, script, report, runbook, or internal tool with testing and clear expectations."
+              title="2. Pick the best first win"
+              desc="We choose one practical workflow that can save time or reduce missed steps without becoming too complex."
             />
             <Card
-              title="3. Improve and document"
-              desc="We refine the workflow, confirm it works in real use, document how it runs, and plan any next improvements."
-            />
-          </div>
-        </section>
-
-        {/* Examples */}
-        <section className="mb-12">
-          <div className="mb-5">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-              Examples of automation work
-            </h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2">
-            <Card
-              title="Investor update and asset tracking workflow"
-              desc="Built a portal-style workflow for property updates, image galleries, progress notes, and investor-facing communication."
+              title="3. Build the workflow"
+              desc="We connect forms, spreadsheets, apps, notifications, scripts, dashboards, or AI assistance where it fits."
             />
             <Card
-              title="Analytics dashboard and data pipeline"
-              desc="Built a custom dashboard with data ingestion, reporting views, recurring refresh workflows, and AI-assisted insights."
-            />
-            <Card
-              title="Monitoring and alerting automation"
-              desc="Created automated discovery and alerting workflows for network devices, systems, and site assets to reduce manual checking."
-            />
-            <Card
-              title="Website contact and lead workflow"
-              desc="Built a working website contact form with backend email delivery, structured request details, and reliable notification handling."
-            />
-            <Card
-              title="Patching and IT maintenance standardization"
-              desc="Helped plan repeatable maintenance workflows, validation steps, and operational checks so IT tasks can be performed more consistently."
-            />
-            <Card
-              title="Infrastructure visibility and reporting"
-              desc="Created repeatable reporting and documentation patterns for devices, systems, uptime, monitoring, and operational health."
+              title="4. Test and improve"
+              desc="We validate the workflow, adjust it around real usage, and document the process so it stays maintainable."
             />
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="mb-12">
-          <div className="mb-5">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-              Business and IT automation FAQ
-            </h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2">
-            <FAQ
-              question="Do I need to know exactly what tool I want built?"
-              answer="No. Many projects start with a messy process, spreadsheet, repeated task, or IT checklist. The first step is mapping the workflow and deciding what should be automated or cleaned up."
-            />
-            <FAQ
-              question="Can automation work with my existing tools?"
-              answer="Usually, yes. The right approach depends on what tools you use, what data is available, and whether the process needs an app, script, form, dashboard, report, or simple workflow improvement."
-            />
-            <FAQ
-              question="Can you automate IT infrastructure tasks?"
-              answer="Yes. I can help with scripting, patching workflows, monitoring, alerting, reporting, account cleanup, documentation, and other repeatable IT operations tasks."
-            />
-            <FAQ
-              question="Can you build custom dashboards?"
-              answer="Yes. Dashboards can be built around project updates, client information, operations, reports, assets, inventory, system health, patch status, or other business data that needs a cleaner view."
-            />
-            <FAQ
-              question="Is AI automation safe for small businesses?"
-              answer="AI can be useful when used carefully. I focus on practical uses like drafting, summarizing, organizing, reporting assistance, and workflow support while keeping sensitive information and business risk in mind."
-            />
-            <FAQ
-              question="Is this the same as managed IT?"
-              answer="Not exactly. This page focuses on building repeatable workflows, scripts, dashboards, and operational systems. Some projects may support IT operations, but the scope depends on what your business needs."
-            />
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="mb-4 rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
+        <section className="mb-12 rounded-3xl bg-gray-900 p-8 text-white">
           <div className="grid gap-6 md:grid-cols-12 md:items-center">
             <div className="md:col-span-8">
-              <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                Have a workflow, IT task, or process you want to clean up?
+              <h2 className="text-2xl font-bold tracking-tight">
+                Not sure what to automate first?
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                Tell me what you are doing manually, where the information lives, what systems are
-                involved, and what the ideal outcome would look like. I’ll help map the best path
-                forward.
+              <p className="mt-3 text-sm leading-relaxed text-gray-200">
+                Start with a Business Tech & AI Opportunity Scan. We can review your website, forms,
+                follow-up process, manual admin tasks, and tech stack to find practical next steps.
               </p>
             </div>
             <div className="md:col-span-4 md:flex md:justify-end">
               <Link
-                to="/contact"
-                className="inline-flex w-full justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 md:w-auto"
+                to="/business-tech-ai-opportunity-scan"
+                className="inline-flex w-full justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 md:w-auto"
               >
-                Contact Bedsun Tech
+                Request an Opportunity Scan
               </Link>
             </div>
+          </div>
+        </section>
+
+        <section>
+          <div className="mb-5">
+            <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+              Business automation FAQs
+            </h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            <FAQ
+              question="Do I need a full CRM before automation?"
+              answer="No. Some businesses start with a cleaner form, spreadsheet, email notification, or dashboard before choosing a larger system."
+            />
+            <FAQ
+              question="Can automation work with tools I already use?"
+              answer="Usually, yes. The first step is reviewing your current forms, spreadsheets, email, files, website, and business apps."
+            />
+            <FAQ
+              question="Where does AI fit into automation?"
+              answer="AI can help with summarizing, drafting, intake review, document search, and internal assistance, but it should support a clear workflow."
+            />
+            <FAQ
+              question="Can you build custom tools?"
+              answer="Yes. Bedsun Tech can build lightweight dashboards, portals, scripts, trackers, and internal tools when off-the-shelf options do not fit."
+            />
           </div>
         </section>
       </div>
