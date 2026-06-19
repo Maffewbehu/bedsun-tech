@@ -115,10 +115,10 @@ export default function AIIntegrationSmallBusiness() {
               Bedsun Tech can review your website, forms, manual tasks, follow-up process, spreadsheets, files, and current tools to find realistic places AI or automation could help.
             </p>
             <Link
-              to="/contact"
+              to="/business-tech-ai-opportunity-scan"
               className="mt-5 inline-flex rounded-2xl bg-gray-900 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-800"
             >
-              Request an AI Review
+              Request an Opportunity Scan
             </Link>
           </div>
         </section>
@@ -152,8 +152,8 @@ export default function AIIntegrationSmallBusiness() {
             Start with a simple conversation. Bedsun Tech can help review your workflow, identify realistic AI opportunities, and recommend a practical first step.
           </p>
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-            <Link to="/contact" className="inline-flex justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700">
-              Talk About AI Integration
+            <Link to="/business-tech-ai-opportunity-scan" className="inline-flex justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700">
+              Request an Opportunity Scan
             </Link>
             <Link to="/business-automation" className="inline-flex justify-center rounded-2xl border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50">
               View Automation Services

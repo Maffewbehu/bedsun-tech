@@ -154,6 +154,12 @@ export default function Navbar() {
                           onClick={closeServicesMenu}
                         />
                         <DropdownItem
+                          to="/business-tech-ai-opportunity-scan"
+                          title="Opportunity Scan"
+                          desc="Review your website, forms, follow-up, manual tasks, and AI opportunities."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
                           to="/small-business-it-support"
                           title="Small Business IT"
                           desc="Microsoft 365, email, devices, Wi-Fi, backups, and support."
@@ -261,6 +267,12 @@ export default function Navbar() {
                   onClick={closeMobileMenu}
                 >
                   AI Integration
+                </MobileNavItem>
+                <MobileNavItem
+                  to="/business-tech-ai-opportunity-scan"
+                  onClick={closeMobileMenu}
+                >
+                  Opportunity Scan
                 </MobileNavItem>
                 <MobileNavItem
                   to="/small-business-it-support"

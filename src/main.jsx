@@ -18,6 +18,7 @@ import WifiSetupTroubleshooting from './pages/WifiSetupTroubleshooting';
 import EmailPasswordScamHelp from './pages/EmailPasswordScamHelp';
 import SmartTvPhoneTabletSetup from './pages/SmartTvPhoneTabletSetup';
 import AIIntegrationSmallBusiness from './pages/AIIntegrationSmallBusiness';
+import BusinessTechAIOpportunityScan from './pages/BusinessTechAIOpportunityScan';
 
 import Layout from './components/Layout';
 import HomeLayout from './components/HomeLayout';
@@ -45,6 +46,10 @@ createRoot(document.getElementById('root')).render(
             <Route
               path="ai-integration-small-business"
               element={<AIIntegrationSmallBusiness />}
+            />
+            <Route
+              path="business-tech-ai-opportunity-scan"
+              element={<BusinessTechAIOpportunityScan />}
             />
             <Route
               path="small-business-it-support"

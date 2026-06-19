@@ -228,8 +228,8 @@ export default function Home() {
                   "Microsoft 365, Google Workspace, domains, and email",
                   "Dashboards, internal tools, and practical AI workflows",
                 ]}
-                to="/ai-integration-small-business"
-                cta="Explore AI Business Help"
+                to="/business-tech-ai-opportunity-scan"
+                cta="Request an Opportunity Scan"
               />
             </div>
           </section>
@@ -296,6 +296,12 @@ export default function Home() {
                 desc="Practical AI help for customer intake, follow-up, internal tools, document summaries, reporting assistance, and business workflow improvements."
                 to="/ai-integration-small-business"
                 cta="View AI integration help"
+              />
+              <SupportCard
+                title="Business Tech & AI Opportunity Scan"
+                desc="Review your website, forms, follow-up process, manual admin tasks, tech stack, and realistic AI or automation opportunities."
+                to="/business-tech-ai-opportunity-scan"
+                cta="Request an opportunity scan"
               />
             </div>
           </section>

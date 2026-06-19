@@ -135,6 +135,13 @@ export default function Services() {
             />
 
             <DetailPageCard
+              to="/business-tech-ai-opportunity-scan"
+              title="Business Tech & AI Opportunity Scan"
+              desc="Review your website, forms, follow-up process, manual admin tasks, tools, and realistic AI or automation opportunities."
+              cta="Request an opportunity scan"
+            />
+
+            <DetailPageCard
               to="/small-business-it-support"
               title="Small Business IT Support"
               desc="Microsoft 365, Google Workspace, business email, Wi-Fi, devices, printers, cameras, backups, documentation, and practical IT troubleshooting."
@@ -216,6 +223,13 @@ export default function Services() {
               title="AI-Assisted Business Systems"
               description="Practical AI workflows for small businesses, including content drafting, document processing, reporting assistance, customer intake support, and internal productivity tools."
               to="/ai-integration-small-business"
+            />
+
+            <ServiceCard
+              badge="Strategy First"
+              title="Business Tech & AI Opportunity Scan"
+              description="A practical review of your website, forms, follow-up, manual tasks, tech stack, and automation opportunities so you know what to fix first."
+              to="/business-tech-ai-opportunity-scan"
             />
           </div>
         </section>
