@@ -122,56 +122,87 @@ export default function Navbar() {
               </button>
 
               {servicesOpen ? (
-                <div className="absolute left-0 top-full w-80 pt-2">
-                  <div className="rounded-3xl border border-gray-200 bg-white p-3 shadow-lg">
-                    <DropdownItem
-                      to="/services"
-                      title="All Services"
-                      desc="Overview of everything Bedsun Tech can help with."
-                      onClick={closeServicesMenu}
-                    />
-                    <DropdownItem
-                      to="/small-business-website-design"
-                      title="Websites"
-                      desc="Small business website design, redesigns, SEO basics, and forms."
-                      onClick={closeServicesMenu}
-                    />
-                    <DropdownItem
-                      to="/business-automation"
-                      title="Automation"
-                      desc="Business workflows, dashboards, IT automation, scripts, and tools."
-                      onClick={closeServicesMenu}
-                    />
-                    <DropdownItem
-                      to="/small-business-it-support"
-                      title="Small Business IT"
-                      desc="Email, Microsoft 365, devices, Wi-Fi, backups, and tech support."
-                      onClick={closeServicesMenu}
-                    />
-                    <DropdownItem
-                      to="/personal-tech-help"
-                      title="Personal Tech Help"
-                      desc="Accounts, passwords, devices, printers, cameras, and home tech."
-                      onClick={closeServicesMenu}
-                    />
-                    <DropdownItem
-                      to="/senior-tech-help"
-                      title="Senior Tech Help"
-                      desc="Patient help for seniors, families, printers, Wi-Fi, phones, smart TVs, and scam safety."
-                      onClick={closeServicesMenu}
-                    />
-                    <DropdownItem
-                      to="/printer-setup-troubleshooting"
-                      title="Printer Help"
-                      desc="Printer setup, offline printer fixes, wireless printing, scanner setup, and home office printer help."
-                      onClick={closeServicesMenu}
-                    />
-                    <DropdownItem
-                      to="/wifi-setup-troubleshooting"
-                      title="Wi-Fi Help"
-                      desc="Wi-Fi setup, weak signal, router help, dead zones, smart TV connections, printers, cameras, and home network troubleshooting."
-                      onClick={closeServicesMenu}
-                    />
+                <div className="absolute left-1/2 top-full w-[44rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 pt-2">
+                  <div className="rounded-3xl border border-gray-200 bg-white p-4 shadow-lg">
+                    <div className="grid gap-3 md:grid-cols-2">
+                      <div>
+                        <div className="px-4 pb-2 text-xs font-bold uppercase tracking-wider text-gray-400">
+                          Business Tech
+                        </div>
+                        <DropdownItem
+                          to="/services"
+                          title="All Services"
+                          desc="Overview of everything Bedsun Tech can help with."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
+                          to="/small-business-website-design"
+                          title="Websites"
+                          desc="Website design, redesigns, SEO basics, and forms."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
+                          to="/business-automation"
+                          title="Automation"
+                          desc="Workflows, dashboards, scripts, and practical tools."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
+                          to="/ai-integration-small-business"
+                          title="AI Integration"
+                          desc="Practical AI workflows, intake, follow-up, and internal tools."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
+                          to="/small-business-it-support"
+                          title="Small Business IT"
+                          desc="Microsoft 365, email, devices, Wi-Fi, backups, and support."
+                          onClick={closeServicesMenu}
+                        />
+                      </div>
+
+                      <div>
+                        <div className="px-4 pb-2 text-xs font-bold uppercase tracking-wider text-gray-400">
+                          Personal Tech Help
+                        </div>
+                        <DropdownItem
+                          to="/personal-tech-help"
+                          title="Personal Tech Help"
+                          desc="Home tech, devices, accounts, printers, cameras, and setup help."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
+                          to="/senior-tech-help"
+                          title="Senior Tech Help"
+                          desc="Patient help for seniors, families, devices, Wi-Fi, and scam safety."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
+                          to="/printer-setup-troubleshooting"
+                          title="Printer Help"
+                          desc="Offline printer fixes, wireless printing, scanners, and setup."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
+                          to="/wifi-setup-troubleshooting"
+                          title="Wi-Fi Help"
+                          desc="Weak signal, router help, dead zones, printers, cameras, and TVs."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
+                          to="/email-password-scam-help"
+                          title="Email, Password & Scam Help"
+                          desc="Account recovery, password resets, suspicious emails, and scam texts."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
+                          to="/smart-tv-phone-tablet-setup"
+                          title="Smart TV, Phone & Tablet Help"
+                          desc="Smart TVs, iPhone, Android, tablets, Roku, Fire Stick, and apps."
+                          onClick={closeServicesMenu}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : null}
@@ -226,6 +257,12 @@ export default function Navbar() {
                   Automation
                 </MobileNavItem>
                 <MobileNavItem
+                  to="/ai-integration-small-business"
+                  onClick={closeMobileMenu}
+                >
+                  AI Integration
+                </MobileNavItem>
+                <MobileNavItem
                   to="/small-business-it-support"
                   onClick={closeMobileMenu}
                 >
@@ -248,6 +285,18 @@ export default function Navbar() {
                   onClick={closeMobileMenu}
                 >
                   Wi-Fi Help
+                </MobileNavItem>
+                <MobileNavItem
+                  to="/email-password-scam-help"
+                  onClick={closeMobileMenu}
+                >
+                  Email, Password & Scam Help
+                </MobileNavItem>
+                <MobileNavItem
+                  to="/smart-tv-phone-tablet-setup"
+                  onClick={closeMobileMenu}
+                >
+                  Smart TV, Phone & Tablet Help
                 </MobileNavItem>
               </div>
 

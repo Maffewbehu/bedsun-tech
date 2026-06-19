@@ -128,6 +128,13 @@ export default function Services() {
             />
 
             <DetailPageCard
+              to="/ai-integration-small-business"
+              title="AI Integration for Small Businesses"
+              desc="Practical AI workflows for customer intake, lead follow-up, internal tools, document summaries, reporting, and business process cleanup."
+              cta="View AI integration help"
+            />
+
+            <DetailPageCard
               to="/small-business-it-support"
               title="Small Business IT Support"
               desc="Microsoft 365, Google Workspace, business email, Wi-Fi, devices, printers, cameras, backups, documentation, and practical IT troubleshooting."
@@ -160,6 +167,20 @@ export default function Services() {
               title="Wi-Fi Setup & Troubleshooting"
               desc="Wi-Fi setup, weak signal, router help, dead zones, internet issues, smart TV connections, printer Wi-Fi problems, and home network support."
               cta="View Wi-Fi help"
+            />
+
+            <DetailPageCard
+              to="/email-password-scam-help"
+              title="Email, Password & Scam Safety Help"
+              desc="Email setup, password resets, account recovery, two-factor authentication, suspicious emails, scam texts, and safer online account support."
+              cta="View email and scam help"
+            />
+
+            <DetailPageCard
+              to="/smart-tv-phone-tablet-setup"
+              title="Smart TV, Phone & Tablet Setup Help"
+              desc="Smart TV setup, iPhone and Android help, tablets, Roku, Fire Stick, Apple TV, streaming apps, app logins, and device syncing."
+              cta="View device setup help"
             />
           </div>
         </section>
@@ -194,7 +215,7 @@ export default function Services() {
             <ServiceCard
               title="AI-Assisted Business Systems"
               description="Practical AI workflows for small businesses, including content drafting, document processing, reporting assistance, customer intake support, and internal productivity tools."
-              to="/business-automation"
+              to="/ai-integration-small-business"
             />
           </div>
         </section>
@@ -248,16 +269,16 @@ export default function Services() {
             />
 
             <ServiceCard
-              badge="Fast Win"
-              title="Account, Email & Password Help"
-              description="Help organizing email accounts, password access, recovery options, app logins, cloud accounts, device accounts, and confusing technology setups."
-              to="/personal-tech-help"
+              badge="Trust Builder"
+              title="Email, Password & Scam Safety Help"
+              description="Help with email setup, password resets, account recovery, two-factor authentication, suspicious emails, scam texts, and safer online account habits."
+              to="/email-password-scam-help"
             />
 
             <ServiceCard
-              title="Computer, Phone & Tablet Support"
-              description="Setup, troubleshooting, cleanup, recommendations, updates, device transfers, basic training, and one-on-one guidance for everyday technology."
-              to="/personal-tech-help"
+              title="Smart TV, Phone & Tablet Setup"
+              description="Setup help for smart TVs, streaming devices, iPhones, Android phones, tablets, apps, logins, device syncing, and basic one-on-one lessons."
+              to="/smart-tv-phone-tablet-setup"
             />
 
             <ServiceCard
@@ -270,7 +291,7 @@ export default function Services() {
             <ServiceCard
               badge="Popular"
               title="Home Wi-Fi & Smart Device Setup"
-              description="Wi-Fi troubleshooting, router setup, dead zones, smart TVs, streaming devices, Blink, Ring, smart cameras, and home technology setup."
+              description="Wi-Fi troubleshooting, router setup, dead zones, smart TV connections, printers, cameras, and home network support."
               to="/wifi-setup-troubleshooting"
             />
 

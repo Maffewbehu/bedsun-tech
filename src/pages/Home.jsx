@@ -228,8 +228,8 @@ export default function Home() {
                   "Microsoft 365, Google Workspace, domains, and email",
                   "Dashboards, internal tools, and practical AI workflows",
                 ]}
-                to="/services"
-                cta="Explore Business Tech Help"
+                to="/ai-integration-small-business"
+                cta="Explore AI Business Help"
               />
             </div>
           </section>
@@ -268,6 +268,18 @@ export default function Home() {
                 cta="View Wi-Fi help"
               />
               <SupportCard
+                title="Email, Password & Scam Safety"
+                desc="Patient help with email setup, password resets, account recovery, suspicious emails, scam texts, two-factor authentication, and safer online accounts."
+                to="/email-password-scam-help"
+                cta="View email and scam help"
+              />
+              <SupportCard
+                title="Smart TV, Phone & Tablet Setup"
+                desc="Help setting up smart TVs, Roku, Fire Stick, Apple TV, iPhones, Android phones, tablets, streaming apps, app logins, and device syncing."
+                to="/smart-tv-phone-tablet-setup"
+                cta="View device setup help"
+              />
+              <SupportCard
                 title="Websites & Business Systems"
                 desc="Small business websites, redesigns, landing pages, contact forms, SEO foundations, analytics, hosting guidance, and cleaner digital systems."
                 to="/small-business-website-design"
@@ -278,6 +290,12 @@ export default function Home() {
                 desc="Business automation, custom dashboards, form follow-up, reporting tools, scripts, and realistic AI workflows built around your process."
                 to="/business-automation"
                 cta="View automation services"
+              />
+              <SupportCard
+                title="AI Integration for Small Businesses"
+                desc="Practical AI help for customer intake, follow-up, internal tools, document summaries, reporting assistance, and business workflow improvements."
+                to="/ai-integration-small-business"
+                cta="View AI integration help"
               />
             </div>
           </section>

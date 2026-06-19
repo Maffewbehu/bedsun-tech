@@ -109,20 +109,24 @@ export default function PersonalTechHelp() {
           </div>
 
           <div className="grid gap-5 md:grid-cols-2">
-            <Card
-              title="Email, account, and password help"
-              desc="Help with email accounts, password resets, account recovery, app logins, cloud accounts, multi-factor authentication, and organizing what account is tied to what service."
-            />
+            <Link to="/email-password-scam-help" className="block">
+              <Card
+                title="Email, account, and password help"
+                desc="Help with email accounts, password resets, account recovery, app logins, cloud accounts, multi-factor authentication, suspicious messages, and scam safety."
+              />
+            </Link>
             <Link to="/senior-tech-help" className="block">
               <Card
                 title="Senior tech help and basic lessons"
                 desc="Patient help for seniors, retirees, and families with phones, tablets, smart TVs, email, passwords, scam safety, new devices, and simple one-on-one lessons."
               />
             </Link>
-            <Card
-              title="Computer, phone, and tablet support"
-              desc="Setup, troubleshooting, cleanup, updates, transfers, basic training, recommendations, and one-on-one guidance for devices you use every day."
-            />
+            <Link to="/smart-tv-phone-tablet-setup" className="block">
+              <Card
+                title="Smart TV, phone, and tablet setup"
+                desc="Help setting up iPhones, Android phones, tablets, smart TVs, Roku, Fire Stick, Apple TV, streaming apps, app logins, and device syncing."
+              />
+            </Link>
             <Link to="/printer-setup-troubleshooting" className="block">
               <Card
                 title="Printers, scanners, and home office devices"
@@ -135,10 +139,12 @@ export default function PersonalTechHelp() {
                 desc="Help with weak Wi-Fi, dead zones, router placement, device connectivity, network names, passwords, and practical improvements for better coverage."
               />
             </Link>
-            <Card
-              title="Smart cameras and home devices"
-              desc="Support for Blink, Ring, smart cameras, smart TVs, streaming devices, app setup, device access, and basic smart home troubleshooting."
-            />
+            <Link to="/smart-tv-phone-tablet-setup" className="block">
+              <Card
+                title="Smart TVs, streaming devices, and home devices"
+                desc="Support for smart TVs, Roku, Fire Stick, Apple TV, streaming apps, Blink, Ring, smart cameras, app setup, and device access."
+              />
+            </Link>
             <Card
               title="Personal tech cleanup"
               desc="Review your current setup, organize accounts, reduce confusion, remove unnecessary services, document key information, and create a cleaner plan moving forward."
