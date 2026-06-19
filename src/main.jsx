@@ -19,6 +19,8 @@ import EmailPasswordScamHelp from './pages/EmailPasswordScamHelp';
 import SmartTvPhoneTabletSetup from './pages/SmartTvPhoneTabletSetup';
 import AIIntegrationSmallBusiness from './pages/AIIntegrationSmallBusiness';
 import BusinessTechAIOpportunityScan from './pages/BusinessTechAIOpportunityScan';
+import Blog from './pages/Blog';
+import WhyDoesMyPrinterSayOffline from './pages/WhyDoesMyPrinterSayOffline';
 
 import Layout from './components/Layout';
 import HomeLayout from './components/HomeLayout';
@@ -75,6 +77,11 @@ createRoot(document.getElementById('root')).render(
             />
             <Route path="contact" element={<Contact />} />
             <Route path="projects" element={<Projects />} />
+            <Route path="blog" element={<Blog />} />
+            <Route
+              path="blog/why-does-my-printer-say-offline"
+              element={<WhyDoesMyPrinterSayOffline />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

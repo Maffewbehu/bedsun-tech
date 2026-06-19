@@ -67,3 +67,29 @@ export function faqPageSchema(faqs, path) {
     })),
   };
 }
+
+
+export function articleSchema({ title, description, path, datePublished, dateModified, keywords = [] }) {
+  const article = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${SITE_URL}${path}#article`,
+    headline: title,
+    description,
+    url: `${SITE_URL}${path}`,
+    image: LOGO_URL,
+    datePublished,
+    dateModified: dateModified || datePublished,
+    author: {
+      "@type": "Organization",
+      name: "Bedsun Tech",
+      url: SITE_URL,
+    },
+    publisher: { "@id": BUSINESS_ID },
+    mainEntityOfPage: `${SITE_URL}${path}`,
+  };
+
+  if (keywords.length) article.keywords = keywords.join(", ");
+
+  return article;
+}

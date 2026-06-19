@@ -215,6 +215,7 @@ export default function Navbar() {
             </div>
 
             <NavItem to="/projects">Projects</NavItem>
+            <NavItem to="/blog">Blog</NavItem>
             <NavItem to="/contact">Contact</NavItem>
           </nav>
 
