@@ -140,6 +140,27 @@ export default function Services() {
               desc="Email and password help, computers, phones, tablets, printers, Wi-Fi, cameras, smart devices, and personal technology cleanup."
               cta="View personal tech help"
             />
+
+            <DetailPageCard
+              to="/senior-tech-help"
+              title="Senior Tech Help"
+              desc="Patient technology help for seniors, retirees, adult children helping parents, and families who want everyday tech explained clearly."
+              cta="View senior tech help"
+            />
+
+            <DetailPageCard
+              to="/printer-setup-troubleshooting"
+              title="Printer Setup & Troubleshooting"
+              desc="Printer setup, offline printer fixes, wireless printer help, printing from phones and tablets, scanner setup, and home office printer support."
+              cta="View printer help"
+            />
+
+            <DetailPageCard
+              to="/wifi-setup-troubleshooting"
+              title="Wi-Fi Setup & Troubleshooting"
+              desc="Wi-Fi setup, weak signal, router help, dead zones, internet issues, smart TV connections, printer Wi-Fi problems, and home network support."
+              cta="View Wi-Fi help"
+            />
           </div>
         </section>
 
@@ -220,6 +241,13 @@ export default function Services() {
           />
           <div className="grid gap-5 md:grid-cols-2">
             <ServiceCard
+              badge="Popular"
+              title="Senior Tech Help"
+              description="Patient help for seniors and families with printers, Wi-Fi, phones, tablets, smart TVs, email, passwords, scam safety, and new device setup."
+              to="/senior-tech-help"
+            />
+
+            <ServiceCard
               badge="Fast Win"
               title="Account, Email & Password Help"
               description="Help organizing email accounts, password access, recovery options, app logins, cloud accounts, device accounts, and confusing technology setups."
@@ -227,15 +255,23 @@ export default function Services() {
             />
 
             <ServiceCard
-              title="Computer, Phone, Tablet & Printer Support"
-              description="Setup, troubleshooting, cleanup, recommendations, updates, printer issues, device transfers, basic training, and one-on-one guidance for everyday technology."
+              title="Computer, Phone & Tablet Support"
+              description="Setup, troubleshooting, cleanup, recommendations, updates, device transfers, basic training, and one-on-one guidance for everyday technology."
               to="/personal-tech-help"
             />
 
             <ServiceCard
+              badge="Popular"
+              title="Printer Setup & Troubleshooting"
+              description="Help with offline printers, wireless printer setup, printing from phones and tablets, scanner setup, duplicate printers, and home office printer problems."
+              to="/printer-setup-troubleshooting"
+            />
+
+            <ServiceCard
+              badge="Popular"
               title="Home Wi-Fi & Smart Device Setup"
-              description="Wi-Fi troubleshooting, smart TVs, streaming devices, Blink, Ring, smart cameras, basic smart home devices, and home technology setup."
-              to="/personal-tech-help"
+              description="Wi-Fi troubleshooting, router setup, dead zones, smart TVs, streaming devices, Blink, Ring, smart cameras, and home technology setup."
+              to="/wifi-setup-troubleshooting"
             />
 
             <ServiceCard

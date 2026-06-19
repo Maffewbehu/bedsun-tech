@@ -154,6 +154,24 @@ export default function Navbar() {
                       desc="Accounts, passwords, devices, printers, cameras, and home tech."
                       onClick={closeServicesMenu}
                     />
+                    <DropdownItem
+                      to="/senior-tech-help"
+                      title="Senior Tech Help"
+                      desc="Patient help for seniors, families, printers, Wi-Fi, phones, smart TVs, and scam safety."
+                      onClick={closeServicesMenu}
+                    />
+                    <DropdownItem
+                      to="/printer-setup-troubleshooting"
+                      title="Printer Help"
+                      desc="Printer setup, offline printer fixes, wireless printing, scanner setup, and home office printer help."
+                      onClick={closeServicesMenu}
+                    />
+                    <DropdownItem
+                      to="/wifi-setup-troubleshooting"
+                      title="Wi-Fi Help"
+                      desc="Wi-Fi setup, weak signal, router help, dead zones, smart TV connections, printers, cameras, and home network troubleshooting."
+                      onClick={closeServicesMenu}
+                    />
                   </div>
                 </div>
               ) : null}
@@ -215,6 +233,21 @@ export default function Navbar() {
                 </MobileNavItem>
                 <MobileNavItem to="/personal-tech-help" onClick={closeMobileMenu}>
                   Personal Tech Help
+                </MobileNavItem>
+                <MobileNavItem to="/senior-tech-help" onClick={closeMobileMenu}>
+                  Senior Tech Help
+                </MobileNavItem>
+                <MobileNavItem
+                  to="/printer-setup-troubleshooting"
+                  onClick={closeMobileMenu}
+                >
+                  Printer Help
+                </MobileNavItem>
+                <MobileNavItem
+                  to="/wifi-setup-troubleshooting"
+                  onClick={closeMobileMenu}
+                >
+                  Wi-Fi Help
                 </MobileNavItem>
               </div>
 

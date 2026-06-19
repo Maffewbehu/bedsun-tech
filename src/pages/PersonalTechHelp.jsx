@@ -113,18 +113,28 @@ export default function PersonalTechHelp() {
               title="Email, account, and password help"
               desc="Help with email accounts, password resets, account recovery, app logins, cloud accounts, multi-factor authentication, and organizing what account is tied to what service."
             />
+            <Link to="/senior-tech-help" className="block">
+              <Card
+                title="Senior tech help and basic lessons"
+                desc="Patient help for seniors, retirees, and families with phones, tablets, smart TVs, email, passwords, scam safety, new devices, and simple one-on-one lessons."
+              />
+            </Link>
             <Card
               title="Computer, phone, and tablet support"
               desc="Setup, troubleshooting, cleanup, updates, transfers, basic training, recommendations, and one-on-one guidance for devices you use every day."
             />
-            <Card
-              title="Printers, scanners, and home office devices"
-              desc="Troubleshoot printer connections, scanner setup, computer-to-printer issues, home office equipment, and device configuration."
-            />
-            <Card
-              title="Home Wi-Fi troubleshooting"
-              desc="Help with weak Wi-Fi, dead zones, router placement, device connectivity, network names, passwords, and practical improvements for better coverage."
-            />
+            <Link to="/printer-setup-troubleshooting" className="block">
+              <Card
+                title="Printers, scanners, and home office devices"
+                desc="Troubleshoot printer connections, scanner setup, computer-to-printer issues, home office equipment, and device configuration."
+              />
+            </Link>
+            <Link to="/wifi-setup-troubleshooting" className="block">
+              <Card
+                title="Home Wi-Fi troubleshooting"
+                desc="Help with weak Wi-Fi, dead zones, router placement, device connectivity, network names, passwords, and practical improvements for better coverage."
+              />
+            </Link>
             <Card
               title="Smart cameras and home devices"
               desc="Support for Blink, Ring, smart cameras, smart TVs, streaming devices, app setup, device access, and basic smart home troubleshooting."
@@ -227,10 +237,12 @@ export default function PersonalTechHelp() {
               title="Camera and smart device setup"
               desc="Help install or configure smart cameras, streaming devices, apps, notifications, and access for home technology systems."
             />
-            <Card
-              title="Wi-Fi and printer troubleshooting"
-              desc="Fix common home Wi-Fi issues, printer connection problems, scanner access, and device connectivity problems."
-            />
+            <Link to="/wifi-setup-troubleshooting" className="block">
+              <Card
+                title="Wi-Fi and printer troubleshooting"
+                desc="Fix common home Wi-Fi issues, printer connection problems, scanner access, and device connectivity problems."
+              />
+            </Link>
             <Card
               title="Technology simplification"
               desc="Review devices, subscriptions, accounts, and services to reduce confusion and create a simpler technology setup."

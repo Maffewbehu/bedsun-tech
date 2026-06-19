@@ -12,6 +12,9 @@ import SmallBusinessWebsiteDesign from './pages/SmallBusinessWebsiteDesign';
 import BusinessAutomation from './pages/BusinessAutomation';
 import SmallBusinessITSupport from './pages/SmallBusinessITSupport';
 import PersonalTechHelp from './pages/PersonalTechHelp';
+import SeniorTechHelp from './pages/SeniorTechHelp';
+import PrinterSetupTroubleshooting from './pages/PrinterSetupTroubleshooting';
+import WifiSetupTroubleshooting from './pages/WifiSetupTroubleshooting';
 
 import Layout from './components/Layout';
 import HomeLayout from './components/HomeLayout';
@@ -41,6 +44,15 @@ createRoot(document.getElementById('root')).render(
               element={<SmallBusinessITSupport />}
             />
             <Route path="personal-tech-help" element={<PersonalTechHelp />} />
+            <Route path="senior-tech-help" element={<SeniorTechHelp />} />
+            <Route
+              path="printer-setup-troubleshooting"
+              element={<PrinterSetupTroubleshooting />}
+            />
+            <Route
+              path="wifi-setup-troubleshooting"
+              element={<WifiSetupTroubleshooting />}
+            />
             <Route path="contact" element={<Contact />} />
             <Route path="projects" element={<Projects />} />
           </Route>
