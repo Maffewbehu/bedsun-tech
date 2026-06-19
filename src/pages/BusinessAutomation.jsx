@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -56,13 +57,36 @@ function FAQ({ question, answer }) {
   );
 }
 
+
+const PAGE_PATH = "/business-automation";
+
+const FAQS = [
+  { question: "What can a small business automate first?", answer: "The best first automation is usually a repeated task involving forms, follow-up, spreadsheets, reports, file organization, customer intake, or internal handoffs." },
+  { question: "Do I need expensive software to automate my business?", answer: "Not always. Many useful improvements can start with the tools you already use, then grow into custom workflows or tools when needed." },
+  { question: "Can automation connect to my website?", answer: "Often, yes. Contact forms, quote requests, intake forms, email notifications, spreadsheets, and CRM-style workflows can often be connected or improved." },
+  { question: "Can AI be part of automation?", answer: "Yes. AI can help summarize information, draft responses, organize notes, classify requests, and support human-reviewed workflows when used carefully." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "Business Automation Services in Las Vegas",
+    description: "Bedsun Tech helps small businesses automate repetitive work, connect forms, improve follow-up, organize spreadsheets, build dashboards, and create practical AI-assisted workflows.",
+    path: PAGE_PATH,
+    serviceType: "Business automation and workflow improvement",
+    audience: "Small business owners and teams",
+    keywords: ["business automation", "workflow automation", "lead follow-up automation", "dashboard", "custom internal tools"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function BusinessAutomation() {
   return (
     <>
       <SEO
         title="Business Automation Services in Las Vegas | Bedsun Tech"
         description="Bedsun Tech helps small businesses automate repetitive work, connect forms, improve follow-up, organize spreadsheets, build dashboards, and create practical AI-assisted workflows."
-        path="/business-automation"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>

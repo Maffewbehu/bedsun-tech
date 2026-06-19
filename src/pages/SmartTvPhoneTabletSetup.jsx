@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -56,13 +57,36 @@ function Pill({ children }) {
   );
 }
 
+
+const PAGE_PATH = "/smart-tv-phone-tablet-setup";
+
+const FAQS = [
+  { question: "Can you help set up a new phone or tablet?", answer: "Yes. I can help with basic setup, important settings, app logins, contacts, photos, email, and simple lessons for using the device." },
+  { question: "Can you help with Roku, Fire Stick, or Apple TV?", answer: "Yes. I can help connect streaming devices, sign into apps, connect Wi-Fi, test streaming, and explain how to use the remote and menus." },
+  { question: "Can you help if I forgot a streaming app password?", answer: "Yes. I can help work through official password reset options and organize login information so it is easier to manage going forward." },
+  { question: "Can you teach me how to use the device?", answer: "Yes. The goal is not just setup. I can also explain the basics in plain English so the device feels easier to use afterward." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "Smart TV, Phone and Tablet Setup Help in Las Vegas",
+    description: "Patient smart TV, phone, tablet, Roku, Fire Stick, Apple TV, streaming app, app login, device syncing, and new device setup help in Las Vegas.",
+    path: PAGE_PATH,
+    serviceType: "Smart TV, phone, tablet, and streaming device setup",
+    audience: "Home users, seniors, families, and people setting up new devices",
+    keywords: ["smart TV setup", "phone setup help", "tablet setup", "Roku setup", "Fire Stick setup", "streaming app login"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function SmartTvPhoneTabletSetup() {
   return (
     <>
       <SEO
         title="Smart TV, Phone & Tablet Setup Help in Las Vegas | Bedsun Tech"
         description="Patient smart TV, phone, tablet, Roku, Fire Stick, Apple TV, streaming app, app login, device syncing, and new device setup help in Las Vegas."
-        path="/smart-tv-phone-tablet-setup"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>

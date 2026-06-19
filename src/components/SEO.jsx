@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { localBusinessSchema, websiteSchema } from '../lib/structuredData';
 
 const DEFAULT_TITLE = 'Bedsun Tech | Websites, Automation & IT Support in Las Vegas';
 
@@ -15,8 +16,13 @@ export default function SEO({
   image = DEFAULT_IMAGE,
   type = 'website',
   noindex = false,
+  structuredData = [],
 }) {
   const canonicalUrl = `${SITE_URL}${path}`;
+  const pageStructuredData = Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData];
+  const structuredDataItems = [localBusinessSchema, websiteSchema, ...pageStructuredData];
 
   return (
     <Helmet>
@@ -40,6 +46,12 @@ export default function SEO({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+
+      {structuredDataItems.filter(Boolean).map((item, index) => (
+        <script key={index} type="application/ld+json">
+          {JSON.stringify(item)}
+        </script>
+      ))}
     </Helmet>
   );
 }

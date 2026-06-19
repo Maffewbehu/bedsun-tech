@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -56,13 +57,36 @@ function FAQ({ question, answer }) {
   );
 }
 
+
+const PAGE_PATH = "/small-business-website-design";
+
+const FAQS = [
+  { question: "Do you build brand-new small business websites?", answer: "Yes. Bedsun Tech can help with new websites, redesigns, service pages, landing pages, forms, analytics, and deployment." },
+  { question: "Can you fix an existing website instead of rebuilding it?", answer: "Yes. Sometimes the best first step is improving messaging, mobile layout, forms, SEO basics, or tracking before a full rebuild." },
+  { question: "Can you help with SEO basics?", answer: "Yes. Bedsun Tech can help with page titles, descriptions, service pages, sitemap updates, Search Console setup, and content structure." },
+  { question: "Can a website connect to automation or AI?", answer: "Yes. Forms, intake workflows, follow-up steps, dashboards, and AI-assisted workflows can often start from the website." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "Small Business Website Help in Las Vegas",
+    description: "Bedsun Tech helps Las Vegas small businesses improve websites, forms, mobile experience, SEO foundations, lead capture, analytics, and practical automation workflows.",
+    path: PAGE_PATH,
+    serviceType: "Small business website design and improvement",
+    audience: "Small business owners and local service businesses",
+    keywords: ["small business website", "website redesign", "lead forms", "SEO foundation", "website automation"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function SmallBusinessWebsiteDesign() {
   return (
     <>
       <SEO
         title="Small Business Website Help in Las Vegas | Bedsun Tech"
         description="Bedsun Tech helps Las Vegas small businesses improve websites, forms, mobile experience, SEO foundations, lead capture, analytics, and practical automation workflows."
-        path="/small-business-website-design"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>

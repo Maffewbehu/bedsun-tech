@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -56,13 +57,36 @@ function FAQ({ question, answer }) {
   );
 }
 
+
+const PAGE_PATH = "/wifi-setup-troubleshooting";
+
+const FAQS = [
+  { question: "Can you help if my Wi-Fi is weak in certain rooms?", answer: "Yes. I can help check signal issues, router placement, dead zones, device behavior, and practical improvement options." },
+  { question: "Can you reconnect devices after a router change?", answer: "Yes. Router changes often break printers, cameras, smart TVs, and other devices. I can reconnect devices and help clean up password or network confusion." },
+  { question: "Can you tell if the issue is my internet provider or my Wi-Fi?", answer: "I can help narrow down whether the issue looks like a provider or modem problem, a router issue, a weak signal issue, or a device-specific problem." },
+  { question: "Do you help seniors with Wi-Fi setup?", answer: "Yes. Wi-Fi help can be provided patiently with simple explanations for seniors, families, and anyone who wants the setup easier to understand." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "Wi-Fi Setup and Troubleshooting in Las Vegas",
+    description: "Wi-Fi setup and troubleshooting in Las Vegas for weak Wi-Fi, router setup, internet issues, dead zones, smart TV connections, printer Wi-Fi problems, and home network help.",
+    path: PAGE_PATH,
+    serviceType: "Wi-Fi setup and troubleshooting",
+    audience: "Home users, seniors, families, and home office users",
+    keywords: ["weak Wi-Fi", "router setup", "Wi-Fi dead zones", "smart TV Wi-Fi", "printer Wi-Fi"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function WifiSetupTroubleshooting() {
   return (
     <>
       <SEO
         title="Wi-Fi Setup and Troubleshooting in Las Vegas | Bedsun Tech"
         description="Wi-Fi setup and troubleshooting in Las Vegas for weak Wi-Fi, router setup, internet issues, dead zones, smart TV connections, printer Wi-Fi problems, and home network help."
-        path="/wifi-setup-troubleshooting"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>

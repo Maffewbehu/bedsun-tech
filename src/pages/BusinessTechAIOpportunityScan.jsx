@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -50,13 +51,36 @@ function FAQ({ question, answer }) {
   );
 }
 
+
+const PAGE_PATH = "/business-tech-ai-opportunity-scan";
+
+const FAQS = [
+  { question: "Is this only for businesses ready to build AI tools?", answer: "No. The scan is for businesses that want to understand where technology could help. The answer might be AI, automation, website improvements, better forms, or simple process cleanup." },
+  { question: "Do I need to have a technical project already planned?", answer: "No. You can start with a messy process, a website concern, a follow-up problem, or a general feeling that your business tools are not working together well." },
+  { question: "What types of businesses is this for?", answer: "It is a good fit for local service businesses, contractors, real estate and property businesses, beauty and wellness businesses, consultants, professional services, and small teams with repeated admin work." },
+  { question: "Will I get a clear next step?", answer: "Yes. The goal is to leave with a practical recommendation, priority order, and a realistic first improvement instead of a broad list of confusing possibilities." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "Business Tech and AI Opportunity Scan in Las Vegas",
+    description: "Request a practical business tech and AI opportunity scan for your website, forms, follow-up process, manual admin tasks, tech stack, and automation opportunities.",
+    path: PAGE_PATH,
+    serviceType: "Business technology and AI opportunity review",
+    audience: "Small business owners and local business teams",
+    keywords: ["AI opportunity scan", "business tech review", "website review", "workflow automation", "lead follow-up"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function BusinessTechAIOpportunityScan() {
   return (
     <>
       <SEO
         title="Business Tech & AI Opportunity Scan in Las Vegas | Bedsun Tech"
         description="Request a practical business tech and AI opportunity scan for your website, forms, follow-up process, manual admin tasks, tech stack, and automation opportunities."
-        path="/business-tech-ai-opportunity-scan"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -56,13 +57,36 @@ function FAQ({ question, answer }) {
   );
 }
 
+
+const PAGE_PATH = "/small-business-it-support";
+
+const FAQS = [
+  { question: "What small business IT issues can you help with?", answer: "Bedsun Tech can help with Microsoft 365, Google Workspace, email, users, devices, printers, Wi-Fi, basic security, backups, documentation, and general tech cleanup." },
+  { question: "Can you help clean up messy business accounts?", answer: "Yes. I can help review users, permissions, email setup, file organization, shared accounts, and basic documentation so the setup is easier to manage." },
+  { question: "Do you provide ongoing IT support?", answer: "Support can start with one-time cleanup or troubleshooting, then move into a recurring support plan if the business needs ongoing help." },
+  { question: "Can IT cleanup lead into automation?", answer: "Yes. Cleaner accounts, forms, files, and processes make it easier to add automation, dashboards, and AI-assisted workflows later." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "Small Business IT Support in Las Vegas",
+    description: "Bedsun Tech provides small business IT support in Las Vegas, including Microsoft 365, Google Workspace, email, devices, Wi-Fi, printers, backups, security basics, documentation, and workflow cleanup.",
+    path: PAGE_PATH,
+    serviceType: "Small business IT support",
+    audience: "Small business owners and teams",
+    keywords: ["small business IT support", "Microsoft 365", "Google Workspace", "business email", "Wi-Fi support", "printer support"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function SmallBusinessITSupport() {
   return (
     <>
       <SEO
         title="Small Business IT Support in Las Vegas | Bedsun Tech"
         description="Bedsun Tech provides small business IT support in Las Vegas, including Microsoft 365, Google Workspace, email, devices, Wi-Fi, printers, backups, security basics, documentation, and workflow cleanup."
-        path="/small-business-it-support"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>

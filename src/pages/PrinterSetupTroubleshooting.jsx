@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -56,13 +57,36 @@ function FAQ({ question, answer }) {
   );
 }
 
+
+const PAGE_PATH = "/printer-setup-troubleshooting";
+
+const FAQS = [
+  { question: "Can you help when my printer says offline?", answer: "Yes. Offline printer issues are common and can be caused by Wi-Fi, driver, queue, default printer, or device connection problems." },
+  { question: "Can you help me print from my phone or tablet?", answer: "Yes. I can help set up printing from iPhone, iPad, Android, laptops, and desktop computers when the printer supports it." },
+  { question: "Do you set up new printers?", answer: "Yes. I can help connect a new printer, install software, test printing and scanning, and explain the basics." },
+  { question: "Can you fix every printer issue?", answer: "Not every printer is worth repairing, but I can help identify whether the issue is setup, Wi-Fi, software, supplies, hardware, or replacement related." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "Printer Setup and Troubleshooting in Las Vegas",
+    description: "Printer setup and troubleshooting in Las Vegas for offline printers, wireless printer setup, printer Wi-Fi issues, printing from phones and tablets, scanner setup, and home office printer help.",
+    path: PAGE_PATH,
+    serviceType: "Printer setup and troubleshooting",
+    audience: "Home users, seniors, families, and home office users",
+    keywords: ["printer says offline", "wireless printer setup", "printer Wi-Fi issues", "print from iPhone", "scanner setup"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function PrinterSetupTroubleshooting() {
   return (
     <>
       <SEO
         title="Printer Setup and Troubleshooting in Las Vegas | Bedsun Tech"
         description="Printer setup and troubleshooting in Las Vegas for offline printers, wireless printer setup, printer Wi-Fi issues, printing from phones and tablets, scanner setup, and home office printer help."
-        path="/printer-setup-troubleshooting"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>

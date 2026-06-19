@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -56,13 +57,36 @@ function FAQ({ question, answer }) {
   );
 }
 
+
+const PAGE_PATH = "/personal-tech-help";
+
+const FAQS = [
+  { question: "What kind of personal technology help do you provide?", answer: "Bedsun Tech helps with everyday technology issues such as email, passwords, computers, phones, tablets, printers, Wi-Fi, smart TVs, cameras, and account cleanup." },
+  { question: "Do you help seniors or family members?", answer: "Yes. Personal tech help can be especially useful for seniors, families, and adult children helping a parent organize or troubleshoot technology." },
+  { question: "Can you help explain technology instead of just fixing it?", answer: "Yes. The goal is to fix the issue and explain the solution in plain English so the setup makes more sense afterward." },
+  { question: "Can you help decide what technology should be replaced?", answer: "Yes. I can help determine whether a device or setup is worth fixing, simplifying, upgrading, or replacing." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "Personal Tech Help in Las Vegas",
+    description: "Bedsun Tech provides personal technology help in the Las Vegas area, including email and password help, computer support, phone and tablet setup, printers, Wi-Fi, smart devices, cameras, account cleanup, and one-on-one tech guidance.",
+    path: PAGE_PATH,
+    serviceType: "Personal technology support",
+    audience: "Home users, seniors, families, and people who need everyday technology help",
+    keywords: ["personal tech help", "home tech support", "computer help", "phone help", "printer help", "Wi-Fi help"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function PersonalTechHelp() {
   return (
     <>
       <SEO
         title="Personal Tech Help in Las Vegas | Bedsun Tech"
         description="Bedsun Tech provides personal technology help in the Las Vegas area, including email and password help, computer support, phone and tablet setup, printers, Wi-Fi, smart devices, cameras, account cleanup, and one-on-one tech guidance."
-        path="/personal-tech-help"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>

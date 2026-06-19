@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -56,13 +57,36 @@ function FAQ({ question, answer }) {
   );
 }
 
+
+const PAGE_PATH = "/senior-tech-help";
+
+const FAQS = [
+  { question: "Do you only help seniors?", answer: "No. This page is focused on seniors and families, but Bedsun Tech helps anyone who wants patient support with everyday technology." },
+  { question: "Can an adult child contact you for a parent?", answer: "Yes. Family members can reach out to explain the situation and help coordinate the best next step for a parent or loved one." },
+  { question: "Can you help with printers, Wi-Fi, and smart TVs?", answer: "Yes. Those are some of the most common personal tech help requests, especially when multiple devices, passwords, or apps are involved." },
+  { question: "Can you teach instead of just fixing it?", answer: "Yes. The goal is to fix the issue and explain what changed in simple terms so the technology feels less confusing afterward." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "Senior Tech Help in Las Vegas",
+    description: "Patient senior tech help in Las Vegas for printers, Wi-Fi, phones, tablets, smart TVs, email, passwords, scam safety, new device setup, and simple technology lessons.",
+    path: PAGE_PATH,
+    serviceType: "Senior technology support",
+    audience: "Seniors, retirees, families, and adult children helping parents",
+    keywords: ["senior tech help", "printer help", "Wi-Fi help", "smart TV help", "password help", "scam safety"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function SeniorTechHelp() {
   return (
     <>
       <SEO
         title="Senior Tech Help in Las Vegas | Bedsun Tech"
         description="Patient senior tech help in Las Vegas for printers, Wi-Fi, phones, tablets, smart TVs, email, passwords, scam safety, new device setup, and simple technology lessons."
-        path="/senior-tech-help"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>

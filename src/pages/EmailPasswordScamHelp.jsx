@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -56,13 +57,36 @@ function Pill({ children }) {
   );
 }
 
+
+const PAGE_PATH = "/email-password-scam-help";
+
+const FAQS = [
+  { question: "Can you recover every account?", answer: "Not always. Account recovery depends on the provider and recovery options available, but I can help you work through the safest official recovery steps." },
+  { question: "Can you tell me if an email or text is a scam?", answer: "I can help review suspicious messages, explain warning signs, and recommend safer next steps before you click links, call numbers, or share information." },
+  { question: "Can you help set up two-factor authentication?", answer: "Yes. I can help set up two-factor authentication, recovery options, and password organization when it makes sense for your accounts." },
+  { question: "Do you help seniors with online safety?", answer: "Yes. This service is designed to be patient, plain-English, and helpful for seniors and families who want technology to feel safer and less confusing." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "Email, Password and Scam Safety Help in Las Vegas",
+    description: "Patient email, password, account recovery, and scam safety help in Las Vegas for Gmail, Outlook, Yahoo, hacked email concerns, suspicious texts, two-factor authentication, and senior online safety.",
+    path: PAGE_PATH,
+    serviceType: "Email, password, account recovery, and scam safety help",
+    audience: "Home users, seniors, families, and anyone worried about account safety",
+    keywords: ["password reset help", "account recovery", "Gmail help", "scam text help", "two-factor authentication"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function EmailPasswordScamHelp() {
   return (
     <>
       <SEO
         title="Email, Password & Scam Safety Help in Las Vegas | Bedsun Tech"
         description="Patient email, password, account recovery, and scam safety help in Las Vegas for Gmail, Outlook, Yahoo, hacked email concerns, suspicious texts, two-factor authentication, and senior online safety."
-        path="/email-password-scam-help"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>

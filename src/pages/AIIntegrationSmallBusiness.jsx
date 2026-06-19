@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -38,13 +39,36 @@ function FAQ({ question, answer }) {
   );
 }
 
+
+const PAGE_PATH = "/ai-integration-small-business";
+
+const FAQS = [
+  { question: "Do I need to know how AI works?", answer: "No. The goal is to translate your business process into practical tools and workflows, not overwhelm you with technical details." },
+  { question: "Can AI connect to my website or forms?", answer: "Often, yes. Depending on your setup, AI can support form review, summaries, routing, draft responses, FAQs, and follow-up workflows." },
+  { question: "Is AI safe for business information?", answer: "It depends on the tools, data, permissions, and workflow. Bedsun Tech can help think through what should be automated, what needs human review, and what information should stay protected." },
+  { question: "What is the best first AI project?", answer: "Usually one repeated task that takes time every week, such as intake review, follow-up messages, document summaries, reporting, or organizing customer information." },
+];
+
+const PAGE_STRUCTURED_DATA = [
+  serviceSchema({
+    name: "AI Integration for Small Businesses in Las Vegas",
+    description: "Practical AI integration for Las Vegas small businesses. Bedsun Tech helps with AI workflows, automation, customer intake, follow-up, internal tools, and process cleanup.",
+    path: PAGE_PATH,
+    serviceType: "AI integration and workflow automation",
+    audience: "Small business owners and teams",
+    keywords: ["AI integration", "small business AI", "AI workflows", "customer intake automation", "internal AI assistants"],
+  }),
+  faqPageSchema(FAQS, PAGE_PATH),
+];
+
 export default function AIIntegrationSmallBusiness() {
   return (
     <>
       <SEO
         title="AI Integration for Small Businesses in Las Vegas | Bedsun Tech"
         description="Practical AI integration for Las Vegas small businesses. Bedsun Tech helps with AI workflows, automation, customer intake, follow-up, internal tools, and process cleanup."
-        path="/ai-integration-small-business"
+        path={PAGE_PATH}
+        structuredData={PAGE_STRUCTURED_DATA}
       />
 
       <div>
