@@ -21,6 +21,10 @@ import AIIntegrationSmallBusiness from './pages/AIIntegrationSmallBusiness';
 import BusinessTechAIOpportunityScan from './pages/BusinessTechAIOpportunityScan';
 import Blog from './pages/Blog';
 import WhyDoesMyPrinterSayOffline from './pages/WhyDoesMyPrinterSayOffline';
+import HowToImproveWifiSignalInYourHome from './pages/HowToImproveWifiSignalInYourHome';
+import HowToTellIfEmailOrTextIsAScam from './pages/HowToTellIfEmailOrTextIsAScam';
+import WhatCanAIActuallyDoForSmallBusiness from './pages/WhatCanAIActuallyDoForSmallBusiness';
+import HowToAutomateWebsiteFormFollowUp from './pages/HowToAutomateWebsiteFormFollowUp';
 
 import Layout from './components/Layout';
 import HomeLayout from './components/HomeLayout';
@@ -81,6 +85,22 @@ createRoot(document.getElementById('root')).render(
             <Route
               path="blog/why-does-my-printer-say-offline"
               element={<WhyDoesMyPrinterSayOffline />}
+            />
+            <Route
+              path="blog/how-to-improve-wifi-signal-in-your-home"
+              element={<HowToImproveWifiSignalInYourHome />}
+            />
+            <Route
+              path="blog/how-to-tell-if-email-or-text-is-a-scam"
+              element={<HowToTellIfEmailOrTextIsAScam />}
+            />
+            <Route
+              path="blog/what-can-ai-actually-do-for-small-business"
+              element={<WhatCanAIActuallyDoForSmallBusiness />}
+            />
+            <Route
+              path="blog/how-to-automate-website-form-follow-up"
+              element={<HowToAutomateWebsiteFormFollowUp />}
             />
           </Route>
         </Routes>

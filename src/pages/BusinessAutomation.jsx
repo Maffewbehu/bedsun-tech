@@ -259,6 +259,12 @@ export default function BusinessAutomation() {
               >
                 Request an Opportunity Scan
               </Link>
+              <Link
+                to="/blog/how-to-automate-website-form-follow-up"
+                className="mt-3 inline-flex w-full justify-center rounded-2xl border border-white/30 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-white/10 md:mt-0 md:w-auto"
+              >
+                Read Form Follow-Up Guide
+              </Link>
             </div>
           </div>
         </section>

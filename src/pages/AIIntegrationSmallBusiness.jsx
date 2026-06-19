@@ -182,6 +182,9 @@ export default function AIIntegrationSmallBusiness() {
             <Link to="/business-automation" className="inline-flex justify-center rounded-2xl border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50">
               View Automation Services
             </Link>
+            <Link to="/blog/what-can-ai-actually-do-for-small-business" className="inline-flex justify-center rounded-2xl border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50">
+              Read Small Business AI Guide
+            </Link>
           </div>
         </section>
       </div>

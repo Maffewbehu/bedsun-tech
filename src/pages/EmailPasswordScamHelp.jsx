@@ -256,6 +256,12 @@ export default function EmailPasswordScamHelp() {
                   View Senior Tech Help
                 </Link>
                 <Link
+                  to="/blog/how-to-tell-if-email-or-text-is-a-scam"
+                  className="inline-flex rounded-2xl border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+                >
+                  Read Scam Safety Guide
+                </Link>
+                <Link
                   to="/personal-tech-help"
                   className="inline-flex rounded-2xl border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-50"
                 >

@@ -11,6 +11,42 @@ const posts = [
     readTime: "5 min read",
     servicePath: "/printer-setup-troubleshooting",
   },
+  {
+    title: "How to Improve Wi-Fi Signal in Your Home",
+    path: "/blog/how-to-improve-wifi-signal-in-your-home",
+    category: "Wi-Fi Help",
+    description:
+      "Simple ways to understand weak Wi-Fi, reduce dead zones, and decide whether router placement, mesh Wi-Fi, or support may help.",
+    readTime: "6 min read",
+    servicePath: "/wifi-setup-troubleshooting",
+  },
+  {
+    title: "How to Tell If an Email or Text Message Is a Scam",
+    path: "/blog/how-to-tell-if-email-or-text-is-a-scam",
+    category: "Email Safety",
+    description:
+      "Warning signs to look for before clicking suspicious links, sharing codes, or responding to urgent emails and texts.",
+    readTime: "6 min read",
+    servicePath: "/email-password-scam-help",
+  },
+  {
+    title: "What Can AI Actually Do for a Small Business?",
+    path: "/blog/what-can-ai-actually-do-for-small-business",
+    category: "Small Business AI",
+    description:
+      "Practical AI use cases for small businesses, including intake, follow-up, document organization, reporting, and workflow support.",
+    readTime: "7 min read",
+    servicePath: "/ai-integration-small-business",
+  },
+  {
+    title: "How to Automate Website Form Follow-Up",
+    path: "/blog/how-to-automate-website-form-follow-up",
+    category: "Business Automation",
+    description:
+      "How small businesses can turn website forms into better notifications, lead tracking, follow-up, and AI-assisted workflows.",
+    readTime: "7 min read",
+    servicePath: "/business-automation",
+  },
 ];
 
 function BlogCard({ post }) {
@@ -60,10 +96,10 @@ export default function Blog() {
         </div>
 
         <section className="mb-12 rounded-3xl border border-gray-200 bg-gray-50 p-6">
-          <h2 className="text-xl font-semibold text-gray-900">Start with the first guide</h2>
+          <h2 className="text-xl font-semibold text-gray-900">Helpful guides for common tech problems</h2>
           <p className="mt-2 text-sm leading-relaxed text-gray-600">
-            The first content batch starts with one of the most common home tech problems: printers
-            that suddenly show offline or stop printing.
+            Browse practical articles about printer issues, weak Wi-Fi, suspicious emails and texts,
+            small business AI, and website follow-up workflows.
           </p>
         </section>
 

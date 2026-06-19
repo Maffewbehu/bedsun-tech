@@ -250,6 +250,12 @@ export default function WifiSetupTroubleshooting() {
                   View Printer Help
                 </Link>
                 <Link
+                  to="/blog/how-to-improve-wifi-signal-in-your-home"
+                  className="inline-flex rounded-2xl border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+                >
+                  Read Wi-Fi Signal Guide
+                </Link>
+                <Link
                   to="/personal-tech-help"
                   className="inline-flex rounded-2xl border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-900 hover:bg-gray-50"
                 >
