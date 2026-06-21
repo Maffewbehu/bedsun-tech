@@ -81,6 +81,8 @@ export default function AIConsultant() {
   const [lastCategory, setLastCategory] = useState("Not sure yet");
 
   const chatScrollRef = useRef(null);
+  const allowNewLineRef = useRef(false);
+  const enterSendLockRef = useRef(false);
 
   const userMessageCount = useMemo(
     () => messages.filter((message) => message.role === "user").length,
@@ -146,6 +148,7 @@ export default function AIConsultant() {
       );
     } finally {
       setIsSending(false);
+      enterSendLockRef.current = false;
     }
   }
 
@@ -156,9 +159,14 @@ export default function AIConsultant() {
 
   function handleTextareaKeyDown(event) {
     const isEnter =
-      event.key === "Enter" || event.code === "Enter" || event.keyCode === 13;
+      event.key === "Enter" ||
+      event.code === "Enter" ||
+      event.code === "NumpadEnter" ||
+      event.keyCode === 13;
 
     if (!isEnter) return;
+
+    allowNewLineRef.current = Boolean(event.shiftKey);
 
     // Shift + Enter keeps the normal textarea behavior and creates a new line.
     if (event.shiftKey) return;
@@ -167,7 +175,35 @@ export default function AIConsultant() {
     event.preventDefault();
     event.stopPropagation();
 
+    if (enterSendLockRef.current) return;
+
+    enterSendLockRef.current = true;
     sendMessage(input);
+  }
+
+  function handleTextareaChange(event) {
+    const nextValue = event.target.value;
+
+    // Extra fallback:
+    // If the browser still inserted a newline from plain Enter,
+    // remove it and send the previous input value.
+    const addedOnlyLineBreak =
+      nextValue === `${input}\n` || nextValue === `${input}\r\n`;
+
+    if (addedOnlyLineBreak && !allowNewLineRef.current) {
+      event.preventDefault?.();
+
+      if (!enterSendLockRef.current) {
+        enterSendLockRef.current = true;
+        sendMessage(input);
+      }
+
+      allowNewLineRef.current = false;
+      return;
+    }
+
+    allowNewLineRef.current = false;
+    setInput(nextValue);
   }
 
   return (
@@ -294,9 +330,11 @@ export default function AIConsultant() {
                 >
                   <textarea
                     value={input}
-                    onChange={(event) => setInput(event.target.value)}
+                    onChange={handleTextareaChange}
+                    onKeyDown={handleTextareaKeyDown}
                     onKeyDownCapture={handleTextareaKeyDown}
                     rows={2}
+                    enterKeyHint="send"
                     className="min-h-[3rem] flex-1 resize-none rounded-2xl border border-gray-300 px-4 py-3 text-sm text-gray-900 shadow-sm outline-none transition placeholder:text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                     placeholder="Example: I need a website and I want customers to be able to request quotes…"
                     disabled={isSending}
