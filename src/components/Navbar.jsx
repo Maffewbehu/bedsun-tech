@@ -101,6 +101,7 @@ export default function Navbar() {
           {/* Desktop nav */}
           <nav className="hidden items-center gap-2 md:flex">
             <NavItem to="/about">About</NavItem>
+            <NavItem to="/ai-consultant">AI Assistant</NavItem>
 
             <div
               className="relative"
@@ -145,6 +146,12 @@ export default function Navbar() {
                           to="/business-automation"
                           title="Automation"
                           desc="Workflows, dashboards, scripts, and practical tools."
+                          onClick={closeServicesMenu}
+                        />
+                        <DropdownItem
+                          to="/ai-consultant"
+                          title="AI Website Assistant"
+                          desc="Start with the assistant and get routed to the right Bedsun Tech service."
                           onClick={closeServicesMenu}
                         />
                         <DropdownItem
@@ -246,6 +253,9 @@ export default function Navbar() {
               <MobileNavItem to="/about" onClick={closeMobileMenu}>
                 About
               </MobileNavItem>
+              <MobileNavItem to="/ai-consultant" onClick={closeMobileMenu}>
+                AI Assistant
+              </MobileNavItem>
 
               <div className="rounded-2xl border border-gray-200 bg-white p-2">
                 <div className="px-2 py-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
@@ -262,6 +272,9 @@ export default function Navbar() {
                 </MobileNavItem>
                 <MobileNavItem to="/business-automation" onClick={closeMobileMenu}>
                   Automation
+                </MobileNavItem>
+                <MobileNavItem to="/ai-consultant" onClick={closeMobileMenu}>
+                  AI Website Assistant
                 </MobileNavItem>
                 <MobileNavItem
                   to="/ai-integration-small-business"
@@ -329,11 +342,11 @@ export default function Navbar() {
                 Websites, automation, small business IT, Wi-Fi, cameras, and personal tech help.
               </p>
               <Link
-                to="/contact"
+                to="/ai-consultant"
                 onClick={closeMobileMenu}
                 className="mt-3 inline-flex w-full justify-center rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700"
               >
-                Start a project
+                Ask the AI Assistant
               </Link>
             </div>
           </nav>

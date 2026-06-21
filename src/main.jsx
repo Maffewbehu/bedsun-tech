@@ -19,6 +19,7 @@ import EmailPasswordScamHelp from './pages/EmailPasswordScamHelp';
 import SmartTvPhoneTabletSetup from './pages/SmartTvPhoneTabletSetup';
 import AIIntegrationSmallBusiness from './pages/AIIntegrationSmallBusiness';
 import BusinessTechAIOpportunityScan from './pages/BusinessTechAIOpportunityScan';
+import AIConsultant from './pages/AIConsultant';
 import Blog from './pages/Blog';
 import WhyDoesMyPrinterSayOffline from './pages/WhyDoesMyPrinterSayOffline';
 import HowToImproveWifiSignalInYourHome from './pages/HowToImproveWifiSignalInYourHome';
@@ -57,6 +58,7 @@ createRoot(document.getElementById('root')).render(
               path="business-tech-ai-opportunity-scan"
               element={<BusinessTechAIOpportunityScan />}
             />
+            <Route path="ai-consultant" element={<AIConsultant />} />
             <Route
               path="small-business-it-support"
               element={<SmallBusinessITSupport />}

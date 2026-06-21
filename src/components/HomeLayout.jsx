@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
+import FloatingAIAssistant from "./FloatingAIAssistant";
 
 export default function HomeLayout() {
   return (
@@ -12,6 +13,8 @@ export default function HomeLayout() {
       <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
         <Outlet />
       </div>
+
+      <FloatingAIAssistant />
     </div>
   );
 }

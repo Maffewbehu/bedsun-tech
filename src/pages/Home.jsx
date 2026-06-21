@@ -117,18 +117,24 @@ export default function Home() {
                 systems that save time.
               </p>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              <div className="mt-8 grid gap-3 sm:grid-cols-3">
                 <Link
-                  to="/personal-tech-help"
+                  to="/ai-consultant"
                   className="inline-flex justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700"
                 >
-                  Get Personal Tech Help
+                  Ask the AI Assistant
+                </Link>
+                <Link
+                  to="/personal-tech-help"
+                  className="inline-flex justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
+                >
+                  Personal Tech Help
                 </Link>
                 <Link
                   to="/services"
                   className="inline-flex justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
                 >
-                  Get Business Tech Help
+                  Business Tech Help
                 </Link>
               </div>
 
