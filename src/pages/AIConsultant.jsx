@@ -154,6 +154,17 @@ export default function AIConsultant() {
     sendMessage(input);
   }
 
+  function handleTextareaKeyDown(event) {
+    if (event.key !== "Enter") return;
+
+    if (event.shiftKey) {
+      return;
+    }
+
+    event.preventDefault();
+    sendMessage(input);
+  }
+
   return (
     <>
       <SEO
@@ -279,6 +290,7 @@ export default function AIConsultant() {
                   <textarea
                     value={input}
                     onChange={(event) => setInput(event.target.value)}
+                    onKeyDown={handleTextareaKeyDown}
                     rows={2}
                     className="min-h-[3rem] flex-1 resize-none rounded-2xl border border-gray-300 px-4 py-3 text-sm text-gray-900 shadow-sm outline-none transition placeholder:text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                     placeholder="Example: I need a website and I want customers to be able to request quotes…"
@@ -288,11 +300,15 @@ export default function AIConsultant() {
                   <button
                     type="submit"
                     disabled={isSending || !input.trim()}
-                    className="inline-flex items-center justify-center rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-gray-300"
+                    className="inline-flex min-h-[3rem] touch-manipulation items-center justify-center rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-gray-300"
                   >
                     Send
                   </button>
                 </form>
+
+                <p className="mt-2 hidden text-xs text-gray-400 sm:block">
+                  Press Enter to send. Use Shift + Enter for a new line.
+                </p>
               </div>
             </div>
           </div>
