@@ -155,13 +155,18 @@ export default function AIConsultant() {
   }
 
   function handleTextareaKeyDown(event) {
-    if (event.key !== "Enter") return;
+    const isEnter =
+      event.key === "Enter" || event.code === "Enter" || event.keyCode === 13;
 
-    if (event.shiftKey) {
-      return;
-    }
+    if (!isEnter) return;
 
+    // Shift + Enter keeps the normal textarea behavior and creates a new line.
+    if (event.shiftKey) return;
+
+    // Plain Enter sends the message instead of creating a new line.
     event.preventDefault();
+    event.stopPropagation();
+
     sendMessage(input);
   }
 
@@ -290,7 +295,7 @@ export default function AIConsultant() {
                   <textarea
                     value={input}
                     onChange={(event) => setInput(event.target.value)}
-                    onKeyDown={handleTextareaKeyDown}
+                    onKeyDownCapture={handleTextareaKeyDown}
                     rows={2}
                     className="min-h-[3rem] flex-1 resize-none rounded-2xl border border-gray-300 px-4 py-3 text-sm text-gray-900 shadow-sm outline-none transition placeholder:text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                     placeholder="Example: I need a website and I want customers to be able to request quotes…"
