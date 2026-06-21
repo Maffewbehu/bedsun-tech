@@ -56,6 +56,7 @@ function parseAssistantPayload(text) {
       .replace(/^```/i, "")
       .replace(/```$/i, "")
       .trim();
+
     const parsed = JSON.parse(cleaned);
 
     return {
@@ -114,6 +115,7 @@ function buildEmailHtml({ payload }) {
 
 function buildEmailText({ payload }) {
   const lead = payload.lead || {};
+
   return `New Bedsun Tech AI Lead
 
 Service Category: ${sanitize(payload.serviceCategory)}
@@ -220,7 +222,10 @@ module.exports = async function (context, req) {
     const method = (req.method || "").toUpperCase();
 
     if (method === "OPTIONS") {
-      context.res = { status: 204, headers: { Allow: "GET, POST, OPTIONS" } };
+      context.res = {
+        status: 204,
+        headers: { Allow: "GET, POST, OPTIONS" },
+      };
       return;
     }
 
@@ -278,7 +283,6 @@ module.exports = async function (context, req) {
             content: message.content,
           })),
         ],
-        temperature: 0.4,
         max_output_tokens: 900,
       }),
     });
