@@ -8,6 +8,8 @@ assert.equal(new Set(paths).size, paths.length, 'Duplicate sitemap URLs');
 const config = JSON.parse(await readFile('dist/staticwebapp.config.json', 'utf8'));
 assert.equal(config.navigationFallback, undefined, 'Unknown pages must not fall back to the homepage');
 assert.deepEqual(config.responseOverrides['404'], { rewrite: '/404.html', statusCode: 404 });
+const normalizedRoutes = config.routes.map(({ route }) => route.toLowerCase().replace(/\/index\.html$/, '/').replace(/\/+$/, '') || '/');
+assert.equal(new Set(normalizedRoutes).size, normalizedRoutes.length, 'Azure treats folder route aliases as duplicates');
 const titles = new Set();
 const descriptions = new Set();
 

@@ -28,7 +28,7 @@ The hydration check runs the production bundle in a DOM test environment. It che
 
 `src/routes.js` supplies the client router, prerendered pages, sitemap, and Azure route rules. Do not add a separate homepage canonical or description to `index.html`: it holds only global metadata and the build placeholders. Each route supplies its own metadata through `SEO`.
 
-`public/staticwebapp.config.json` supplies common API access rules, response overrides, and headers. The build adds exact public-page rewrites and redirects. There is deliberately no catch-all homepage fallback: unmatched URLs return the generated 404 page with HTTP 404 and `noindex`.
+`public/staticwebapp.config.json` supplies common API access rules, response overrides, and headers. The build adds one exact rewrite per public page; Azure treats folder paths and trailing-slash/index aliases as equivalent, so separate alias rules must not be added. There is deliberately no catch-all homepage fallback: unmatched URLs return the generated 404 page with HTTP 404 and `noindex`.
 
 ## Images
 

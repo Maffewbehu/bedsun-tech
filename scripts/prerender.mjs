@@ -31,13 +31,11 @@ for (const path of [...paths, '/404']) {
 
 const config = JSON.parse(await readFile('public/staticwebapp.config.json', 'utf8'));
 config.routes.push(
-  { route: '/index.html', redirect: '/', statusCode: 301 },
-  ...paths.filter(path => path !== '/').flatMap(path => [
-    { route: path, rewrite: `${path}/index.html` },
-    { route: `${path}/`, redirect: path, statusCode: 301 },
-    { route: `${path}/index.html`, redirect: path, statusCode: 301 },
-  ]),
-  { route: '/404', rewrite: '/404.html', statusCode: 404 },
+  // Azure normalizes folder paths and their trailing-slash/index variants.
+  // One rule covers each page; separate alias rules are rejected as duplicates.
+  ...paths.filter(path => path !== '/').map(path => (
+    { route: path, rewrite: `${path}/index.html` }
+  )),
   { route: '/404.html', statusCode: 404 },
 );
 await writeFile('dist/staticwebapp.config.json', `${JSON.stringify(config, null, 2)}\n`);
