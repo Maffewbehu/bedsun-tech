@@ -92,7 +92,7 @@ export default function Navbar() {
           <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">
             <NavItem to="/about">About</NavItem>
             <NavItem to="/ai-consultant">AI Assistant</NavItem>
-            <div className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+            <div className="relative">
               <button ref={servicesButton} type="button" onClick={() => setServicesOpen(open => !open)} aria-expanded={servicesOpen} aria-controls="desktop-services" className="min-h-11 rounded-xl px-3 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-100">Services <span aria-hidden="true">▾</span></button>
               {servicesOpen && (
                 <div id="desktop-services" className="absolute right-0 top-full w-[42rem] max-w-[calc(100vw-3rem)] pt-2">
