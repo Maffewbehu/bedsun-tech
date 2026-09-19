@@ -96,7 +96,7 @@ export default function Home() {
       />
 
       <div className="min-h-screen bg-[radial-gradient(80rem_40rem_at_50%_-10%,rgba(79,70,229,0.18),transparent_60%),radial-gradient(50rem_30rem_at_10%_20%,rgba(245,158,11,0.14),transparent_55%)]">
-        <main className="mx-auto max-w-6xl px-6 pb-20 pt-8">
+        <main id="main-content" tabIndex={-1} className="mx-auto max-w-6xl px-4 pb-10 pt-6 outline-none sm:px-6 sm:pb-20 sm:pt-10">
           {/* HERO */}
           <section className="grid gap-10 md:grid-cols-12 md:items-center">
             <div className="md:col-span-7">
@@ -107,14 +107,13 @@ export default function Home() {
               </div>
 
               <h1 className="mt-6 text-left text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                Technology help that makes sense.
-                <span className="text-indigo-700"> For your home or your business.</span>
+                Local tech help. Clear answers.
+                <span className="text-indigo-700"> For home and business.</span>
               </h1>
 
               <p className="mt-4 max-w-2xl text-left text-lg leading-relaxed text-gray-700">
-                Bedsun Tech helps everyday people fix frustrating technology problems and helps
-                small businesses build cleaner websites, workflows, automations, and AI-assisted
-                systems that save time.
+                Patient help with everyday tech, plus websites, automation, and practical AI
+                for Las Vegas businesses. Tell me what you need and we’ll find the next step.
               </p>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -144,7 +143,7 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="md:col-span-5">
+            <div className="hidden md:col-span-5 md:block">
               <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
                 <div className="flex items-center justify-between gap-4">
                   <div>
@@ -205,7 +204,7 @@ export default function Home() {
             <SectionTitle
               kicker="Start here"
               title="Which kind of help do you need?"
-              desc="Bedsun Tech serves two different audiences, so the homepage now makes the choice clear: personal tech help at home or business technology support."
+              desc="Choose home support or business services. I’ll help you figure out the next step."
             />
 
             <div className="grid gap-6 md:grid-cols-2">

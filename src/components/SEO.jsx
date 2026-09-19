@@ -18,7 +18,7 @@ export default function SEO({
   noindex = false,
   structuredData = [],
 }) {
-  const canonicalUrl = `${SITE_URL}${path}`;
+  const canonicalUrl = path === null ? null : `${SITE_URL}${path}`;
   const pageStructuredData = Array.isArray(structuredData)
     ? structuredData
     : [structuredData];
@@ -31,11 +31,11 @@ export default function SEO({
       <meta name="description" content={description} />
       <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 
-      <link rel="canonical" href={canonicalUrl} />
+      {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
       {/* Open Graph / Facebook / LinkedIn */}
       <meta property="og:type" content={type} />
-      <meta property="og:url" content={canonicalUrl} />
+      {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
@@ -49,7 +49,7 @@ export default function SEO({
 
       {structuredDataItems.filter(Boolean).map((item, index) => (
         <script key={index} type="application/ld+json">
-          {JSON.stringify(item)}
+          {JSON.stringify(item).replace(/</g, "\\u003c")}
         </script>
       ))}
     </Helmet>

@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
+import MobileContactBar from "./MobileContactBar";
 import FloatingAIAssistant from "./FloatingAIAssistant";
 
 export default function HomeLayout() {
@@ -10,11 +11,12 @@ export default function HomeLayout() {
       <Navbar />
 
       {/* Home content */}
-      <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6">
+      <div className="mobile-contact-space">
         <Outlet />
       </div>
 
       <FloatingAIAssistant />
+      <MobileContactBar />
     </div>
   );
 }

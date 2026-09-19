@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 
@@ -52,7 +52,7 @@ function ChatBubble({ role, content }) {
     <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
       <div
         className={[
-          "max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm",
+          "max-w-[90%] whitespace-pre-wrap break-words rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm [overflow-wrap:anywhere]",
           isUser
             ? "bg-indigo-600 text-white"
             : "border border-gray-200 bg-white text-gray-700",
@@ -88,10 +88,6 @@ export default function AIConsultant() {
     () => messages.filter((message) => message.role === "user").length,
     [messages]
   );
-
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   useEffect(() => {
     if (userMessageCount === 0) return;
@@ -164,7 +160,7 @@ export default function AIConsultant() {
       event.code === "NumpadEnter" ||
       event.keyCode === 13;
 
-    if (!isEnter) return;
+    if (!isEnter || event.nativeEvent.isComposing) return;
 
     allowNewLineRef.current = Boolean(event.shiftKey);
 
@@ -175,7 +171,7 @@ export default function AIConsultant() {
     event.preventDefault();
     event.stopPropagation();
 
-    if (enterSendLockRef.current) return;
+    if (enterSendLockRef.current || !input.trim() || isSending) return;
 
     enterSendLockRef.current = true;
     sendMessage(input);
@@ -223,17 +219,15 @@ export default function AIConsultant() {
               </div>
 
               <h1 className="mt-4 text-2xl font-bold tracking-tight sm:text-3xl">
-                Not sure what tech help you need? Ask the assistant.
+                Tell me what you need help with.
               </h1>
 
               <p className="mt-3 text-sm leading-relaxed text-indigo-100">
-                Describe what you are trying to fix, build, automate, or
-                improve. The assistant will ask a few questions, recommend a
-                starting direction, and create a clean project summary for
-                Bedsun Tech.
+                Start with a question about your home or business. I’ll help you find
+                the right service and a clear next step.
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-2">
+              <div className="mt-5 hidden flex-wrap gap-2 lg:flex">
                 <StatusPill>Websites</StatusPill>
                 <StatusPill>AI automation</StatusPill>
                 <StatusPill>Business IT</StatusPill>
@@ -241,16 +235,14 @@ export default function AIConsultant() {
                 <StatusPill>Personal tech</StatusPill>
               </div>
 
-              <div className="mt-6 rounded-2xl border border-white/15 bg-white/10 p-4 text-sm leading-relaxed text-indigo-50">
+              <div className="mt-6 hidden rounded-2xl border border-white/15 bg-white/10 p-4 text-sm leading-relaxed text-indigo-50 lg:block">
                 <strong className="text-white">How it works:</strong> answer a
                 few quick questions, share your contact info when ready, and
                 Bedsun Tech receives the project summary by email.
               </div>
 
               <p className="mt-4 text-xs leading-relaxed text-indigo-200">
-                This assistant helps collect project details and recommend a
-                starting direction. Final pricing, scope, and availability are
-                confirmed by Bedsun Tech after review.
+                Final pricing, scope, and availability are confirmed by Bedsun Tech.
               </p>
             </div>
 
@@ -275,7 +267,11 @@ export default function AIConsultant() {
 
               <div
                 ref={chatScrollRef}
-                className="h-[24rem] overflow-y-auto bg-gray-50/60 px-4 py-4 sm:h-[28rem] sm:px-5"
+                role="log"
+                aria-label="Conversation with the AI assistant"
+                aria-live="polite"
+                aria-relevant="additions text"
+                className="h-[30dvh] min-h-40 overflow-y-auto overscroll-contain bg-gray-50/60 px-4 py-4 sm:px-5 lg:h-[28rem]"
               >
                 <div className="space-y-4">
                   {messages.map((message, index) => (
@@ -305,37 +301,26 @@ export default function AIConsultant() {
                 ) : null}
 
                 {error ? (
-                  <div className="mb-3 rounded-2xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                  <div role="alert" className="mb-3 rounded-2xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
                     {error}
                   </div>
                 ) : null}
 
-                <div className="mb-3 flex flex-wrap gap-2">
-                  {QUICK_PROMPTS.map((prompt) => (
-                    <button
-                      key={prompt}
-                      type="button"
-                      onClick={() => sendMessage(prompt)}
-                      disabled={isSending}
-                      className="rounded-full border border-gray-200 bg-gray-50 px-3 py-2 text-xs font-semibold text-gray-700 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-60"
-                    >
-                      {prompt}
-                    </button>
-                  ))}
-                </div>
 
                 <form
                   onSubmit={handleSubmit}
                   className="flex flex-col gap-3 sm:flex-row"
                 >
+                  <label className="sr-only" htmlFor="assistant-message">Your message</label>
                   <textarea
+                    id="assistant-message"
                     value={input}
                     onChange={handleTextareaChange}
                     onKeyDown={handleTextareaKeyDown}
                     onKeyDownCapture={handleTextareaKeyDown}
                     rows={2}
                     enterKeyHint="send"
-                    className="min-h-[3rem] flex-1 resize-none rounded-2xl border border-gray-300 px-4 py-3 text-sm text-gray-900 shadow-sm outline-none transition placeholder:text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+                    className="min-h-[3rem] min-w-0 flex-1 resize-none rounded-2xl border border-gray-300 px-4 py-3 text-base text-gray-900 shadow-sm outline-none transition sm:text-sm placeholder:text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
                     placeholder="Example: I need a website and I want customers to be able to request quotes…"
                     disabled={isSending}
                   />
@@ -348,6 +333,22 @@ export default function AIConsultant() {
                     Send
                   </button>
                 </form>
+                <details className="mt-3">
+                  <summary className="min-h-11 cursor-pointer py-3 text-sm font-semibold text-indigo-700">Try a suggested prompt</summary>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {QUICK_PROMPTS.map((prompt) => (
+                    <button
+                      key={prompt}
+                      type="button"
+                      onClick={() => sendMessage(prompt)}
+                      disabled={isSending}
+                      className="rounded-full border border-gray-200 bg-gray-50 px-3 py-2 text-xs font-semibold text-gray-700 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-60"
+                    >
+                      {prompt}
+                    </button>
+                  ))}
+                </div>
+                </details>
 
                 <p className="mt-2 hidden text-xs text-gray-400 sm:block">
                   Press Enter to send. Use Shift + Enter for a new line.

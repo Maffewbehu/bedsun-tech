@@ -22,10 +22,11 @@ function Input({ name, type = "text", value, onChange, placeholder, required = f
     <input
       type={type}
       name={name}
+      autoComplete={{ first_name: "given-name", last_name: "family-name", from_email: "email", phone: "tel" }[name]}
       value={value}
       required={required}
       onChange={onChange}
-      className="w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+      className="w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 shadow-sm outline-none sm:text-sm transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
       placeholder={placeholder}
     />
   );
@@ -38,7 +39,7 @@ function Select({ name, value, onChange, required = false, children }) {
       value={value}
       required={required}
       onChange={onChange}
-      className="w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+      className="w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 shadow-sm outline-none sm:text-sm transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
     >
       {children}
     </select>
@@ -186,9 +187,13 @@ export default function Contact() {
           </p>
         </div>
 
+        <div className="mb-5 flex flex-wrap gap-3 lg:hidden">
+          <a href={`tel:${CONTACT_PHONE_TEL}`} className="flex min-h-11 items-center rounded-xl border border-indigo-200 bg-white px-4 py-3 font-semibold text-indigo-700">Call {CONTACT_PHONE_DISPLAY}</a>
+          <a href={`mailto:${CONTACT_EMAIL}`} className="flex min-h-11 items-center rounded-xl border border-gray-300 bg-white px-4 py-3 font-semibold text-gray-800">Email Matt</a>
+        </div>
         <div className="grid gap-6 lg:grid-cols-12">
           {/* Info panel */}
-          <div className="lg:col-span-4">
+          <div className="hidden lg:col-span-4 lg:block">
             <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
               <h2 className="text-lg font-semibold text-gray-900">What to include</h2>
 
@@ -253,7 +258,7 @@ export default function Contact() {
           <div className="lg:col-span-8">
             <form
               onSubmit={handleSubmit}
-              className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm"
+              className="rounded-3xl border border-gray-200 bg-white p-4 shadow-sm sm:p-6"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <Field label="First name">
@@ -389,7 +394,7 @@ export default function Contact() {
                     required
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 shadow-sm outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
+                    className="w-full rounded-2xl border border-gray-300 bg-white px-4 py-3 text-base text-gray-900 shadow-sm outline-none sm:text-sm transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
                     placeholder="Describe what’s going on, what you’ve tried, what you want built, or what ‘done’ looks like…"
                   />
                 </Field>
