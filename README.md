@@ -1,12 +1,35 @@
-# React + Vite
+# Bedsun Tech website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React 19 + Vite site deployed through Azure Static Web Apps. The contact form and AI consultant use the existing `/api/contact` and `/api/ai-consultant` functions.
 
-Currently, two official plugins are available:
+## Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```sh
+npm ci
+npm run dev
+```
 
-## Expanding the ESLint configuration
+## Production build and checks
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```sh
+npm run build
+npm run test:hydration
+```
+
+The build creates the browser bundle, renders every public route to HTML, generates the sitemap and Azure route rules, and verifies page metadata, internal links, image references, and the 404 configuration. `dist-ssr` is a temporary server rendering bundle; only `dist` is deployed. No server rendering process is needed in production.
+
+The hydration check runs the production bundle in a DOM test environment. It checks every rendered page, client-side metadata updates, navigation menu behavior and focus, and assistant controls. Network calls are stubbed so checks do not submit leads or call the live assistant. These checks do not replace visual testing on a phone.
+
+## Adding a page
+
+1. Add the component in `src/pages` with a single `SEO` component and page heading.
+2. Register its path and component in `src/routes.js`.
+3. Add a visible link where appropriate and run the build and hydration checks.
+
+`src/routes.js` supplies the client router, prerendered pages, sitemap, and Azure route rules. Do not add a separate homepage canonical or description to `index.html`: it holds only global metadata and the build placeholders. Each route supplies its own metadata through `SEO`.
+
+`public/staticwebapp.config.json` supplies common API access rules, response overrides, and headers. The build adds exact public-page rewrites and redirects. There is deliberately no catch-all homepage fallback: unmatched URLs return the generated 404 page with HTTP 404 and `noindex`.
+
+## Images
+
+The header uses a 120px WebP logo with PNG fallback, displayed at 40px. Dedicated 32px and 180px icons serve browser and Apple touch use. The existing public logo and email image URLs remain available.

@@ -1,3 +1,5 @@
+import SEO from "../components/SEO";
+
 function SectionTitle({ kicker, title, desc }) {
   return (
     <div className="mb-6">
@@ -38,6 +40,7 @@ function Card({ title, children }) {
 export default function About() {
   return (
     <div>
+      <SEO title="About Matthew Bedsun | Local IT Help in Las Vegas" description="Meet Matthew Bedsun, the systems engineer behind Bedsun Tech. Over 17 years of experience helping homes and businesses with practical technology support." path="/about" />
       <SectionTitle
         kicker="About"
         title="Hi, I’m Matthew Bedsun."

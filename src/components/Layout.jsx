@@ -1,12 +1,13 @@
+import MobileContactBar from "./MobileContactBar";
 import Navbar from "./Navbar";
 import { Outlet, Link } from "react-router-dom";
 
 export default function Layout() {
   return (
-    <div className="min-h-screen bg-[radial-gradient(70rem_40rem_at_50%_-10%,rgba(79,70,229,0.12),transparent_60%),radial-gradient(45rem_30rem_at_10%_20%,rgba(245,158,11,0.10),transparent_55%)] text-gray-900">
+    <div className="mobile-contact-space min-h-screen bg-[radial-gradient(70rem_40rem_at_50%_-10%,rgba(79,70,229,0.12),transparent_60%),radial-gradient(45rem_30rem_at_10%_20%,rgba(245,158,11,0.10),transparent_55%)] text-gray-900">
       <Navbar />
 
-      <main className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6">
+      <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-6xl px-4 py-6 outline-none sm:px-6 sm:py-10">
         <Outlet />
       </main>
 
@@ -30,6 +31,7 @@ export default function Layout() {
           </div>
         </div>
       </footer>
+      <MobileContactBar />
     </div>
   );
 }

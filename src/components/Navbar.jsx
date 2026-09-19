@@ -1,363 +1,142 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../assets/BT_logo.png";
 import logoWebp from "../assets/BT_logo.webp";
 
-function NavItem({ to, children, onClick }) {
-  return (
-    <NavLink
-      to={to}
-      onClick={onClick}
-      className={({ isActive }) =>
-        [
-          "rounded-xl px-3 py-2 text-sm font-semibold transition",
-          isActive
-            ? "bg-gray-900 text-white shadow-sm"
-            : "text-gray-700 hover:bg-gray-100 hover:text-gray-900",
-        ].join(" ")
-      }
-      end={to === "/"}
-    >
-      {children}
-    </NavLink>
-  );
-}
+const serviceGroups = [
+  {
+    title: "Home Help",
+    links: [
+      ["/personal-tech-help", "Personal tech help"],
+      ["/senior-tech-help", "Senior tech help"],
+      ["/printer-setup-troubleshooting", "Printers & scanning"],
+      ["/wifi-setup-troubleshooting", "Wi-Fi & internet"],
+      ["/email-password-scam-help", "Email, passwords & scams"],
+      ["/smart-tv-phone-tablet-setup", "TVs, phones & tablets"],
+    ],
+  },
+  {
+    title: "Business Help",
+    links: [
+      ["/services", "Business services overview"],
+      ["/small-business-website-design", "Websites & SEO"],
+      ["/business-automation", "Automation & workflows"],
+      ["/ai-integration-small-business", "AI integration"],
+      ["/business-tech-ai-opportunity-scan", "Tech & AI opportunity scan"],
+      ["/small-business-it-support", "Small business IT"],
+    ],
+  },
+];
 
-function DropdownItem({ to, title, desc, onClick }) {
+function NavItem({ to, children, onClick, block = false }) {
   return (
-    <NavLink
-      to={to}
-      onClick={onClick}
-      className={({ isActive }) =>
-        [
-          "block rounded-2xl px-4 py-3 transition",
-          isActive ? "bg-gray-100" : "hover:bg-gray-50",
-        ].join(" ")
-      }
-    >
-      <div className="text-sm font-semibold text-gray-900">{title}</div>
-      {desc ? (
-        <div className="mt-0.5 text-xs leading-relaxed text-gray-600">
-          {desc}
-        </div>
-      ) : null}
-    </NavLink>
-  );
-}
-
-function MobileNavItem({ to, children, onClick }) {
-  return (
-    <NavLink
-      to={to}
-      onClick={onClick}
-      className={({ isActive }) =>
-        [
-          "block rounded-2xl px-4 py-3 text-sm font-semibold transition",
-          isActive
-            ? "bg-gray-900 text-white shadow-sm"
-            : "text-gray-700 hover:bg-gray-100 hover:text-gray-900",
-        ].join(" ")
-      }
-      end={to === "/"}
-    >
-      {children}
-    </NavLink>
+    <NavLink to={to} onClick={onClick} end={to === "/"}
+      className={({ isActive }) => [
+        "min-h-11 items-center rounded-xl px-3 py-3 text-sm font-semibold transition",
+        block ? "flex w-full" : "inline-flex",
+        isActive ? "bg-gray-900 text-white" : "text-gray-700 hover:bg-gray-100 hover:text-gray-900",
+      ].join(" ")}
+    >{children}</NavLink>
   );
 }
 
 export default function Navbar() {
+  const { pathname } = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const mobileButton = useRef(null);
+  const servicesButton = useRef(null);
+  const header = useRef(null);
+  const closeMenus = () => { setMobileOpen(false); setServicesOpen(false); };
 
-  const closeMobileMenu = () => setMobileOpen(false);
-  const closeServicesMenu = () => setServicesOpen(false);
+  useEffect(() => { setMobileOpen(false); setServicesOpen(false); }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen && !servicesOpen) return;
+    const onKeyDown = (event) => {
+      if (event.key !== "Escape") return;
+      if (mobileOpen) mobileButton.current?.focus();
+      else servicesButton.current?.focus();
+      setMobileOpen(false);
+      setServicesOpen(false);
+    };
+    const onPointerDown = (event) => {
+      if (!header.current?.contains(event.target)) {
+        setMobileOpen(false);
+        setServicesOpen(false);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [mobileOpen, servicesOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200/70 bg-white/80 backdrop-blur">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="flex items-center justify-between gap-4 py-3">
-          <Link
-            to="/"
-            onClick={() => {
-              closeMobileMenu();
-              closeServicesMenu();
-            }}
-            className="flex items-center gap-3"
-          >
+    <header ref={header} className="sticky top-0 z-50 border-b border-gray-200/70 bg-white/95 backdrop-blur">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:rounded-xl focus:bg-indigo-700 focus:px-4 focus:py-3 focus:text-white">Skip to content</a>
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex items-center justify-between gap-3 py-3">
+          <Link to="/" onClick={closeMenus} className="flex min-w-0 items-center gap-3" aria-label="Bedsun Tech home">
             <picture className="shrink-0">
               <source srcSet={logoWebp} type="image/webp" />
-              <img
-                src={logo}
-                alt="Bedsun Tech"
-                width={40}
-                height={40}
-                decoding="async"
-                className="h-10 w-10 rounded-xl object-contain shadow-sm"
-              />
+              <img src={logo} alt="" width={40} height={40} decoding="async" className="h-10 w-10 rounded-xl object-contain shadow-sm" />
             </picture>
             <div className="text-left leading-tight">
-              <div className="text-sm font-extrabold tracking-wide text-gray-900">
-                BEDSUN TECH
-              </div>
-              <div className="text-xs font-medium text-gray-600">
-                IT Solutions • Dusk to Dawn
-              </div>
+              <div className="text-sm font-extrabold tracking-wide text-gray-900">BEDSUN TECH</div>
+              <div className="text-xs font-medium text-gray-600">IT Solutions · Dusk to Dawn</div>
             </div>
           </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden items-center gap-2 md:flex">
+          <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">
             <NavItem to="/about">About</NavItem>
             <NavItem to="/ai-consultant">AI Assistant</NavItem>
-
-            <div
-              className="relative"
-              onMouseEnter={() => setServicesOpen(true)}
-              onMouseLeave={() => setServicesOpen(false)}
-            >
-              <button
-                type="button"
-                onClick={() => setServicesOpen((prev) => !prev)}
-                className={[
-                  "rounded-xl px-3 py-2 text-sm font-semibold transition",
-                  servicesOpen
-                    ? "bg-gray-100 text-gray-900"
-                    : "text-gray-700 hover:bg-gray-100 hover:text-gray-900",
-                ].join(" ")}
-                aria-expanded={servicesOpen}
-              >
-                Services ▾
-              </button>
-
-              {servicesOpen ? (
-                <div className="absolute left-1/2 top-full w-[44rem] max-w-[calc(100vw-2rem)] -translate-x-1/2 pt-2">
-                  <div className="rounded-3xl border border-gray-200 bg-white p-4 shadow-lg">
-                    <div className="grid gap-3 md:grid-cols-2">
-                      <div>
-                        <div className="px-4 pb-2 text-xs font-bold uppercase tracking-wider text-gray-400">
-                          Business Tech
-                        </div>
-                        <DropdownItem
-                          to="/services"
-                          title="All Services"
-                          desc="Overview of everything Bedsun Tech can help with."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/small-business-website-design"
-                          title="Websites"
-                          desc="Website design, redesigns, SEO basics, and forms."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/business-automation"
-                          title="Automation"
-                          desc="Workflows, dashboards, scripts, and practical tools."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/ai-consultant"
-                          title="AI Website Assistant"
-                          desc="Start with the assistant and get routed to the right Bedsun Tech service."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/ai-integration-small-business"
-                          title="AI Integration"
-                          desc="Practical AI workflows, intake, follow-up, and internal tools."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/business-tech-ai-opportunity-scan"
-                          title="Opportunity Scan"
-                          desc="Review your website, forms, follow-up, manual tasks, and AI opportunities."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/small-business-it-support"
-                          title="Small Business IT"
-                          desc="Microsoft 365, email, devices, Wi-Fi, backups, and support."
-                          onClick={closeServicesMenu}
-                        />
+            <div className="relative" onMouseEnter={() => setServicesOpen(true)} onMouseLeave={() => setServicesOpen(false)}>
+              <button ref={servicesButton} type="button" onClick={() => setServicesOpen(open => !open)} aria-expanded={servicesOpen} aria-controls="desktop-services" className="min-h-11 rounded-xl px-3 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-100">Services <span aria-hidden="true">▾</span></button>
+              {servicesOpen && (
+                <div id="desktop-services" className="absolute right-0 top-full w-[42rem] max-w-[calc(100vw-3rem)] pt-2">
+                  <div className="grid max-h-[calc(100dvh-6rem)] grid-cols-2 gap-4 overflow-y-auto rounded-2xl border border-gray-200 bg-white p-4 shadow-xl">
+                    {serviceGroups.map(group => (
+                      <div key={group.title}>
+                        <p className="px-3 pb-2 text-xs font-bold uppercase tracking-wider text-indigo-700">{group.title}</p>
+                        {group.links.map(([to, label]) => <NavItem key={to} to={to} block onClick={closeMenus}>{label}</NavItem>)}
                       </div>
-
-                      <div>
-                        <div className="px-4 pb-2 text-xs font-bold uppercase tracking-wider text-gray-400">
-                          Personal Tech Help
-                        </div>
-                        <DropdownItem
-                          to="/personal-tech-help"
-                          title="Personal Tech Help"
-                          desc="Home tech, devices, accounts, printers, cameras, and setup help."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/senior-tech-help"
-                          title="Senior Tech Help"
-                          desc="Patient help for seniors, families, devices, Wi-Fi, and scam safety."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/printer-setup-troubleshooting"
-                          title="Printer Help"
-                          desc="Offline printer fixes, wireless printing, scanners, and setup."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/wifi-setup-troubleshooting"
-                          title="Wi-Fi Help"
-                          desc="Weak signal, router help, dead zones, printers, cameras, and TVs."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/email-password-scam-help"
-                          title="Email, Password & Scam Help"
-                          desc="Account recovery, password resets, suspicious emails, and scam texts."
-                          onClick={closeServicesMenu}
-                        />
-                        <DropdownItem
-                          to="/smart-tv-phone-tablet-setup"
-                          title="Smart TV, Phone & Tablet Help"
-                          desc="Smart TVs, iPhone, Android, tablets, Roku, Fire Stick, and apps."
-                          onClick={closeServicesMenu}
-                        />
-                      </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
-              ) : null}
+              )}
             </div>
-
             <NavItem to="/projects">Projects</NavItem>
             <NavItem to="/blog">Blog</NavItem>
             <NavItem to="/contact">Contact</NavItem>
           </nav>
-
-          {/* Mobile menu button */}
-          <button
-            type="button"
-            onClick={() => setMobileOpen((prev) => !prev)}
-            className="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 md:hidden"
-            aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? (
-              <span className="text-lg leading-none">×</span>
-            ) : (
-              <span className="flex flex-col gap-1">
-                <span className="block h-0.5 w-5 rounded-full bg-gray-900" />
-                <span className="block h-0.5 w-5 rounded-full bg-gray-900" />
-                <span className="block h-0.5 w-5 rounded-full bg-gray-900" />
-              </span>
-            )}
+          <button ref={mobileButton} type="button" onClick={() => setMobileOpen(open => !open)} aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"} aria-expanded={mobileOpen} aria-controls="mobile-navigation" className="inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-900 lg:hidden">
+            {mobileOpen ? <span aria-hidden="true" className="text-2xl">×</span> : <span>Menu</span>}
           </button>
         </div>
-
-        {/* Mobile nav */}
-        {mobileOpen ? (
-          <nav className="border-t border-gray-200 py-3 md:hidden">
-            <div className="grid gap-2">
-              <MobileNavItem to="/about" onClick={closeMobileMenu}>
-                About
-              </MobileNavItem>
-              <MobileNavItem to="/ai-consultant" onClick={closeMobileMenu}>
-                AI Assistant
-              </MobileNavItem>
-
-              <div className="rounded-2xl border border-gray-200 bg-white p-2">
-                <div className="px-2 py-2 text-xs font-semibold uppercase tracking-wider text-gray-500">
-                  Services
-                </div>
-                <MobileNavItem to="/services" onClick={closeMobileMenu}>
-                  All Services
-                </MobileNavItem>
-                <MobileNavItem
-                  to="/small-business-website-design"
-                  onClick={closeMobileMenu}
-                >
-                  Websites
-                </MobileNavItem>
-                <MobileNavItem to="/business-automation" onClick={closeMobileMenu}>
-                  Automation
-                </MobileNavItem>
-                <MobileNavItem to="/ai-consultant" onClick={closeMobileMenu}>
-                  AI Website Assistant
-                </MobileNavItem>
-                <MobileNavItem
-                  to="/ai-integration-small-business"
-                  onClick={closeMobileMenu}
-                >
-                  AI Integration
-                </MobileNavItem>
-                <MobileNavItem
-                  to="/business-tech-ai-opportunity-scan"
-                  onClick={closeMobileMenu}
-                >
-                  Opportunity Scan
-                </MobileNavItem>
-                <MobileNavItem
-                  to="/small-business-it-support"
-                  onClick={closeMobileMenu}
-                >
-                  Small Business IT
-                </MobileNavItem>
-                <MobileNavItem to="/personal-tech-help" onClick={closeMobileMenu}>
-                  Personal Tech Help
-                </MobileNavItem>
-                <MobileNavItem to="/senior-tech-help" onClick={closeMobileMenu}>
-                  Senior Tech Help
-                </MobileNavItem>
-                <MobileNavItem
-                  to="/printer-setup-troubleshooting"
-                  onClick={closeMobileMenu}
-                >
-                  Printer Help
-                </MobileNavItem>
-                <MobileNavItem
-                  to="/wifi-setup-troubleshooting"
-                  onClick={closeMobileMenu}
-                >
-                  Wi-Fi Help
-                </MobileNavItem>
-                <MobileNavItem
-                  to="/email-password-scam-help"
-                  onClick={closeMobileMenu}
-                >
-                  Email, Password & Scam Help
-                </MobileNavItem>
-                <MobileNavItem
-                  to="/smart-tv-phone-tablet-setup"
-                  onClick={closeMobileMenu}
-                >
-                  Smart TV, Phone & Tablet Help
-                </MobileNavItem>
-              </div>
-
-              <MobileNavItem to="/projects" onClick={closeMobileMenu}>
-                Projects
-              </MobileNavItem>
-              <MobileNavItem to="/contact" onClick={closeMobileMenu}>
-                Contact
-              </MobileNavItem>
+        {mobileOpen && (
+          <nav id="mobile-navigation" aria-label="Mobile navigation" className="max-h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-t border-gray-200 pb-6 pt-3 lg:hidden">
+            <div className="mb-3 grid grid-cols-2 gap-3">
+              <Link to="/contact" onClick={closeMenus} className="flex min-h-11 items-center justify-center rounded-xl bg-indigo-600 px-3 py-3 text-sm font-semibold text-white">Request help</Link>
+              <a href="tel:17022195011" className="flex min-h-11 items-center justify-center rounded-xl border border-indigo-200 px-3 py-3 text-sm font-semibold text-indigo-700">Call Matt</a>
             </div>
-
-            <div className="mt-3 rounded-2xl border border-gray-200 bg-gray-50 p-4">
-              <div className="text-sm font-semibold text-gray-900">
-                Need help with technology?
-              </div>
-              <p className="mt-1 text-sm leading-relaxed text-gray-600">
-                Websites, automation, small business IT, Wi-Fi, cameras, and personal tech help.
-              </p>
-              <Link
-                to="/ai-consultant"
-                onClick={closeMobileMenu}
-                className="mt-3 inline-flex w-full justify-center rounded-2xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700"
-              >
-                Ask the AI Assistant
-              </Link>
+            {serviceGroups.map(group => (
+              <details key={group.title} className="mb-2 rounded-xl border border-gray-200 bg-white">
+                <summary className="min-h-11 cursor-pointer px-4 py-3 font-semibold text-gray-900">{group.title}</summary>
+                <div className="border-t border-gray-100 p-2">
+                  {group.links.map(([to, label]) => <NavItem key={to} to={to} block onClick={closeMenus}>{label}</NavItem>)}
+                </div>
+              </details>
+            ))}
+            <NavItem to="/ai-consultant" block onClick={closeMenus}>Ask the AI Assistant</NavItem>
+            <div className="grid grid-cols-3 gap-1 border-t border-gray-100 pt-2">
+              <NavItem to="/about" onClick={closeMenus}>About</NavItem>
+              <NavItem to="/projects" onClick={closeMenus}>Projects</NavItem>
+              <NavItem to="/blog" onClick={closeMenus}>Blog</NavItem>
             </div>
           </nav>
-        ) : null}
+        )}
       </div>
     </header>
   );

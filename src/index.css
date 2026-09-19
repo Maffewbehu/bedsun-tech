@@ -13,3 +13,28 @@ body {
 * {
   -webkit-tap-highlight-color: transparent;
 }
+
+@layer base {
+  :focus-visible {
+    outline: 3px solid #4f46e5;
+    outline-offset: 3px;
+  }
+  html { scroll-padding-top: 5rem; }
+}
+
+.mobile-contact-bar { padding-bottom: max(0.75rem, env(safe-area-inset-bottom)); }
+.mobile-contact-space { padding-bottom: calc(5rem + env(safe-area-inset-bottom)); }
+.assistant-launcher { bottom: calc(5.75rem + env(safe-area-inset-bottom)); }
+
+@media (min-width: 1024px) {
+  .mobile-contact-space { padding-bottom: 0; }
+  .assistant-launcher { bottom: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
