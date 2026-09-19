@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/BT_logo.png";
+import logoWebp from "../assets/BT_logo.webp";
 
 function NavItem({ to, children, onClick }) {
   return (
@@ -83,11 +84,17 @@ export default function Navbar() {
             }}
             className="flex items-center gap-3"
           >
-            <img
-              src={logo}
-              alt="Bedsun Tech"
-              className="h-10 w-10 rounded-xl object-contain shadow-sm"
-            />
+            <picture className="shrink-0">
+              <source srcSet={logoWebp} type="image/webp" />
+              <img
+                src={logo}
+                alt="Bedsun Tech"
+                width={40}
+                height={40}
+                decoding="async"
+                className="h-10 w-10 rounded-xl object-contain shadow-sm"
+              />
+            </picture>
             <div className="text-left leading-tight">
               <div className="text-sm font-extrabold tracking-wide text-gray-900">
                 BEDSUN TECH
