@@ -1,5 +1,10 @@
 # Digital products: launch and delivery
 
+The native Stripe checkout and private-download implementation is documented in
+[stripe-store-setup.md](stripe-store-setup.md), including the created product
+IDs, introductory $9/$29 prices, credentials, storage, and testing steps.
+Purchases remain closed until the server and frontend release gates are enabled.
+
 ## Prepared in this change
 
 - Catalog at `/products` and workbook page at `/products/simple-budget-debt`.
@@ -45,7 +50,7 @@ Copy `.env.example` to `.env.local` for local checks. The following build-time v
 
 Set the same **public** values in the Azure build environment (the workflow's `build_and_deploy_job` environment) and rebuild. Setting runtime API variables alone will not change a Vite build. Leave the release flag false while fulfillment is unfinished. The gate checks configuration syntax; it cannot verify an external provider's payment or delivery behavior.
 
-Do not set any price until it has been approved. Never put API keys, webhook secrets, private file links, or workbook contents in `VITE_*` settings. A checkout URL is public. Provider credentials belong to the provider/server environment.
+The initial $9/$29 prices are configured in Stripe. Never put API keys, webhook secrets, private file links, or workbook contents in `VITE_*` settings. A checkout URL is public. Provider credentials belong to the provider/server environment. The exact relative path `/api/store/checkout` is also accepted for the native store; its server independently verifies prices and release readiness.
 
 ## Validation
 

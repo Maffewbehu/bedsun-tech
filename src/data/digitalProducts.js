@@ -16,8 +16,8 @@ export const budgetProduct = {
   inquiryService: 'Digital product / spreadsheet',
   commerce: getProductCommerce({
     releaseReady: import.meta.env.VITE_BUDGET_RELEASE_READY,
-    checkoutUrl: import.meta.env.VITE_BUDGET_CHECKOUT_URL,
-    priceUsd: import.meta.env.VITE_BUDGET_PRICE_USD,
+    checkoutUrl: import.meta.env.VITE_BUDGET_CHECKOUT_URL || '/api/store/checkout',
+    priceUsd: import.meta.env.VITE_BUDGET_PRICE_USD || '9',
   }),
 };
 
@@ -37,8 +37,8 @@ export const dashboardProduct = {
   inquiryService: 'Digital product / Power BI dashboard',
   commerce: getProductCommerce({
     releaseReady: import.meta.env.VITE_DASHBOARD_RELEASE_READY,
-    checkoutUrl: import.meta.env.VITE_DASHBOARD_CHECKOUT_URL,
-    priceUsd: import.meta.env.VITE_DASHBOARD_PRICE_USD,
+    checkoutUrl: import.meta.env.VITE_DASHBOARD_CHECKOUT_URL || '/api/store/checkout',
+    priceUsd: import.meta.env.VITE_DASHBOARD_PRICE_USD || '29',
   }),
 };
 
