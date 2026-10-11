@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import SEO from "../components/SEO";
-import { budgetProduct } from "../data/digitalProducts";
+import { digitalProducts } from "../data/digitalProducts";
 
 const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || "/api/contact";
 const CONTACT_EMAIL = "bedsun.tech@gmail.com";
@@ -50,7 +50,7 @@ function Select({ name, value, onChange, required = false, children }) {
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
-  const productInquiry = searchParams.get('product') === budgetProduct.id;
+  const productInquiry = digitalProducts.find(product => product.id === searchParams.get('product'));
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -76,8 +76,8 @@ export default function Contact() {
     if (!productInquiry) return;
     setFormData(prev => ({
       ...prev,
-      service_type: prev.service_type || 'Digital product / spreadsheet',
-      subject: prev.subject || `${budgetProduct.name} inquiry`,
+      service_type: prev.service_type || productInquiry.inquiryService,
+      subject: prev.subject || `${productInquiry.name} inquiry`,
     }));
   }, [productInquiry]);
 
@@ -340,6 +340,7 @@ export default function Contact() {
                     <option value="Wi-Fi, cameras, or devices">Wi-Fi, cameras, or devices</option>
                     <option value="Not sure yet">Not sure yet</option>
                     <option value="Digital product / spreadsheet">Digital product / spreadsheet</option>
+                    <option value="Digital product / Power BI dashboard">Digital product / Power BI dashboard</option>
                   </Select>
                 </Field>
 

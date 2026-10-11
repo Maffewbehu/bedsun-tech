@@ -8,7 +8,7 @@ export function getProductCommerce({ releaseReady, checkoutUrl, priceUsd } = {})
   try {
     const candidate = new URL(String(checkoutUrl ?? '').trim());
     if (candidate.protocol === 'https:' && !candidate.username && !candidate.password
-      && !/\.(zip|xlsx?|csv|ods)(\/|$)/i.test(candidate.pathname)) {
+      && !/\.(zip|xlsx?|csv|ods|pbit|pbix|pbip)(\/|$)/i.test(candidate.pathname)) {
       url = candidate.href;
     }
   } catch { /* An absent or malformed checkout keeps sales closed. */ }

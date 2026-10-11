@@ -112,6 +112,29 @@ await until(() => directInquiry.document.querySelector('input[name="subject"]').
 assert.deepEqual(directInquiry.errors, []);
 assert.deepEqual(directInquiry.requests, []);
 directInquiry.dom.window.close();
+await navigate('/products');
+await navigate('/products/sales-expenses-dashboard');
+assert(document.querySelector('h1').textContent.includes('Sales & Expenses'));
+assert(document.querySelector('body').textContent.includes('The complete dashboard package'));
+assert(!document.querySelector('body').textContent.includes('colorway'), 'Dashboard purchase card must use its own package copy');
+for (const [name, id] of [['Overview', 'overview'], ['Sales', 'sales'], ['Operating Expenses', 'operating-expenses']]) {
+  await choose('Preview report page', name);
+  const preview = document.querySelector('[data-report-preview]');
+  const expected = `/assets/products/sales-expenses-dashboard/${id}.png`;
+  assert.equal(preview.getAttribute('src'), expected);
+  assert(preview.alt.includes(name) && preview.alt.includes('fictional'));
+  assert(document.querySelector(`a[href="${expected}"][target="_blank"]`));
+}
+document.querySelector('a[href="/contact?product=sales-expenses-dashboard"]').click();
+await until(() => document.querySelector('input[name="subject"]')?.value === 'Small Business Sales & Expenses Dashboard inquiry', 'Dashboard inquiry context did not reach the contact form');
+assert.equal(document.querySelector('select[name="service_type"]').value, 'Digital product / Power BI dashboard');
+assert.equal(window.location.search, '?product=sales-expenses-dashboard');
+const directDashboardInquiry = await open('/contact?product=sales-expenses-dashboard', 'dist/contact/index.html');
+await until(() => directDashboardInquiry.document.querySelector('input[name="subject"]').value === 'Small Business Sales & Expenses Dashboard inquiry', 'Direct dashboard inquiry did not prefill');
+assert.equal(directDashboardInquiry.document.querySelector('select[name="service_type"]').value, 'Digital product / Power BI dashboard');
+assert.deepEqual(directDashboardInquiry.errors, []);
+assert.deepEqual(directDashboardInquiry.requests, []);
+directDashboardInquiry.dom.window.close();
 window.history.pushState({}, '', '/missing-page-check');
 window.dispatchEvent(new window.PopStateEvent('popstate'));
 await until(() => document.querySelector('meta[name="robots"]')?.content === 'noindex, nofollow', 'Client-side 404 metadata did not update');
@@ -119,4 +142,4 @@ assert.equal(document.querySelectorAll('link[rel="canonical"]').length, 0);
 assert.deepEqual(errors, [], 'Runtime errors during navigation');
 assert.deepEqual(page.requests, [], 'UI checks must not send real leads or assistant requests');
 page.dom.window.close();
-console.log(`Verified hydration for ${paths.length} pages and 404, navigation metadata, menu focus, assistant controls, all 18 gallery views, and product inquiries.`);
+console.log(`Verified hydration for ${paths.length} pages and 404, navigation metadata, menu focus, assistant controls, 18 workbook views, 3 dashboard views, and both product inquiry flows.`);
