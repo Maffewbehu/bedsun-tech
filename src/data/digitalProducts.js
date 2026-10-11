@@ -36,7 +36,7 @@ export const dashboardProduct = {
   },
   inquiryService: 'Digital product / Power BI dashboard',
   commerce: getProductCommerce({
-    releaseReady: import.meta.env.VITE_DASHBOARD_RELEASE_READY,
+    releaseReady: import.meta.env.VITE_DASHBOARD_RELEASE_READY ?? 'true',
     checkoutUrl: import.meta.env.VITE_DASHBOARD_CHECKOUT_URL || '/api/store/checkout',
     priceUsd: import.meta.env.VITE_DASHBOARD_PRICE_USD || '29',
   }),
