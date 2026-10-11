@@ -11,7 +11,7 @@ for (const productPath of ['/products', '/products/simple-budget-debt', '/produc
 for (const guidePath of ['/blog/monthly-budget-spreadsheet-guide', '/blog/small-business-sales-expenses-spreadsheet']) {
   assert(paths.includes(guidePath), 'Missing digital product guide from sitemap: ' + guidePath);
   const html = await readFile(`dist${guidePath}/index.html`, 'utf8');
-  const schemas = [...html.matchAll(/<script type="application\\/ld\\+json">([\\s\\S]*?)<\\/script>/g)]
+  const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
     .map(match => JSON.parse(match[1]));
   assert(schemas.some(schema => schema['@type'] === 'Article'), guidePath + ': missing Article structured data');
 }
