@@ -9,7 +9,7 @@ const SIGNING = 'whsec_fixture_only_not_a_real_secret';
 const realStripe = new StripeClient('rk_test_fixture_only');
 function fixture(sku = 'simple-budget-debt') {
   const p = PRODUCTS[sku];
-  const state = { orders: new Map(), email: [], calls: [], locks: new Set(), private: true, fileExists: true, emailFails: false, time: NOW };
+  const state = { orders: new Map(), email: [], calls: [], locks: new Set(), private: true, fileExists: true, fileHash: p.sha256, emailFails: false, time: NOW };
   const env = {
     STORE_SITE_ORIGIN: 'https://bedsuntech.tech', STRIPE_LIVEMODE: 'true',
     STORE_DOWNLOAD_SIGNING_SECRET: 'fixture-download-secret-at-least-32-bytes',
@@ -37,7 +37,7 @@ function fixture(sku = 'simple-budget-debt') {
   };
   const storage = {
     assertPrivate: async () => { if (!state.private) throw new Error('public container'); },
-    assertFile: async () => { if (!state.fileExists) throw new Error('missing file'); },
+    assertFile: async (_blob, sha256) => { if (!state.fileExists || sha256 !== state.fileHash) throw new Error('missing or incorrect file'); },
     readOrder: async id => structuredClone(state.orders.get(id) || null),
     ensureOrder: async order => { if (!state.orders.has(order.sessionId)) state.orders.set(order.sessionId, structuredClone(order)); },
     withOrderLease: async (id, callback) => {
@@ -176,6 +176,11 @@ test('download verifies the token and redirects only to a short-lived private ZI
 test('expired download links are rejected', async () => {
   const f = fixture(); await f.store().webhook(f.event()); const request = f.downloadRequest(await f.store().order(f.order));
   f.state.time += 7 * 86400; await assert.rejects(f.store().download(request), { status: 410 });
+});
+test('an incorrect release archive blocks checkout and existing download links', async () => {
+  const f = fixture(); await f.store().webhook(f.event()); const request = f.downloadRequest(await f.store().order(f.order));
+  f.state.fileHash = PRODUCTS['sales-expenses-dashboard'].sha256;
+  await assert.rejects(f.store().checkout(f.checkout)); await assert.rejects(f.store().download(request));
 });
 test('refunds, disputes and payment reversals revoke access on the next check', async () => {
   for (const change of [{ refunded: true }, { amount_refunded: 100 }, { disputed: true }]) {

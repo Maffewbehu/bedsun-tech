@@ -2,6 +2,7 @@
 const { readFile } = require('node:fs/promises');
 const { createHash } = require('node:crypto');
 const { BlobServiceClient } = require('@azure/storage-blob');
+const { PRODUCTS } = require('../lib/store');
 
 async function main() {
   const [budget, dashboard] = process.argv.slice(2);
@@ -13,12 +14,13 @@ async function main() {
     if ((await service.getContainerClient(name).getAccessPolicy()).blobPublicAccess) throw new Error('Both containers must be private.');
   }
   const files = service.getContainerClient(STORE_FILES_CONTAINER);
-  for (const [path, key] of [[budget, 'STORE_BUDGET_BLOB_NAME'], [dashboard, 'STORE_DASHBOARD_BLOB_NAME']]) {
+  for (const [path, key, sku] of [[budget, 'STORE_BUDGET_BLOB_NAME', 'simple-budget-debt'], [dashboard, 'STORE_DASHBOARD_BLOB_NAME', 'sales-expenses-dashboard']]) {
     const name = process.env[key];
     if (!name || !name.startsWith('releases/') || !name.endsWith('.zip')) throw new Error(`Set ${key} to an immutable release ZIP path.`);
     const bytes = await readFile(path);
     if (bytes.readUInt32LE(0) !== 0x04034b50) throw new Error('The release must be a ZIP archive.');
     const sha256 = createHash('sha256').update(bytes).digest('hex');
+    if (sha256 !== PRODUCTS[sku].sha256) throw new Error(`The file does not match the approved ${sku} release.`);
     const blob = files.getBlockBlobClient(name);
     try {
       await blob.uploadData(bytes, { conditions: { ifNoneMatch: '*' }, metadata: { sha256 }, blobHTTPHeaders: { blobContentType: 'application/zip', blobCacheControl: 'private, no-store' } });

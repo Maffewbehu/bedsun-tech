@@ -44,13 +44,18 @@ original bytes while giving them clean filenames in the archive, plus a
 START-HERE text file. The Power BI ZIP is the already-approved Desktop export,
 sample workbook, buyer guide and quick-start file.
 
+| Archive | Approved SHA-256 |
+| --- | --- |
+| Budget bundle | `85c16b5df97c547b7b3dfcdf4991fa29451a0a1a4161e304d34c20a519dfeeb9` |
+| Power BI dashboard | `baa744b27f3a9984bfcbf4bde17c6accbdf75e41cfadacee69473d365fbaebc8` |
+
 With the storage settings loaded into the local process environment, run:
 
 ```sh
 node api/scripts/upload-releases.cjs /absolute/path/BUDGET.zip /absolute/path/DASHBOARD.zip
 ```
 
-The script verifies private access and uses conditional uploads to prevent
+The script checks the approved file hashes, verifies private access and uses conditional uploads to prevent
 overwriting a different release. Record its SHA-256 values. It does not create
 resources or change container permissions.
 
@@ -117,6 +122,6 @@ npm run test:products
 npm run test:hydration
 ```
 
-The 20 store tests use Stripe's real signature verifier with synthetic events
+The 21 store tests use Stripe's real signature verifier with synthetic events
 and mocked payment/storage/email boundaries. They don't charge cards, send
 emails or prove that live Azure/Stripe/Resend configuration is working.

@@ -5,11 +5,13 @@ const PRODUCTS = {
     name: 'Simple Budget + Debt — Six-Colorway Bundle', prefix: 'BUDGET', cents: 900,
     productId: 'bedsun_simple_budget_debt_v1',
     filename: 'Bedsun-Tech-Simple-Budget-and-Debt-v1.0.zip',
+    sha256: '85c16b5df97c547b7b3dfcdf4991fa29451a0a1a4161e304d34c20a519dfeeb9',
   },
   'sales-expenses-dashboard': {
     name: 'Small Business Sales & Expenses Dashboard', prefix: 'DASHBOARD', cents: 2900,
     productId: 'bedsun_sales_expenses_dashboard_v1',
     filename: 'Bedsun-Tech-Sales-and-Expenses-Dashboard-v1.0.zip',
+    sha256: 'baa744b27f3a9984bfcbf4bde17c6accbdf75e41cfadacee69473d365fbaebc8',
   },
 };
 const SESSION_ID = /^cs_(live|test)_[A-Za-z0-9]{8,240}$/;
@@ -110,7 +112,7 @@ function createStore({ env, stripe, storage, mail, now = () => Math.floor(Date.n
         throw new StoreError(503, 'Purchases are not available yet.');
       }
       await storage.assertPrivate();
-      await storage.assertFile(product.blobName);
+      await storage.assertFile(product.blobName, product.sha256);
       // Stable across retries with the same request ID; eight alphabetic letters.
       const suffix = [...crypto.createHash('sha256').update(requestId).digest().subarray(0, 8)]
         .map(byte => String.fromCharCode(97 + byte % 26)).join('');
@@ -140,11 +142,11 @@ function createStore({ env, stripe, storage, mail, now = () => Math.floor(Date.n
       const email = session.customer_details?.email;
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new StoreError(503, 'Buyer email is not available yet.');
       await storage.assertPrivate();
-      await storage.assertFile(product.blobName);
+      await storage.assertFile(product.blobName, product.sha256);
       await storage.ensureOrder({
         sessionId: session.id, sku: product.sku, name: product.name,
         priceId: product.priceId, productId: product.productId, cents: product.cents,
-        blobName: product.blobName, filename: product.filename, email,
+        blobName: product.blobName, filename: product.filename, sha256: product.sha256, email,
         createdAt: now(), expiresAt: now() + 7 * 86400, emailSentAt: null,
       });
       await storage.withOrderLease(session.id, async (order, save) => {
@@ -175,6 +177,7 @@ function createStore({ env, stripe, storage, mail, now = () => Math.floor(Date.n
       verifyToken(cfg, order, req.query || {}, now());
       await paidPurchase(stripe, cfg, id, order);
       await storage.assertPrivate();
+      await storage.assertFile(order.blobName, order.sha256);
       const location = await storage.fileUrl(order.blobName, order.filename, Math.min(now() + 900, order.expiresAt));
       return { status: 302, headers: { Location: location }, body: '' };
     },
@@ -197,7 +200,10 @@ function azureStorage(env) {
         if ((await container.getAccessPolicy()).blobPublicAccess) throw new StoreError(503, 'Private delivery is not configured.');
       }
     },
-    async assertFile(blobName) { await files.getBlobClient(blobName).getProperties(); },
+    async assertFile(blobName, sha256) {
+      const properties = await files.getBlobClient(blobName).getProperties();
+      if (properties.metadata?.sha256 !== sha256) throw new StoreError(503, 'The approved release file is not available.');
+    },
     readOrder: read,
     async ensureOrder(order) {
       try { await orderBlob(order.sessionId).uploadData(Buffer.from(JSON.stringify(order)), { conditions: { ifNoneMatch: '*' }, blobHTTPHeaders: { blobContentType: 'application/json' } }); }
