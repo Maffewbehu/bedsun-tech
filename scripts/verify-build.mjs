@@ -10,7 +10,7 @@ for (const productPath of ['/products', '/products/simple-budget-debt', '/produc
 
 for (const productPath of paths.filter(path => path.startsWith('/products/'))) {
   const html = await readFile(`dist${productPath}/index.html`, 'utf8');
-  const schemas = [...html.matchAll(/<script type="application\\/ld\\+json">([\\s\\S]*?)<\\/script>/g)]
+  const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
     .map(match => JSON.parse(match[1]));
   const product = schemas.find(schema => schema['@type'] === 'Product');
   assert(product, productPath + ': missing Product structured data');
