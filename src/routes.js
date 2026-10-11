@@ -25,6 +25,8 @@ import HowToImproveWifiSignalInYourHome from './pages/HowToImproveWifiSignalInYo
 import HowToTellIfEmailOrTextIsAScam from './pages/HowToTellIfEmailOrTextIsAScam';
 import WhatCanAIActuallyDoForSmallBusiness from './pages/WhatCanAIActuallyDoForSmallBusiness';
 import HowToAutomateWebsiteFormFollowUp from './pages/HowToAutomateWebsiteFormFollowUp';
+import MonthlyBudgetSpreadsheetGuide from './pages/MonthlyBudgetSpreadsheetGuide';
+import SmallBusinessSalesExpensesGuide from './pages/SmallBusinessSalesExpensesGuide';
 
 export const pageRoutes = [
   { path: "/", Component: Home },
@@ -54,4 +56,6 @@ export const pageRoutes = [
   { path: "/blog/how-to-tell-if-email-or-text-is-a-scam", Component: HowToTellIfEmailOrTextIsAScam },
   { path: "/blog/what-can-ai-actually-do-for-small-business", Component: WhatCanAIActuallyDoForSmallBusiness },
   { path: "/blog/how-to-automate-website-form-follow-up", Component: HowToAutomateWebsiteFormFollowUp },
+  { path: "/blog/monthly-budget-spreadsheet-guide", Component: MonthlyBudgetSpreadsheetGuide },
+  { path: "/blog/small-business-sales-expenses-spreadsheet", Component: SmallBusinessSalesExpensesGuide },
 ];
