@@ -6,12 +6,76 @@ export const budgetProduct = {
   path: '/products/simple-budget-debt',
   contactPath: '/contact?product=simple-budget-debt',
   description: 'A monthly budget and debt tracker with clear charts, guided setup, and six colorways in one bundle.',
+  purchase: {
+    heading: 'The complete colorway bundle',
+    availableDescription: 'One purchase includes all six colorways.',
+    upcomingDescription: 'Preview the workbook below. Pricing and purchase details will be posted when the bundle is ready.',
+    buttonLabel: 'Buy the bundle',
+    fileLabel: 'Digital spreadsheet files · No physical item',
+  },
+  inquiryService: 'Digital product / spreadsheet',
   commerce: getProductCommerce({
     releaseReady: import.meta.env.VITE_BUDGET_RELEASE_READY,
     checkoutUrl: import.meta.env.VITE_BUDGET_CHECKOUT_URL,
     priceUsd: import.meta.env.VITE_BUDGET_PRICE_USD,
   }),
 };
+
+export const dashboardProduct = {
+  id: 'sales-expenses-dashboard',
+  name: 'Small Business Sales & Expenses Dashboard',
+  path: '/products/sales-expenses-dashboard',
+  contactPath: '/contact?product=sales-expenses-dashboard',
+  description: 'A Power BI template that brings revenue, direct costs, operating expenses, and profit together across three report pages.',
+  purchase: {
+    heading: 'The complete dashboard package',
+    availableDescription: 'Includes the Power BI template, sample Excel workbook, buyer guide, and quick-start instructions.',
+    upcomingDescription: 'Explore the report below. Pricing and purchase details will be posted when the dashboard is available.',
+    buttonLabel: 'Buy the dashboard',
+    fileLabel: 'Digital Power BI template · Windows desktop',
+  },
+  inquiryService: 'Digital product / Power BI dashboard',
+  commerce: getProductCommerce({
+    releaseReady: import.meta.env.VITE_DASHBOARD_RELEASE_READY,
+    checkoutUrl: import.meta.env.VITE_DASHBOARD_CHECKOUT_URL,
+    priceUsd: import.meta.env.VITE_DASHBOARD_PRICE_USD,
+  }),
+};
+
+export const digitalProducts = [budgetProduct, dashboardProduct];
+
+export const reportPreviews = [
+  { id: 'overview', name: 'Overview', description: 'Revenue, total expenses, operating profit, and margin, with monthly trends and summaries.' },
+  { id: 'sales', name: 'Sales', description: 'Revenue and gross profit by service, sales channels, invoice counts, and customer performance.' },
+  { id: 'operating-expenses', name: 'Operating Expenses', description: 'Operating overhead by month, category, and vendor, plus individual expense entries.' },
+].map(page => ({ ...page, image: `/assets/products/sales-expenses-dashboard/${page.id}.png` }));
+
+export const dashboardFaqs = [
+  {
+    question: 'What comes in the download?',
+    answer: 'One ZIP containing a reusable .pbit Power BI template, a sample .xlsx workbook with Sales and Expenses tables, a three-page PDF buyer guide, and quick-start instructions. The template has Overview, Sales, and Operating Expenses pages with year and month filters.',
+  },
+  {
+    question: 'What software do I need?',
+    answer: 'Use Microsoft Power BI Desktop on Windows to open the template. You can view and refresh the report locally without signing in to the Power BI service. Online publishing and sharing have separate account and licensing requirements. This is a desktop template, not a hosted dashboard.',
+  },
+  {
+    question: 'Can I try it with demo data first?',
+    answer: 'Yes. Open the .pbit template and leave DataFilePath blank to load the built-in fictional demo. The example covers January 2025 through September 2026 and uses USD. The blank-path demo has been opened and refreshed in Power BI Desktop.',
+  },
+  {
+    question: 'How do I connect my own data?',
+    answer: 'Make a copy of the sample Excel workbook and replace its example rows. Keep the named Sales and Expenses tables and their column names. In Power BI Desktop, set DataFilePath to the full local path of your workbook and refresh. New rows are read on refresh; the buyer guide covers the setup.',
+  },
+  {
+    question: 'How is operating profit calculated?',
+    answer: 'Operating profit equals sales revenue minus invoice direct costs and operating expenses. Gross profit subtracts only direct costs. Keep direct costs out of the Expenses table so they are not counted twice. Operating overhead is shown at business level and is not allocated to individual services.',
+  },
+  {
+    question: 'Does it connect to my bank or accounting software?',
+    answer: 'The included connection reads the two tables in your local Excel workbook. It does not include live bank feeds, accounting integrations, or scheduled online refresh. Update the workbook and refresh the report in Power BI Desktop.',
+  },
+];
 
 export const colorways = [
   { id: 'ocean', name: 'Ocean', color: '#197d9c', background: '#e1f0f6' },

@@ -5,6 +5,7 @@ import Contact from './pages/Contact';
 import Projects from './pages/Projects';
 import DigitalProducts from './pages/DigitalProducts';
 import SimpleBudgetDebt from './pages/SimpleBudgetDebt';
+import SalesExpensesDashboard from './pages/SalesExpensesDashboard';
 import SmallBusinessWebsiteDesign from './pages/SmallBusinessWebsiteDesign';
 import BusinessAutomation from './pages/BusinessAutomation';
 import SmallBusinessITSupport from './pages/SmallBusinessITSupport';
@@ -44,6 +45,7 @@ export const pageRoutes = [
   { path: "/projects", Component: Projects },
   { path: "/products", Component: DigitalProducts },
   { path: "/products/simple-budget-debt", Component: SimpleBudgetDebt },
+  { path: "/products/sales-expenses-dashboard", Component: SalesExpensesDashboard },
   { path: "/blog", Component: Blog },
   { path: "/blog/why-does-my-printer-say-offline", Component: WhyDoesMyPrinterSayOffline },
   { path: "/blog/how-to-improve-wifi-signal-in-your-home", Component: HowToImproveWifiSignalInYourHome },
