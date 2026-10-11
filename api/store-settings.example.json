@@ -1,0 +1,22 @@
+{
+  "STORE_CHECKOUT_ENABLED": "false",
+  "STORE_SITE_ORIGIN": "https://bedsuntech.tech",
+  "STRIPE_LIVEMODE": "true",
+  "STRIPE_ACCOUNT_ID": "acct_1UPJOmLhCHwbnAnU",
+  "STRIPE_API_KEY": "",
+  "STRIPE_WEBHOOK_SECRET": "",
+  "STORE_DOWNLOAD_SIGNING_SECRET": "",
+  "STORE_STORAGE_CONNECTION_STRING": "",
+  "STORE_FILES_CONTAINER": "bedsun-digital-products",
+  "STORE_ORDERS_CONTAINER": "bedsun-digital-orders",
+  "RESEND_API_KEY": "",
+  "STORE_FROM_EMAIL": "",
+  "STORE_BUDGET_RELEASE_READY": "false",
+  "STORE_BUDGET_PRODUCT_ID": "bedsun_simple_budget_debt_v1",
+  "STORE_BUDGET_PRICE_ID": "price_1UPJuALhCHwbnAnUXVCL60NB",
+  "STORE_BUDGET_BLOB_NAME": "releases/Bedsun-Tech-Simple-Budget-and-Debt-v1.0.zip",
+  "STORE_DASHBOARD_RELEASE_READY": "false",
+  "STORE_DASHBOARD_PRODUCT_ID": "bedsun_sales_expenses_dashboard_v1",
+  "STORE_DASHBOARD_PRICE_ID": "price_1UPJuNLhCHwbnAnU360ZVFd7",
+  "STORE_DASHBOARD_BLOB_NAME": "releases/Bedsun-Tech-Sales-and-Expenses-Dashboard-v1.0.zip"
+}

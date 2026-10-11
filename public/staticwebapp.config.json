@@ -1,12 +1,18 @@
 {
   "routes": [
     {
+      "route": "/purchase-complete",
+      "headers": { "Cache-Control": "no-store", "Referrer-Policy": "no-referrer", "X-Robots-Tag": "noindex, nofollow" },
+      "rewrite": "/purchase-complete/index.html"
+    },
+    {
       "route": "/api/*",
       "allowedRoles": [
         "anonymous"
       ]
     }
   ],
+  "platform": { "apiRuntime": "node:22" },
   "responseOverrides": {
     "404": {
       "rewrite": "/404.html",

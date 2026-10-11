@@ -22,6 +22,10 @@ for (const checkoutUrl of ['', 'not a url', 'javascript:alert(1)', 'http://check
 assert.deepEqual(getProductCommerce(configured), { available: true, checkoutUrl: configured.checkoutUrl, priceLabel: '$12.50' });
 assert.equal(getProductCommerce({ ...configured, priceUsd: '0.01' }).priceLabel, '$0.01');
 assert.equal(getProductCommerce({ ...configured, priceUsd: '9' }).priceLabel, '$9.00');
+assert.equal(getProductCommerce({ ...configured, checkoutUrl: '/api/store/checkout' }).available, true);
+for (const checkoutUrl of ['/api/store/download', '/api/store/checkout?product=other', '/api/store/checkout/']) {
+  assert.deepEqual(getProductCommerce({ ...configured, checkoutUrl }), closed);
+}
 
 const root = 'dist/assets/products/simple-budget-debt';
 for (const colorway of ['ocean', 'forest', 'rose', 'warm-sand', 'dark-lavender', 'high-contrast-ocean']) {
@@ -42,4 +46,7 @@ async function checkPublicFiles(path) {
 }
 await checkPublicFiles('public');
 await checkPublicFiles('dist');
+const receipt = await readFile('dist/purchase-complete/index.html', 'utf8');
+assert(receipt.includes('noindex, nofollow'));
+assert(!(await readFile('dist/sitemap.xml', 'utf8')).includes('/purchase-complete'));
 console.log('Verified checkout gating, prices, 18 workbook previews, 3 dashboard previews, product pages, and absence of public paid files.');

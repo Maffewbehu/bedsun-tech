@@ -33,7 +33,7 @@ const config = JSON.parse(await readFile('public/staticwebapp.config.json', 'utf
 config.routes.push(
   // Azure normalizes folder paths and their trailing-slash/index variants.
   // One rule covers each page; separate alias rules are rejected as duplicates.
-  ...paths.filter(path => path !== '/').map(path => (
+  ...paths.filter(path => path !== '/' && !config.routes.some(route => route.route === path)).map(path => (
     { route: path, rewrite: `${path}/index.html` }
   )),
   { route: '/404.html', statusCode: 404 },
@@ -41,7 +41,7 @@ config.routes.push(
 await writeFile('dist/staticwebapp.config.json', `${JSON.stringify(config, null, 2)}\n`);
 await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${paths.map(path => `  <url><loc>https://bedsuntech.tech${path}</loc></url>`).join('\n')}
+${paths.filter(path => path !== '/purchase-complete').map(path => `  <url><loc>https://bedsuntech.tech${path}</loc></url>`).join('\n')}
 </urlset>
 `);
 console.log(`Prerendered ${paths.length} public pages plus a 404 page, sitemap, and Azure routes.`);

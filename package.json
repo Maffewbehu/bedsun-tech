@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "verify:build": "node scripts/verify-build.mjs",
     "test:hydration": "node scripts/check-hydration.mjs",
-    "test:products": "node scripts/check-products.mjs"
+    "test:products": "node scripts/check-products.mjs",
+    "test:store": "node --test api/test/store.test.cjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.5",
