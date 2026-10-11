@@ -8,6 +8,14 @@ for (const productPath of ['/products', '/products/simple-budget-debt', '/produc
   assert(paths.includes(productPath), 'Missing digital product route from sitemap: ' + productPath);
 }
 
+for (const guidePath of ['/blog/monthly-budget-spreadsheet-guide', '/blog/small-business-sales-expenses-spreadsheet']) {
+  assert(paths.includes(guidePath), 'Missing digital product guide from sitemap: ' + guidePath);
+  const html = await readFile(`dist${guidePath}/index.html`, 'utf8');
+  const schemas = [...html.matchAll(/<script type="application\\/ld\\+json">([\\s\\S]*?)<\\/script>/g)]
+    .map(match => JSON.parse(match[1]));
+  assert(schemas.some(schema => schema['@type'] === 'Article'), guidePath + ': missing Article structured data');
+}
+
 for (const productPath of paths.filter(path => path.startsWith('/products/'))) {
   const html = await readFile(`dist${productPath}/index.html`, 'utf8');
   const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]

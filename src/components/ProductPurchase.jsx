@@ -1,12 +1,23 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { trackAnalyticsEvent } from '../lib/analytics';
 
 export default function ProductPurchase({ product }) {
   const { commerce, purchase } = product;
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
+  function trackCheckoutClick() {
+    const price = Number(String(commerce.priceLabel ?? '').replace(/[$,]/g, ''));
+    trackAnalyticsEvent('digital_product_checkout_click', {
+      product_id: product.id,
+      product_name: product.name,
+      currency: 'USD',
+      ...(Number.isFinite(price) ? { value: price } : {}),
+    });
+  }
   async function startCheckout() {
     if (busy) return;
+    trackCheckoutClick();
     setBusy(true);
     setError('');
     try {
@@ -37,7 +48,7 @@ export default function ProductPurchase({ product }) {
         commerce.checkoutUrl === '/api/store/checkout' ? (
           <button type="button" onClick={startCheckout} disabled={busy} className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-indigo-700 px-5 py-3 font-semibold text-white transition hover:bg-indigo-800 disabled:opacity-60">{busy ? 'Opening checkout…' : purchase.buttonLabel}</button>
         ) : (
-          <a href={commerce.checkoutUrl} className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-indigo-700 px-5 py-3 font-semibold text-white transition hover:bg-indigo-800">{purchase.buttonLabel}</a>
+          <a href={commerce.checkoutUrl} onClick={trackCheckoutClick} className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-indigo-700 px-5 py-3 font-semibold text-white transition hover:bg-indigo-800">{purchase.buttonLabel}</a>
         )
       ) : (
         <Link to={product.contactPath} className="mt-5 inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-indigo-700 px-5 py-3 font-semibold text-white transition hover:bg-indigo-800">Ask about this template</Link>
