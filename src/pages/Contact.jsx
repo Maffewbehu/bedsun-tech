@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import SEO from "../components/SEO";
+import { budgetProduct } from "../data/digitalProducts";
 
 const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || "/api/contact";
 const CONTACT_EMAIL = "bedsun.tech@gmail.com";
@@ -47,6 +49,8 @@ function Select({ name, value, onChange, required = false, children }) {
 }
 
 export default function Contact() {
+  const [searchParams] = useSearchParams();
+  const productInquiry = searchParams.get('product') === budgetProduct.id;
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -65,6 +69,17 @@ export default function Contact() {
     success: false,
     error: "",
   });
+
+  // Apply product context after hydration so static /contact HTML stays valid
+  // when a visitor arrives through a product query string.
+  useEffect(() => {
+    if (!productInquiry) return;
+    setFormData(prev => ({
+      ...prev,
+      service_type: prev.service_type || 'Digital product / spreadsheet',
+      subject: prev.subject || `${budgetProduct.name} inquiry`,
+    }));
+  }, [productInquiry]);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -324,6 +339,7 @@ export default function Contact() {
                     <option value="Personal tech help">Personal tech help</option>
                     <option value="Wi-Fi, cameras, or devices">Wi-Fi, cameras, or devices</option>
                     <option value="Not sure yet">Not sure yet</option>
+                    <option value="Digital product / spreadsheet">Digital product / spreadsheet</option>
                   </Select>
                 </Field>
 

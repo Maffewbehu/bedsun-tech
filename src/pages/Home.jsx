@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { budgetProduct, previewPath } from "../data/digitalProducts";
 
 function Badge({ children }) {
   return (
@@ -308,6 +309,21 @@ export default function Home() {
                 to="/business-tech-ai-opportunity-scan"
                 cta="Request an opportunity scan"
               />
+            </div>
+          </section>
+
+          <section className="mt-16 overflow-hidden rounded-3xl border border-indigo-100 bg-white shadow-sm" aria-labelledby="templates-heading">
+            <div className="grid gap-6 p-6 sm:p-8 md:grid-cols-2 md:items-center">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-indigo-700">Digital products by Bedsun Tech</p>
+                <h2 id="templates-heading" className="mt-3 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">A clearer view of your monthly budget.</h2>
+                <p className="mt-3 text-sm leading-relaxed text-gray-600">Simple Budget + Debt brings your monthly plan, debt payments, and charts together. A separate setup guide and six colorways make it easier to make the workbook your own.</p>
+                <p className="mt-4 text-sm font-semibold text-indigo-700">{budgetProduct.commerce.available ? `${budgetProduct.commerce.priceLabel} USD · All six colorways included` : 'Coming soon · Preview all six colorways'}</p>
+                <Link to={budgetProduct.path} className="mt-4 inline-flex min-h-11 items-center rounded-xl bg-indigo-700 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-800">Explore the budget workbook <span aria-hidden="true" className="ml-2">→</span></Link>
+              </div>
+              <Link to={budgetProduct.path} aria-label="Preview Simple Budget + Debt" className="rounded-2xl border border-gray-200 bg-slate-50 p-3">
+                <img src={previewPath()} width={2209} height={782} alt="Ocean monthly budget workbook with charts and fictional example amounts" loading="lazy" decoding="async" className="h-auto w-full rounded-lg border border-gray-200" />
+              </Link>
             </div>
           </section>
 

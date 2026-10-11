@@ -3,6 +3,8 @@ import About from './pages/About';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Projects from './pages/Projects';
+import DigitalProducts from './pages/DigitalProducts';
+import SimpleBudgetDebt from './pages/SimpleBudgetDebt';
 import SmallBusinessWebsiteDesign from './pages/SmallBusinessWebsiteDesign';
 import BusinessAutomation from './pages/BusinessAutomation';
 import SmallBusinessITSupport from './pages/SmallBusinessITSupport';
@@ -40,6 +42,8 @@ export const pageRoutes = [
   { path: "/smart-tv-phone-tablet-setup", Component: SmartTvPhoneTabletSetup },
   { path: "/contact", Component: Contact },
   { path: "/projects", Component: Projects },
+  { path: "/products", Component: DigitalProducts },
+  { path: "/products/simple-budget-debt", Component: SimpleBudgetDebt },
   { path: "/blog", Component: Blog },
   { path: "/blog/why-does-my-printer-say-offline", Component: WhyDoesMyPrinterSayOffline },
   { path: "/blog/how-to-improve-wifi-signal-in-your-home", Component: HowToImproveWifiSignalInYourHome },

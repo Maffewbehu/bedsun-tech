@@ -81,6 +81,37 @@ assert.equal(document.querySelector('input[name="from_email"]').autocomplete, 'e
 await navigate('/ai-consultant');
 assert.equal(document.querySelector('[aria-label="Quick contact"]'), null);
 assert(document.querySelector('label[for="assistant-message"]'));
+await navigate('/products');
+await navigate('/products/simple-budget-debt');
+const choose = async (groupLabel, label) => {
+  const group = document.querySelector(`[aria-label="${groupLabel}"]`);
+  const button = [...group.querySelectorAll('button')].find(item => item.textContent === label);
+  assert(button, `Missing ${label} preview control`);
+  button.click();
+  await until(() => button.getAttribute('aria-pressed') === 'true', `${label} preview did not update`);
+  assert.equal(group.querySelectorAll('[aria-pressed="true"]').length, 1);
+};
+for (const [name, id] of [['Ocean', 'ocean'], ['Forest', 'forest'], ['Rose', 'rose'], ['Warm Sand', 'warm-sand'], ['Dark Lavender', 'dark-lavender'], ['High Contrast Ocean', 'high-contrast-ocean']]) {
+  await choose('Preview colorway', name);
+  for (const [sheetName, sheetId] of [['Monthly Budget', 'budget'], ['Debt Tracker', 'debt'], ['Start Here', 'guide']]) {
+    await choose('Preview worksheet', sheetName);
+    const preview = document.querySelector('[data-workbook-preview]');
+    const expected = `/assets/products/simple-budget-debt/${id}-${sheetId}.webp`;
+    assert.equal(preview.getAttribute('src'), expected);
+    assert(preview.alt.includes(name) && preview.alt.includes(sheetName));
+    assert(document.querySelector(`a[href="${expected}"][target="_blank"]`));
+  }
+}
+document.querySelector('a[href="/contact?product=simple-budget-debt"]').click();
+await until(() => document.querySelector('input[name="subject"]')?.value === 'Simple Budget + Debt inquiry', 'Product inquiry context did not reach the contact form');
+assert.equal(document.querySelector('select[name="service_type"]').value, 'Digital product / spreadsheet');
+assert.equal(window.location.search, '?product=simple-budget-debt');
+// Direct arrivals with a query string must also hydrate the static contact page.
+const directInquiry = await open('/contact?product=simple-budget-debt', 'dist/contact/index.html');
+await until(() => directInquiry.document.querySelector('input[name="subject"]').value === 'Simple Budget + Debt inquiry', 'Direct product inquiry did not prefill');
+assert.deepEqual(directInquiry.errors, []);
+assert.deepEqual(directInquiry.requests, []);
+directInquiry.dom.window.close();
 window.history.pushState({}, '', '/missing-page-check');
 window.dispatchEvent(new window.PopStateEvent('popstate'));
 await until(() => document.querySelector('meta[name="robots"]')?.content === 'noindex, nofollow', 'Client-side 404 metadata did not update');
@@ -88,4 +119,4 @@ assert.equal(document.querySelectorAll('link[rel="canonical"]').length, 0);
 assert.deepEqual(errors, [], 'Runtime errors during navigation');
 assert.deepEqual(page.requests, [], 'UI checks must not send real leads or assistant requests');
 page.dom.window.close();
-console.log(`Verified hydration for ${paths.length} pages and 404, navigation metadata, menu focus, and assistant controls.`);
+console.log(`Verified hydration for ${paths.length} pages and 404, navigation metadata, menu focus, assistant controls, all 18 gallery views, and product inquiries.`);

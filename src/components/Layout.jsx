@@ -25,6 +25,9 @@ export default function Layout() {
             <Link className="hover:text-gray-900" to="/projects">
               Projects
             </Link>
+            <Link className="hover:text-gray-900" to="/products">
+              Digital products
+            </Link>
             <Link className="hover:text-gray-900" to="/contact">
               Contact
             </Link>

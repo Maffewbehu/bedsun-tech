@@ -13,12 +13,17 @@ npm run dev
 
 ```sh
 npm run build
+npm run test:products
 npm run test:hydration
 ```
 
 The build creates the browser bundle, renders every public route to HTML, generates the sitemap and Azure route rules, and verifies page metadata, internal links, image references, and the 404 configuration. `dist-ssr` is a temporary server rendering bundle; only `dist` is deployed. No server rendering process is needed in production.
 
-The hydration check runs the production bundle in a DOM test environment. It checks every rendered page, client-side metadata updates, navigation menu behavior and focus, and assistant controls. Network calls are stubbed so checks do not submit leads or call the live assistant. These checks do not replace visual testing on a phone.
+The hydration check runs the production bundle in a DOM test environment. It checks every rendered page, client-side metadata updates, navigation menu behavior and focus, assistant controls, workbook preview selectors, and product inquiry context. Network calls are stubbed so checks do not submit leads or call the live assistant. These checks do not replace visual testing on a phone.
+
+## Digital products
+
+The product catalog is at `/products`, with the first workbook bundle at `/products/simple-budget-debt`. Sales remain closed until release readiness, a final USD price, and a hosted checkout URL are configured. See [the digital products launch guide](docs/digital-products-launch.md) for configuration, compatibility status, and paid-download delivery requirements. `test:products` verifies the checkout gate and that spreadsheet/archive files stay out of public output.
 
 ## Adding a page
 
