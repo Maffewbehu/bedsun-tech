@@ -52,6 +52,34 @@ export function serviceSchema({ name, description, path, serviceType, audience, 
   return service;
 }
 
+export function digitalProductSchema({ name, description, path, image, priceLabel, available }) {
+  const parsedPrice = Number(String(priceLabel ?? '').replace(/[$,]/g, ''));
+  const offers = available && Number.isFinite(parsedPrice) && parsedPrice > 0
+    ? {
+        "@type": "Offer",
+        url: SITE_URL + path,
+        priceCurrency: "USD",
+        price: parsedPrice.toFixed(2),
+        availability: "https://schema.org/InStock",
+        itemCondition: "https://schema.org/NewCondition",
+        seller: { "@id": BUSINESS_ID },
+      }
+    : undefined;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": SITE_URL + path + "#product",
+    name,
+    description,
+    image: [image],
+    url: SITE_URL + path,
+    sku: path.split("/").filter(Boolean).at(-1),
+    brand: { "@type": "Brand", name: "Bedsun Tech" },
+    ...(offers ? { offers } : {}),
+  };
+}
+
 export function faqPageSchema(faqs, path) {
   return {
     "@context": "https://schema.org",
