@@ -15,7 +15,7 @@ export const budgetProduct = {
   },
   inquiryService: 'Digital product / spreadsheet',
   commerce: getProductCommerce({
-    releaseReady: import.meta.env.VITE_BUDGET_RELEASE_READY,
+    releaseReady: import.meta.env.VITE_BUDGET_RELEASE_READY ?? 'true',
     checkoutUrl: import.meta.env.VITE_BUDGET_CHECKOUT_URL || '/api/store/checkout',
     priceUsd: import.meta.env.VITE_BUDGET_PRICE_USD || '9',
   }),
