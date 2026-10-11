@@ -107,6 +107,7 @@ export default function Navbar() {
                 </div>
               )}
             </div>
+            <NavItem to="/products">Digital products</NavItem>
             <NavItem to="/projects">Projects</NavItem>
             <NavItem to="/blog">Blog</NavItem>
             <NavItem to="/contact">Contact</NavItem>
@@ -129,6 +130,7 @@ export default function Navbar() {
                 </div>
               </details>
             ))}
+            <NavItem to="/products" block onClick={closeMenus}>Digital products</NavItem>
             <NavItem to="/ai-consultant" block onClick={closeMenus}>Ask the AI Assistant</NavItem>
             <div className="grid grid-cols-3 gap-1 border-t border-gray-100 pt-2">
               <NavItem to="/about" onClick={closeMenus}>About</NavItem>
