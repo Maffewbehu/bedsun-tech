@@ -4,7 +4,7 @@ import SEO from '../components/SEO';
 import ProductPurchase from '../components/ProductPurchase';
 import ReportPreview from '../components/ReportPreview';
 import { dashboardProduct, dashboardFaqs, reportPreviews } from '../data/digitalProducts';
-import { faqPageSchema } from '../lib/structuredData';
+import { digitalProductSchema, faqPageSchema } from '../lib/structuredData';
 
 export default function SalesExpensesDashboard() {
   const [pageId, setPageId] = useState('overview');
@@ -12,7 +12,17 @@ export default function SalesExpensesDashboard() {
 
   return (
     <>
-      <SEO title="Small Business Sales & Expenses Power BI Dashboard | Bedsun Tech" description="Preview a three-page Power BI template for small business revenue, direct costs, operating expenses, and profit. Includes demo data, Excel workbook, and buyer guide." path={dashboardProduct.path} image={`https://bedsuntech.tech${reportPreviews[0].image}`} structuredData={[faqPageSchema(dashboardFaqs, dashboardProduct.path)]} />
+      <SEO title="Small Business Sales & Expenses Power BI Dashboard | Bedsun Tech" description="Preview a three-page Power BI template for small business revenue, direct costs, operating expenses, and profit. Includes demo data, Excel workbook, and buyer guide." path={dashboardProduct.path} image={`https://bedsuntech.tech${reportPreviews[0].image}`} structuredData={[
+        digitalProductSchema({
+          name: dashboardProduct.name,
+          description: dashboardProduct.description,
+          path: dashboardProduct.path,
+          image: 'https://bedsuntech.tech' + reportPreviews[0].image,
+          priceLabel: dashboardProduct.commerce.priceLabel,
+          available: dashboardProduct.commerce.available,
+        }),
+        faqPageSchema(dashboardFaqs, dashboardProduct.path),
+      ]} />
       <Link to="/products" className="inline-flex min-h-11 items-center text-sm font-semibold text-indigo-700 hover:text-indigo-900"><span aria-hidden="true" className="mr-2">←</span> Digital products</Link>
 
       <section className="grid gap-8 pb-8 pt-3 sm:pb-12 md:grid-cols-[1.4fr_1fr] md:items-center">

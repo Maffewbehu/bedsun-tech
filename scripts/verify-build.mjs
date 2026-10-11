@@ -4,6 +4,24 @@ import { readFile, access } from 'node:fs/promises';
 const sitemap = await readFile('dist/sitemap.xml', 'utf8');
 const paths = [...sitemap.matchAll(/<loc>https:\/\/bedsuntech\.tech([^<]*)<\/loc>/g)].map(match => match[1]);
 assert(paths.includes('/ai-consultant') && paths.includes('/about') && paths.includes('/'));
+for (const productPath of ['/products', '/products/simple-budget-debt', '/products/sales-expenses-dashboard']) {
+  assert(paths.includes(productPath), 'Missing digital product route from sitemap: ' + productPath);
+}
+
+for (const productPath of paths.filter(path => path.startsWith('/products/'))) {
+  const html = await readFile(`dist${productPath}/index.html`, 'utf8');
+  const schemas = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+    .map(match => JSON.parse(match[1]));
+  const product = schemas.find(schema => schema['@type'] === 'Product');
+  assert(product, productPath + ': missing Product structured data');
+  assert.equal(product.url, 'https://bedsuntech.tech' + productPath);
+  if (product.offers) {
+    assert.equal(product.offers.url, 'https://bedsuntech.tech' + productPath);
+    assert.equal(product.offers.priceCurrency, 'USD');
+    assert(Number.isFinite(Number(product.offers.price)), productPath + ': invalid offer price');
+  }
+}
+
 assert.equal(new Set(paths).size, paths.length, 'Duplicate sitemap URLs');
 const config = JSON.parse(await readFile('dist/staticwebapp.config.json', 'utf8'));
 assert.equal(config.navigationFallback, undefined, 'Unknown pages must not fall back to the homepage');
@@ -52,4 +70,4 @@ for (const path of [...paths, '/404']) {
     assert(paths.includes(target), `${path}: broken internal link ${target}`);
   }
 }
-console.log(`Verified ${paths.length} page documents, metadata, internal links, assets, and 404 configuration.`);
+console.log(`Verified ${paths.length} page documents, product schema, sitemap routes, metadata, internal links, assets, and 404 configuration.`);

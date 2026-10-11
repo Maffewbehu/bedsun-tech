@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import ProductPurchase from '../components/ProductPurchase';
 import { budgetProduct, budgetFaqs, colorways, sheetPreviews, previewPath } from '../data/digitalProducts';
-import { faqPageSchema } from '../lib/structuredData';
+import { digitalProductSchema, faqPageSchema } from '../lib/structuredData';
 
 export default function SimpleBudgetDebt() {
   const [colorwayId, setColorwayId] = useState('ocean');
@@ -14,7 +14,17 @@ export default function SimpleBudgetDebt() {
 
   return (
     <>
-      <SEO title="Simple Budget + Debt Spreadsheet Bundle | Bedsun Tech" description="Preview Simple Budget + Debt: a monthly budget and debt tracker with four charts, a separate instructions tab, and six included colorways." path={budgetProduct.path} image={`https://bedsuntech.tech${previewPath()}`} structuredData={[faqPageSchema(budgetFaqs, budgetProduct.path)]} />
+      <SEO title="Simple Budget + Debt Spreadsheet Bundle | Bedsun Tech" description="Preview Simple Budget + Debt: a monthly budget and debt tracker with four charts, a separate instructions tab, and six included colorways." path={budgetProduct.path} image={`https://bedsuntech.tech${previewPath()}`} structuredData={[
+        digitalProductSchema({
+          name: budgetProduct.name,
+          description: budgetProduct.description,
+          path: budgetProduct.path,
+          image: 'https://bedsuntech.tech' + previewPath(),
+          priceLabel: budgetProduct.commerce.priceLabel,
+          available: budgetProduct.commerce.available,
+        }),
+        faqPageSchema(budgetFaqs, budgetProduct.path),
+      ]} />
       <Link to="/products" className="inline-flex min-h-11 items-center text-sm font-semibold text-indigo-700 hover:text-indigo-900"><span aria-hidden="true" className="mr-2">←</span> Digital products</Link>
 
       <section className="grid gap-8 pb-8 pt-3 md:grid-cols-[1.4fr_1fr] md:items-center sm:pb-12">
