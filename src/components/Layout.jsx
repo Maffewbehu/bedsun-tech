@@ -18,19 +18,35 @@ export default function Layout() {
             <div>Freelance IT • Systems • Networks • Cloud</div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
-            <Link className="hover:text-gray-900" to="/services">
-              Services
-            </Link>
-            <Link className="hover:text-gray-900" to="/projects">
-              Projects
-            </Link>
-            <Link className="hover:text-gray-900" to="/products">
-              Digital products
-            </Link>
-            <Link className="hover:text-gray-900" to="/contact">
-              Contact
-            </Link>
+          <div className="flex flex-col gap-4 sm:items-end">
+            <div className="flex flex-wrap items-center gap-4">
+              <Link className="hover:text-gray-900" to="/services">
+                Services
+              </Link>
+              <Link className="hover:text-gray-900" to="/projects">
+                Projects
+              </Link>
+              <Link className="hover:text-gray-900" to="/products">
+                Digital products
+              </Link>
+              <Link className="hover:text-gray-900" to="/contact">
+                Contact
+              </Link>
+            </div>
+            <nav aria-label="Follow Bedsun Tech" className="flex flex-wrap items-center gap-x-4 gap-y-2">
+              <span className="font-medium text-gray-900">Follow Bedsun Tech</span>
+              {[
+                ["LinkedIn", "https://www.linkedin.com/company/bedsuntech/"],
+                ["YouTube", "https://www.youtube.com/@BedsunTech"],
+                ["Pinterest", "https://www.pinterest.com/bedsuntech/"],
+              ].map(([name, href]) => (
+                <a key={name} href={href} target="_blank" rel="noopener noreferrer"
+                  aria-label={`${name} (opens in a new tab)`}
+                  className="rounded-sm hover:text-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-indigo-600">
+                  {name}
+                </a>
+              ))}
+            </nav>
           </div>
         </div>
       </footer>
