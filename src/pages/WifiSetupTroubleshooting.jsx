@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import FeaturedWork from "../components/FeaturedWork";
+import { buildInquiryPath } from "../lib/inquiry";
 import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
@@ -118,14 +120,18 @@ export default function WifiSetupTroubleshooting() {
 
             <div className="md:col-span-4 md:flex md:justify-end">
               <Link
-                to="/contact"
+                to={buildInquiryPath("wifi")}
                 className="inline-flex w-full justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 md:w-auto"
               >
-                Schedule Wi-Fi Help
+                Request Wi-Fi Help
               </Link>
             </div>
           </div>
         </section>
+
+        <div className="mb-12">
+          <FeaturedWork ids={["home-wifi"]} heading="A home network project" intro="An example from the Bedsun Tech project portfolio." detailed />
+        </div>
 
         {/* Common Wi-Fi issues */}
         <section className="mb-12">
@@ -309,10 +315,10 @@ export default function WifiSetupTroubleshooting() {
               </div>
               <div className="md:col-span-4 md:flex md:justify-end">
                 <Link
-                  to="/contact"
+                  to={buildInquiryPath("wifi")}
                   className="inline-flex w-full justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 md:w-auto"
                 >
-                  Schedule Wi-Fi Help
+                  Request Wi-Fi Help
                 </Link>
               </div>
             </div>

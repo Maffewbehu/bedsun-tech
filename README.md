@@ -15,15 +15,24 @@ npm run dev
 npm run build
 npm run test:products
 npm run test:hydration
+npm run test:contact
+npm run test:analytics
+npm --prefix api test
 ```
 
 The build creates the browser bundle, renders every public route to HTML, generates the sitemap and Azure route rules, and verifies page metadata, internal links, image references, and the 404 configuration. `dist-ssr` is a temporary server rendering bundle; only `dist` is deployed. No server rendering process is needed in production.
 
-The hydration check runs the production bundle in a DOM test environment. It checks every rendered page, client-side metadata updates, navigation menu behavior and focus, assistant controls, workbook preview selectors, and product inquiry context. Network calls are stubbed so checks do not submit leads or call the live assistant. These checks do not replace visual testing on a phone.
+The hydration check runs the production bundle in a DOM test environment. It checks every rendered page, client-side metadata updates, navigation menu behavior and focus, assistant controls, workbook preview selectors, and product inquiry context. Contact checks exercise service-prefilled home/business forms, email and callback requests, and success/failure feedback. Analytics checks cover purchase verification, deduplication, and URL privacy. API checks cover contact delivery and the existing store. Network calls are stubbed so checks do not submit real leads, call the live assistant, or make payments. These checks do not replace visual testing on a phone.
 
 ## Digital products
 
-The product catalog is at `/products`, with the first workbook bundle at `/products/simple-budget-debt`. Sales remain closed until release readiness, a final USD price, and a hosted checkout URL are configured. See [the digital products launch guide](docs/digital-products-launch.md) for configuration, compatibility status, and paid-download delivery requirements. `test:products` verifies the checkout gate and that spreadsheet/archive files stay out of public output.
+The product catalog is at `/products`, with the workbook bundle at `/products/simple-budget-debt`. The current catalog uses the native Stripe checkout at `/api/store/checkout`; release readiness and approved prices are also verified by the server. See [the digital products launch guide](docs/digital-products-launch.md) for configuration, compatibility status, and paid-download delivery requirements, and [conversion tracking](docs/conversion-tracking.md) for event meanings and external GA4 verification. `test:products` verifies the checkout gate and that spreadsheet/archive files stay out of public output.
+
+## Service inquiries
+
+Service pages use `buildInquiryPath` from `src/lib/inquiry.js` to preselect the matching service on `/contact`. The form also accepts `?audience=personal|business` and the existing product inquiry links. Visitors can request an email or phone reply; optional scope details are kept in a disclosure. The contact API continues accepting the previous email-based payload. The frontend records a lead event only after the API confirms that the email provider accepted the request.
+
+The Opportunity Scan is quote-based: scope, fee, review length, and delivery date are agreed before work begins. Selected project examples come from the existing portfolio and Bedsun Tech's own products; dashboard screenshots use fictional demo data.
 
 ## Adding a page
 

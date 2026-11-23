@@ -1,4 +1,5 @@
 import SEO from "../components/SEO";
+import FeaturedWork from "../components/FeaturedWork";
 
 function SectionTitle({ kicker, title, desc }) {
   return (
@@ -74,6 +75,17 @@ export default function Projects() {
           desc="A mix of websites, SEO improvements, custom portals, dashboards, automation, infrastructure, monitoring, networking, and practical technology support — with a focus on what improved for the client or business."
         />
 
+        <div className="mb-12">
+          <FeaturedWork
+            id="featured-projects"
+            heading="Three examples, from the need to the result"
+            intro="Explore a residential network project and two working examples built by Bedsun Tech. The dashboard uses fictional demo data, and the assistant is available on this website."
+            detailed
+            showAllLink={false}
+          />
+        </div>
+
+        <h2 className="mb-6 text-2xl font-bold tracking-tight text-gray-900">More projects and experience</h2>
         <div className="grid gap-5 md:grid-cols-2">
           <ProjectCard
             title="Local SEO & Website Content Expansion"
@@ -188,14 +200,6 @@ export default function Projects() {
             summary="Performed structured cabling across large plant environments using lifts, J-hooks, conduit, and careful route planning around operational obstacles."
             outcome="Delivered cleaner and more reliable physical network connectivity across difficult field environments while supporting high-availability device drops."
             tags={["Cabling", "Field Work", "Plant IT", "Infrastructure"]}
-          />
-
-          <ProjectCard
-            title="Home Wi-Fi Overhaul for Residential Property"
-            date="March 2025"
-            summary="Designed a practical Wi-Fi 6 solution using access points, a PoE switch, and proper cable runs to improve coverage across buildings and reduce dead zones."
-            outcome="Created a more stable home network with better coverage, cleaner equipment placement, and a setup that can scale as more devices are added."
-            tags={["Wi-Fi", "Cabling", "PoE", "Home Network"]}
           />
 
           <ProjectCard

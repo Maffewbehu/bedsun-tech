@@ -2,54 +2,13 @@ import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import { budgetProduct, dashboardProduct, previewPath, reportPreviews } from "../data/digitalProducts";
 import ReportPreview from "../components/ReportPreview";
+import FeaturedWork from "../components/FeaturedWork";
 
 function Badge({ children }) {
   return (
     <span className="inline-flex items-center rounded-full border border-gray-200 bg-white/75 px-3 py-1 text-xs font-medium text-gray-700 shadow-sm backdrop-blur">
       {children}
     </span>
-  );
-}
-
-function AudienceCard({ label, title, desc, services, to, cta, featured = false }) {
-  return (
-    <div
-      className={[
-        "group flex h-full flex-col rounded-3xl border bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md",
-        featured ? "border-indigo-200 ring-1 ring-indigo-100" : "border-gray-200",
-      ].join(" ")}
-    >
-      <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-        {label}
-      </div>
-      <h2 className="mt-3 text-2xl font-bold tracking-tight text-gray-900">
-        {title}
-      </h2>
-      <p className="mt-3 text-sm leading-relaxed text-gray-600">{desc}</p>
-
-      <ul className="mt-5 grid gap-2 text-sm text-gray-700 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-        {services.map((service) => (
-          <li key={service} className="flex gap-2">
-            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-600" />
-            <span>{service}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-6 flex-1" />
-
-      <Link
-        to={to}
-        className={[
-          "inline-flex justify-center rounded-2xl px-6 py-3 text-sm font-semibold shadow-sm transition",
-          featured
-            ? "bg-indigo-600 text-white hover:bg-indigo-700"
-            : "border border-gray-300 bg-white text-gray-900 hover:bg-gray-50",
-        ].join(" ")}
-      >
-        {cta} <span className="ml-2 transition group-hover:translate-x-0.5">→</span>
-      </Link>
-    </div>
   );
 }
 
@@ -118,128 +77,61 @@ export default function Home() {
                 for Las Vegas businesses. Tell me what you need and we’ll find the next step.
               </p>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 <Link
-                  to="/ai-consultant"
-                  className="inline-flex justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700"
+                  to="/contact?audience=personal"
+                  className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-indigo-600 px-5 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-700"
                 >
-                  Ask the AI Assistant
+                  Request home tech help
                 </Link>
                 <Link
-                  to="/personal-tech-help"
-                  className="inline-flex justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
+                  to="/contact?service=opportunity-scan"
+                  className="inline-flex min-h-12 items-center justify-center rounded-2xl border border-indigo-200 bg-white px-5 py-3 text-base font-semibold text-indigo-800 shadow-sm hover:bg-indigo-50"
                 >
-                  Personal Tech Help
-                </Link>
-                <Link
-                  to="/services"
-                  className="inline-flex justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50"
-                >
-                  Business Tech Help
+                  Request a business scan
                 </Link>
               </div>
 
               <p className="mt-4 text-sm leading-relaxed text-gray-600">
-                Local Las Vegas support for printers, Wi-Fi, phones, smart TVs, websites,
-                automation, Microsoft 365, forms, dashboards, and practical AI workflows.
+                Las Vegas support with remote and on-site options. Scope, pricing,
+                and appointment details are confirmed before work begins.
               </p>
+              <div className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-sm">
+                <a href="tel:+17022195011" className="inline-flex min-h-11 items-center font-semibold text-indigo-700 hover:text-indigo-900">Call Matt: 702-219-5011</a>
+                <Link to="/ai-consultant" className="inline-flex min-h-11 items-center font-medium text-gray-700 underline decoration-gray-300 underline-offset-4 hover:text-indigo-700">Or ask the AI assistant</Link>
+              </div>
             </div>
 
-            <div className="hidden md:col-span-5 md:block">
-              <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
-                <div className="flex items-center justify-between gap-4">
+            <div className="md:col-span-5">
+              <div className="rounded-3xl border border-indigo-100 bg-white p-6 shadow-sm sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-wider text-indigo-700">Working with Matt</p>
+                <h2 className="mt-2 text-2xl font-bold tracking-tight text-gray-900">A clear next step from the start.</h2>
+                <dl className="mt-6 space-y-5 text-base leading-relaxed">
                   <div>
-                    <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-                      Best first step
-                    </div>
-                    <div className="mt-1 text-lg font-bold text-gray-900">
-                      Choose the path that fits you
-                    </div>
+                    <dt className="font-semibold text-gray-900">Explain the problem in your own words</dt>
+                    <dd className="mt-1 text-gray-600">A few details are enough to start. You do not need to know the technical fix.</dd>
                   </div>
-                  <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
-                    Simple start
-                  </span>
+                  <div>
+                    <dt className="font-semibold text-gray-900">Agree on the work and price</dt>
+                    <dd className="mt-1 text-gray-600">We confirm what is included, how we will work together, and the timing.</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-gray-900">Understand what changed</dt>
+                    <dd className="mt-1 text-gray-600">Get plain-English explanations and useful handoff notes.</dd>
+                  </div>
+                </dl>
+                <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 border-t border-gray-100 pt-5 text-sm text-gray-600">
+                  <p><strong className="text-gray-900">17+ years</strong> in IT</p>
+                  <p><strong className="text-gray-900">Local</strong> Las Vegas support</p>
                 </div>
-
-                <div className="mt-5 space-y-4">
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                    <div className="text-sm font-semibold text-gray-900">
-                      Need help at home?
-                    </div>
-                    <p className="mt-1 text-sm leading-relaxed text-gray-600">
-                      Get patient help with devices, accounts, printers, Wi-Fi, email, passwords,
-                      scam concerns, cameras, and everyday tech issues.
-                    </p>
-                  </div>
-
-                  <div className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                    <div className="text-sm font-semibold text-gray-900">
-                      Need help with your business?
-                    </div>
-                    <p className="mt-1 text-sm leading-relaxed text-gray-600">
-                      Improve your website, forms, customer follow-up, Microsoft or Google setup,
-                      reporting, automation, and practical AI workflows.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-6 grid grid-cols-1 gap-4 border-t border-gray-200 pt-5 sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900">17+</div>
-                    <div className="text-sm text-gray-600">Years IT experience</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900">Local</div>
-                    <div className="text-sm text-gray-600">Las Vegas support</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900">Plain English</div>
-                    <div className="text-sm text-gray-600">No confusing jargon</div>
-                  </div>
-                </div>
+                <Link to="/business-tech-ai-opportunity-scan" className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-indigo-700 hover:text-indigo-900">What is included in a business scan?</Link>
               </div>
             </div>
           </section>
 
-          {/* AUDIENCE SPLIT */}
-          <section className="mt-16">
-            <SectionTitle
-              kicker="Start here"
-              title="Which kind of help do you need?"
-              desc="Choose home support or business services. I’ll help you figure out the next step."
-            />
-
-            <div className="grid gap-6 md:grid-cols-2">
-              <AudienceCard
-                label="Personal Tech Help"
-                title="Need help at home?"
-                desc="Patient, local technology help for people who want their devices, accounts, internet, and everyday tech to work without frustration. Great for seniors, families, and anyone who does not want to figure it out alone."
-                services={[
-                  "Printer setup and offline printer issues",
-                  "Wi-Fi, router, and internet troubleshooting",
-                  "Phones, tablets, smart TVs, and streaming apps",
-                  "Email, passwords, account recovery, and scam safety",
-                ]}
-                to="/personal-tech-help"
-                cta="Schedule Tech Help"
-                featured
-              />
-
-              <AudienceCard
-                label="Business Tech + AI"
-                title="Need help with your business?"
-                desc="Practical websites, automation, IT support, and AI workflows for small businesses that want cleaner systems, better follow-up, and less manual work."
-                services={[
-                  "Website help, redesigns, forms, and SEO basics",
-                  "Automation for repetitive admin tasks",
-                  "Microsoft 365, Google Workspace, domains, and email",
-                  "Dashboards, internal tools, and practical AI workflows",
-                ]}
-                to="/business-tech-ai-opportunity-scan"
-                cta="Request an Opportunity Scan"
-              />
-            </div>
-          </section>
+          <div className="mt-16">
+            <FeaturedWork />
+          </div>
 
           {/* SERVICES PREVIEW */}
           <section className="mt-16">
@@ -308,7 +200,7 @@ export default function Home() {
                 title="Business Tech & AI Opportunity Scan"
                 desc="Review your website, forms, follow-up process, manual admin tasks, tech stack, and realistic AI or automation opportunities."
                 to="/business-tech-ai-opportunity-scan"
-                cta="Request an opportunity scan"
+                cta="Explore the opportunity scan"
               />
             </div>
           </section>
@@ -400,16 +292,16 @@ export default function Home() {
                 </div>
                 <div className="grid gap-3 md:col-span-4">
                   <Link
-                    to="/personal-tech-help"
+                    to="/contact?audience=personal"
                     className="inline-flex w-full justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100"
                   >
-                    Get Personal Tech Help
+                    Request home tech help
                   </Link>
                   <Link
-                    to="/contact"
+                    to="/contact?audience=business"
                     className="inline-flex w-full justify-center rounded-2xl border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
                   >
-                    Contact Bedsun Tech
+                    Discuss a business project
                   </Link>
                 </div>
               </div>

@@ -57,6 +57,12 @@ function tokenFor(cfg, order) {
 function downloadPath(cfg, order) {
   return `/api/store/download?session_id=${encodeURIComponent(order.sessionId)}&expires=${order.expiresAt}&token=${tokenFor(cfg, order)}`;
 }
+function commerceAnalytics(cfg, product) {
+  return {
+    live: cfg.live, currency: 'USD', value: product.cents / 100,
+    items: [{ item_id: product.sku, item_name: product.name, price: product.cents / 100, quantity: 1 }],
+  };
+}
 function verifyToken(cfg, order, query, now) {
   const token = String(query.token || '');
   if (String(query.expires) !== String(order.expiresAt) || !/^[a-f0-9]{64}$/.test(token)
@@ -125,7 +131,7 @@ function createStore({ env, stripe, storage, mail, now = () => Math.floor(Date.n
       }, { idempotencyKey: `bedsun-store-${product.sku}-${requestId}` });
       const url = new URL(session.url);
       if (url.protocol !== 'https:' || url.hostname !== 'checkout.stripe.com') throw new StoreError(503, 'Unable to start checkout.');
-      return { status: 200, body: { url: url.href } };
+      return { status: 200, body: { url: url.href, analytics: commerceAnalytics(cfg, product) } };
     },
     async webhook(req) {
       const raw = req.rawBody;
@@ -167,8 +173,18 @@ function createStore({ env, stripe, storage, mail, now = () => Math.floor(Date.n
       const order = await storage.readOrder(id);
       if (!order) return { status: 202, body: { status: 'processing' } };
       if (order.expiresAt <= now()) throw new StoreError(410, `This download link has expired. Contact ${SUPPORT_EMAIL} for help.`);
-      await paidPurchase(stripe, cfg, id, order);
-      return { status: 200, body: { status: 'ready', productName: order.name, downloadUrl: downloadPath(cfg, order), expiresAt: order.expiresAt } };
+      const session = await paidPurchase(stripe, cfg, id, order);
+      // Analytics gets a stable, domain-separated HMAC identifier. Unlike the
+      // Checkout session ID or download token, this grants no order access.
+      const transactionId = 'bt_' + crypto.createHmac('sha256', cfg.secret).update(`analytics-purchase-v1:${id}`).digest('hex');
+      const tax = session.total_details?.amount_tax;
+      return { status: 200, body: {
+        status: 'ready', productName: order.name, downloadUrl: downloadPath(cfg, order), expiresAt: order.expiresAt,
+        analytics: {
+          ...commerceAnalytics(cfg, order), transaction_id: transactionId,
+          ...(Number.isSafeInteger(tax) && tax >= 0 ? { tax: tax / 100 } : {}),
+        },
+      } };
     },
     async download(req) {
       const id = validateSessionId(req.query?.session_id);

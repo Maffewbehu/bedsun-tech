@@ -3,7 +3,10 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
+import { initializeAnalytics } from "./lib/analytics";
 import "./index.css";
+
+initializeAnalytics();
 
 const root = document.getElementById("root");
 const app = (

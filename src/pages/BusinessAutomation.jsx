@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import FeaturedWork from "../components/FeaturedWork";
+import { buildInquiryPath } from "../lib/inquiry";
 import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
@@ -119,10 +121,10 @@ export default function BusinessAutomation() {
 
             <div className="space-y-3 md:col-span-4 md:flex md:flex-col md:items-end">
               <Link
-                to="/business-tech-ai-opportunity-scan"
+                to={buildInquiryPath("automation")}
                 className="inline-flex w-full justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 md:w-auto"
               >
-                Find Automation Opportunities
+                Discuss Your Workflow
               </Link>
               <Link
                 to="/ai-integration-small-business"
@@ -133,6 +135,10 @@ export default function BusinessAutomation() {
             </div>
           </div>
         </section>
+
+        <div className="mb-12">
+          <FeaturedWork ids={["business-dashboard"]} heading="See a working business tool" intro="Explore an actual Bedsun Tech dashboard with clearly labelled sample data." detailed />
+        </div>
 
         <section className="mb-12">
           <div className="mb-5">

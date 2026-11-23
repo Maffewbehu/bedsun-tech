@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { trackAnalyticsEvent } from '../lib/analytics';
+import { trackAnalyticsEvent, trackCheckoutStarted } from '../lib/analytics';
 
 export default function ProductPurchase({ product }) {
   const { commerce, purchase } = product;
@@ -29,6 +29,7 @@ export default function ProductPurchase({ product }) {
       if (!response.ok) throw new Error(result.error || 'Unable to start checkout. Please try again.');
       const url = new URL(result.url);
       if (url.protocol !== 'https:' || url.hostname !== 'checkout.stripe.com') throw new Error('Unable to start checkout.');
+      trackCheckoutStarted(result.analytics);
       window.location.assign(url.href);
     } catch (failure) {
       setError(failure.message || 'Unable to start checkout. Please try again.');
