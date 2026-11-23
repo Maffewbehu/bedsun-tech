@@ -12,7 +12,7 @@ Purchases remain closed until the server and frontend release gates are enabled.
 - Eighteen lossless WebP previews: six colorways × three worksheets, taken from the approved workbook screenshots. Preview values are fictional examples.
 - Product inquiries use the existing contact form with the workbook subject and service type prefilled. No message is sent until the visitor submits the form.
 - Prerendered pages, unique metadata, FAQ structured data, sitemap entries, and exact Azure route rules use the existing build pipeline.
-- Sales default to **Coming soon**. No paid workbook or ZIP is included in this public repository or build.
+- The current catalog defaults use native checkout with the approved $9 workbook and $29 dashboard prices; server release gates independently control purchase availability. No paid workbook or ZIP is included in this public repository or build.
 
 ## Power BI dashboard
 
@@ -30,7 +30,7 @@ The same hosted checkout and fulfillment requirements below apply to both produc
 ## Finish before enabling purchases
 
 1. Set the final USD price and make sure the checkout price matches it. All six colorways belong to one bundle; the preview selector does not choose a separately priced item.
-2. Finish compatibility testing in the spreadsheet apps you intend to advertise. Only LibreOffice Calc has been verified so far. Update `budgetFaqs` in `src/data/digitalProducts.js` when additional checks pass.
+2. Keep advertised compatibility aligned with completed testing. Matt confirmed Microsoft Excel testing on November 23, 2026; LibreOffice Calc was previously verified. Google Sheets compatibility remains unverified. The shared `budgetCompatibility` copy in `src/data/digitalProducts.js` supplies the product-page notice and FAQ structured data.
 3. Configure a hosted checkout with fulfillment after a confirmed payment. Upload the approved release ZIP to private storage or a delivery service, outside this repository. Do not use a public blob, a file under `public/`, or a client-only success-page check to deliver a paid file.
 4. Test successful, declined, and canceled purchases; confirmation email; download access after payment; and your chosen refund/support process. If using a custom payment integration, verify signed payment events server-side before issuing download access. Keep all private keys in server-side settings.
 5. Review product copy, support/license terms, final price, and real desktop/mobile previews. Run the checks below. Merge only after reviewing the Azure PR preview.

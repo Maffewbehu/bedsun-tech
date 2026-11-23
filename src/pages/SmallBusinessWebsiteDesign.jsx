@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import FeaturedWork from "../components/FeaturedWork";
+import { buildInquiryPath } from "../lib/inquiry";
 import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
@@ -125,7 +127,7 @@ export default function SmallBusinessWebsiteDesign() {
                 Request a Website + AI Review
               </Link>
               <Link
-                to="/contact"
+                to={buildInquiryPath("website")}
                 className="inline-flex w-full justify-center rounded-2xl border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50 md:w-auto"
               >
                 Start a Website Project
@@ -133,6 +135,10 @@ export default function SmallBusinessWebsiteDesign() {
             </div>
           </div>
         </section>
+
+        <div className="mb-12">
+          <FeaturedWork ids={["website-intake"]} heading="Try a working website feature" intro="The assistant on this site is one example of a useful customer intake workflow." detailed />
+        </div>
 
         <section className="mb-12">
           <div className="mb-5">

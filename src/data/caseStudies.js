@@ -1,0 +1,43 @@
+// Selected work drawn from the existing project portfolio and public product pages.
+// Product demo data is labelled explicitly; client results are not quantified.
+export const caseStudies = [
+  {
+    id: "home-wifi",
+    category: "Residential project",
+    title: "A more dependable home network",
+    problem: "A residential property needed better Wi-Fi coverage across buildings and fewer dead zones.",
+    work: "Designed a Wi-Fi 6 setup with access points, a PoE switch, and proper cable runs.",
+    outcome: "A more stable network, better coverage, and cleaner equipment placement with room for additional devices.",
+    detail: "The design connected the access points through dedicated network cabling and a PoE switch, bringing the coverage plan and physical installation together.",
+    date: "March 2025",
+    requestPath: "/contact?service=wifi",
+    requestLabel: "Ask about your Wi-Fi",
+  },
+  {
+    id: "business-dashboard",
+    category: "Bedsun Tech product",
+    title: "Business numbers in one clear view",
+    problem: "Sales, direct costs, and operating expenses need to be brought together to understand business performance.",
+    work: "Built a Power BI template with Overview, Sales, and Operating Expenses pages connected to an Excel workbook.",
+    outcome: "A reusable report with revenue, costs, profit, and filters for reviewing a selected year or month.",
+    detail: "The public preview shows the actual report using fictional demo data. Buyers can replace the sample workbook rows and refresh the report in Power BI Desktop on Windows.",
+    preview: "dashboard",
+    demoPath: "/products/sales-expenses-dashboard",
+    demoLabel: "Explore the actual report",
+    requestPath: "/contact?product=sales-expenses-dashboard",
+    requestLabel: "Ask about dashboard setup",
+  },
+  {
+    id: "website-intake",
+    category: "Bedsun Tech website",
+    title: "A website that helps explain the request",
+    problem: "A visitor may know something is broken or time-consuming without knowing which service to request.",
+    work: "Built a website assistant that asks about the problem, suggests a service, and collects contact details when the visitor is ready.",
+    outcome: "The assistant can send Matt a project summary so the conversation can continue with the request already explained.",
+    detail: "This is the assistant on Bedsun Tech's own website. It demonstrates an intake workflow; final scope, pricing, and availability are confirmed by Matt.",
+    demoPath: "/ai-consultant",
+    demoLabel: "Try the website assistant",
+    requestPath: "/contact?service=automation",
+    requestLabel: "Discuss your intake process",
+  },
+];

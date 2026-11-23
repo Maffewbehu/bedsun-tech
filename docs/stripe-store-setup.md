@@ -103,8 +103,8 @@ reconstructs it from parsed JSON.
    tampered link rejection, refund revocation, and duplicate event handling.
 3. The Power BI demo has been refreshed in Desktop. Still verify a refresh
    using a buyer-style local Excel **DataFilePath** before releasing it.
-   The budget copy accurately says only LibreOffice Calc is verified; do not
-   claim Microsoft Excel/Google Sheets testing until completed.
+   Matt confirmed Microsoft Excel testing on November 23, 2026; LibreOffice Calc
+   was previously verified. Google Sheets compatibility remains unverified.
 4. Configure live credentials and private release files. Review tax settings
    for the business; automatic tax is not silently enabled by this integration.
    If enabling Stripe Tax, verify active registrations first.

@@ -2,69 +2,49 @@ import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
 import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
-function SectionTitle({ kicker, title, desc }) {
-  return (
-    <div className="mb-8">
-      {kicker ? <div className="text-xs font-semibold uppercase tracking-wider text-gray-500">{kicker}</div> : null}
-      <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{title}</h1>
-      {desc ? <p className="mt-3 max-w-3xl text-sm leading-relaxed text-gray-600">{desc}</p> : null}
-    </div>
-  );
-}
-
-function Card({ title, desc }) {
-  return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-      <h3 className="text-base font-semibold text-gray-900">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-gray-600">{desc}</p>
-    </div>
-  );
-}
-
-function Step({ number, title, desc }) {
-  return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-600 text-sm font-bold text-white">
-        {number}
-      </div>
-      <h3 className="text-base font-semibold text-gray-900">{title}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-gray-600">{desc}</p>
-    </div>
-  );
-}
-
-function Bullet({ children }) {
-  return (
-    <li className="flex gap-3 text-sm leading-relaxed text-gray-600">
-      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-indigo-600" />
-      <span>{children}</span>
-    </li>
-  );
-}
-
-function FAQ({ question, answer }) {
-  return (
-    <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-      <h3 className="text-base font-semibold text-gray-900">{question}</h3>
-      <p className="mt-2 text-sm leading-relaxed text-gray-600">{answer}</p>
-    </div>
-  );
-}
-
-
 const PAGE_PATH = "/business-tech-ai-opportunity-scan";
+const REQUEST_PATH = "/contact?service=opportunity-scan";
 
 const FAQS = [
-  { question: "Is this only for businesses ready to build AI tools?", answer: "No. The scan is for businesses that want to understand where technology could help. The answer might be AI, automation, website improvements, better forms, or simple process cleanup." },
-  { question: "Do I need to have a technical project already planned?", answer: "No. You can start with a messy process, a website concern, a follow-up problem, or a general feeling that your business tools are not working together well." },
-  { question: "What types of businesses is this for?", answer: "It is a good fit for local service businesses, contractors, real estate and property businesses, beauty and wellness businesses, consultants, professional services, and small teams with repeated admin work." },
-  { question: "Will I get a clear next step?", answer: "Yes. The goal is to leave with a practical recommendation, priority order, and a realistic first improvement instead of a broad list of confusing possibilities." },
+  {
+    question: "What will I receive?",
+    answer: "A written summary of the agreed review, a prioritized list of up to three practical improvements, and a recommended first step. Each recommendation explains the issue, the proposed change, and what would be needed to move forward.",
+  },
+  {
+    question: "How much does the scan cost?",
+    answer: "The scan is quoted for your business and the agreed review scope. Matt confirms the fee before work begins. Send a short description of the problem so the review can be scoped appropriately.",
+  },
+  {
+    question: "How long does it take?",
+    answer: "The review length and delivery date are agreed before the scan starts, based on the scope and the information needed. Matt confirms availability when following up on your request.",
+  },
+  {
+    question: "Does the scan include building or fixing the system?",
+    answer: "The scan provides the review and written recommendations. Implementation is scoped and quoted separately, so you can decide which improvement to pursue after seeing the plan.",
+  },
+  {
+    question: "Do I need to know what to automate?",
+    answer: "You can start with a repeated task, a website concern, missed follow-up, or a process that feels harder than it should. The review helps identify a practical next step using your existing tools where appropriate.",
+  },
+  {
+    question: "Is this only for AI projects?",
+    answer: "The recommendation may involve a clearer form, better account organization, a dashboard, automation, or AI assistance. The focus is the business problem and the work needed to improve it.",
+  },
+];
+
+const REVIEW_AREAS = [
+  { title: "Website and landing pages", description: "How clearly the site explains your services, works on mobile, and helps a customer take the next step." },
+  { title: "Forms and lead capture", description: "What your forms collect, where requests go, and how easily someone can ask for help." },
+  { title: "Customer follow-up", description: "How inquiries are handed over, what gets repeated, and where reminders or clearer steps could help." },
+  { title: "Repeated admin work", description: "Recurring tasks, copied information, reporting steps, and other work that could be simplified." },
+  { title: "Business tools and data", description: "How your email, spreadsheets, files, and other tools support the process you want reviewed." },
+  { title: "Automation and AI", description: "Practical ways to connect tools, organize information, or assist a task while keeping the process understandable." },
 ];
 
 const PAGE_STRUCTURED_DATA = [
   serviceSchema({
     name: "Business Tech and AI Opportunity Scan in Las Vegas",
-    description: "Request a practical business tech and AI opportunity scan for your website, forms, follow-up process, manual admin tasks, tech stack, and automation opportunities.",
+    description: "A scoped review of business technology with written findings, prioritized improvements, and a recommended first step. Scope, fee, and delivery date are agreed before work begins.",
     path: PAGE_PATH,
     serviceType: "Business technology and AI opportunity review",
     audience: "Small business owners and local business teams",
@@ -73,125 +53,112 @@ const PAGE_STRUCTURED_DATA = [
   faqPageSchema(FAQS, PAGE_PATH),
 ];
 
+function RequestLink() {
+  return (
+    <Link to={REQUEST_PATH} className="inline-flex min-h-12 items-center justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-base font-semibold text-white shadow-sm hover:bg-indigo-700">
+      Request an Opportunity Scan
+    </Link>
+  );
+}
+
 export default function BusinessTechAIOpportunityScan() {
   return (
     <>
       <SEO
         title="Business Tech & AI Opportunity Scan in Las Vegas | Bedsun Tech"
-        description="Request a practical business tech and AI opportunity scan for your website, forms, follow-up process, manual admin tasks, tech stack, and automation opportunities."
+        description="Get a scoped business tech review with written findings, prioritized improvements, and a practical first step. Scope, fee, and timing are confirmed before work begins."
         path={PAGE_PATH}
         structuredData={PAGE_STRUCTURED_DATA}
       />
-
       <div>
-        <SectionTitle
-          kicker="Business Tech + AI"
-          title="Find the practical tech and AI opportunities hiding inside your business"
-          desc="Bedsun Tech helps Las Vegas small businesses review their website, forms, follow-up process, manual admin work, tools, and workflows to find realistic ways technology, automation, or AI can save time and clean up operations."
-        />
+        <header className="mb-8">
+          <p className="text-sm font-semibold uppercase tracking-wider text-indigo-700">Business Tech + AI Opportunity Scan</p>
+          <h1 className="mt-3 max-w-4xl text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Know which business tech improvement to make first.</h1>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-600">Bring a website concern, a repeated task, or a process that keeps slowing you down. Bedsun Tech helps Las Vegas small businesses turn it into a practical improvement plan.</p>
+        </header>
 
-        <section className="mb-12 rounded-3xl border border-indigo-100 bg-indigo-50 p-8 shadow-sm">
-          <div className="grid gap-6 md:grid-cols-12 md:items-center">
-            <div className="md:col-span-8">
-              <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-                You do not need to know what to automate first. That is the point of the scan.
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-gray-700">
-                Many small businesses know something feels messy: leads get missed, forms do not connect anywhere, staff repeat the same steps, files are hard to find, or the website is not helping the business enough. The Opportunity Scan turns that confusion into a clear list of practical next steps.
-              </p>
+        <section className="mb-12 rounded-3xl border border-indigo-100 bg-indigo-50 p-6 shadow-sm sm:p-8" aria-labelledby="scan-offer-heading">
+          <div className="grid gap-8 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <h2 id="scan-offer-heading" className="text-2xl font-bold tracking-tight text-gray-900">A focused review. A written plan.</h2>
+              <p className="mt-3 text-base leading-relaxed text-gray-700">We agree on the part of your business to review, look at how it works today, and identify the most useful next steps. You receive written findings and a prioritized improvement plan you can refer back to.</p>
+              <div className="mt-6"><RequestLink /></div>
+              <p className="mt-3 text-sm leading-relaxed text-gray-600">Start with a few details. Matt follows up to confirm the scope, fee, and delivery date.</p>
             </div>
-            <div className="md:col-span-4 md:flex md:justify-end">
-              <Link
-                to="/contact"
-                className="inline-flex w-full justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 md:w-auto"
-              >
-                Request an Opportunity Scan
-              </Link>
+            <dl className="space-y-5 rounded-2xl border border-indigo-100 bg-white p-6 text-base leading-relaxed lg:col-span-5">
+              <div><dt className="font-semibold text-gray-900">Price</dt><dd className="mt-1 text-gray-600">Quoted for the agreed review. The fee is confirmed before work begins.</dd></div>
+              <div><dt className="font-semibold text-gray-900">Timing</dt><dd className="mt-1 text-gray-600">Review length and delivery date agreed in advance.</dd></div>
+              <div><dt className="font-semibold text-gray-900">Deliverable</dt><dd className="mt-1 text-gray-600">Written findings, up to three priorities, and a recommended first step.</dd></div>
+              <div><dt className="font-semibold text-gray-900">Implementation</dt><dd className="mt-1 text-gray-600">Separately scoped and quoted after you review the plan.</dd></div>
+            </dl>
+          </div>
+        </section>
+
+        <section className="mb-12" aria-labelledby="scan-deliverables-heading">
+          <h2 id="scan-deliverables-heading" className="text-2xl font-bold tracking-tight text-gray-900">What you take away</h2>
+          <div className="mt-6 grid gap-5 md:grid-cols-3">
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900">A clear view of the issue</h3>
+              <p className="mt-3 text-base leading-relaxed text-gray-600">A written summary of the process reviewed, the tools involved, and where the friction occurs.</p>
             </div>
-          </div>
-        </section>
-
-        <section className="mb-12">
-          <div className="mb-5">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">What the scan reviews</h2>
-            <p className="mt-2 max-w-3xl text-sm leading-relaxed text-gray-600">
-              The goal is to identify useful improvements, not sell a complicated system. The scan looks for problems that can be fixed with better structure, automation, AI assistance, or cleaner tools.
-            </p>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            <Card title="Website and landing pages" desc="Review whether your website clearly explains your services, has strong calls to action, works well on mobile, and gives customers an easy next step." />
-            <Card title="Forms and lead capture" desc="Check whether contact forms, quote requests, booking links, and intake forms are collecting the right details and routing them to the right place." />
-            <Card title="Lead follow-up" desc="Look for missed follow-up opportunities, manual response steps, reminder gaps, and ways to make customer communication more consistent." />
-            <Card title="Manual admin tasks" desc="Find repeated tasks your business does every week that could be simplified, templated, automated, or supported with AI." />
-            <Card title="Tech stack and tools" desc="Review the tools you already use, including Microsoft 365, Google Workspace, spreadsheets, CRMs, email, documents, file storage, and websites." />
-            <Card title="AI and automation opportunities" desc="Identify realistic places AI or automation could help with intake, summaries, internal tools, reporting, document organization, or customer support workflows." />
-          </div>
-        </section>
-
-        <section className="mb-12 grid gap-6 md:grid-cols-3">
-          <Step number="1" title="Review your current setup" desc="We look at your website, forms, tools, follow-up process, files, spreadsheets, and repeated admin work to understand how things currently operate." />
-          <Step number="2" title="Find realistic opportunities" desc="We identify practical improvements: better website flow, cleaner forms, automation ideas, AI workflows, tool cleanup, or simple internal systems." />
-          <Step number="3" title="Leave with a clear plan" desc="You get plain-English recommendations, priority order, and a practical first step instead of a vague AI pitch or confusing technical roadmap." />
-        </section>
-
-        <section className="mb-12 grid gap-6 md:grid-cols-2">
-          <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">This is a good fit if your business has questions like:</h2>
-            <ul className="mt-5 space-y-3">
-              <Bullet>Is our website costing us leads?</Bullet>
-              <Bullet>Can our forms automatically send better follow-up?</Bullet>
-              <Bullet>Where could AI actually save time in our business?</Bullet>
-              <Bullet>Are we doing the same admin work over and over?</Bullet>
-              <Bullet>Can our spreadsheets, files, or customer details be organized better?</Bullet>
-              <Bullet>What should we fix first if our systems feel messy?</Bullet>
-            </ul>
-          </div>
-
-          <div className="rounded-3xl border border-gray-200 bg-gray-50 p-6 shadow-sm">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">Possible outcomes from the scan</h2>
-            <p className="mt-2 text-sm leading-relaxed text-gray-600">
-              Every business is different, but common recommendations may include website page improvements, better contact forms, automated lead follow-up, intake cleanup, AI-assisted summaries, reporting dashboards, file organization, Microsoft or Google Workspace cleanup, or a custom internal tool.
-            </p>
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <Link to="/ai-integration-small-business" className="inline-flex justify-center rounded-2xl border border-gray-200 bg-white px-5 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50">
-                View AI Services
-              </Link>
-              <Link to="/business-automation" className="inline-flex justify-center rounded-2xl border border-gray-200 bg-white px-5 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-50">
-                View Automation
-              </Link>
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900">Up to three priorities</h3>
+              <p className="mt-3 text-base leading-relaxed text-gray-600">The practical improvements in priority order, with the proposed change and what would be needed to make it.</p>
+            </div>
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-900">A useful first step</h3>
+              <p className="mt-3 text-base leading-relaxed text-gray-600">One recommended place to start, with a clear basis for discussing implementation and a separate project quote.</p>
             </div>
           </div>
         </section>
 
-        <section className="mb-12">
-          <div className="mb-5">
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">Common questions</h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-2">
-            <FAQ question="Is this only for businesses ready to build AI tools?" answer="No. The scan is for businesses that want to understand where technology could help. The answer might be AI, automation, website improvements, better forms, or simple process cleanup." />
-            <FAQ question="Do I need to have a technical project already planned?" answer="No. You can start with a messy process, a website concern, a follow-up problem, or a general feeling that your business tools are not working together well." />
-            <FAQ question="What types of businesses is this for?" answer="It is a good fit for local service businesses, contractors, real estate and property businesses, beauty and wellness businesses, consultants, professional services, and small teams with repeated admin work." />
-            <FAQ question="Will I get a clear next step?" answer="Yes. The goal is to leave with a practical recommendation, priority order, and a realistic first improvement instead of a broad list of confusing possibilities." />
+        <section className="mb-12" aria-labelledby="scan-areas-heading">
+          <h2 id="scan-areas-heading" className="text-2xl font-bold tracking-tight text-gray-900">Choose the areas that matter to your business</h2>
+          <p className="mt-3 max-w-3xl text-base leading-relaxed text-gray-600">These are possible review areas. We narrow the scope around your main problem before starting.</p>
+          <div className="mt-6 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {REVIEW_AREAS.map(area => (
+              <div key={area.title} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-gray-900">{area.title}</h3>
+                <p className="mt-3 text-base leading-relaxed text-gray-600">{area.description}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section className="rounded-3xl border border-gray-200 bg-white p-8 shadow-sm">
-          <div className="grid gap-6 md:grid-cols-12 md:items-center">
-            <div className="md:col-span-8">
-              <h2 className="text-2xl font-bold tracking-tight text-gray-900">Ready to find your best tech or AI opportunity?</h2>
-              <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                Start with a simple review. Bedsun Tech can help turn your website, forms, follow-up, and manual work into a clear improvement plan.
-              </p>
-            </div>
-            <div className="md:col-span-4 md:flex md:justify-end">
-              <Link
-                to="/contact"
-                className="inline-flex w-full justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 md:w-auto"
-              >
-                Request an Opportunity Scan
-              </Link>
-            </div>
+        <section className="mb-12 rounded-3xl border border-gray-200 bg-gray-50 p-6 sm:p-8" aria-labelledby="scan-process-heading">
+          <h2 id="scan-process-heading" className="text-2xl font-bold tracking-tight text-gray-900">How it works</h2>
+          <ol className="mt-6 grid gap-6 md:grid-cols-3">
+            <li><h3 className="text-lg font-semibold text-gray-900">1. Tell Matt what needs improving</h3><p className="mt-2 text-base leading-relaxed text-gray-600">Describe the problem in the short request form. Your website and current tools are helpful details if you have them.</p></li>
+            <li><h3 className="text-lg font-semibold text-gray-900">2. Agree on the review</h3><p className="mt-2 text-base leading-relaxed text-gray-600">Confirm the areas covered, information needed, fee, and delivery date before the scan begins.</p></li>
+            <li><h3 className="text-lg font-semibold text-gray-900">3. Review your written plan</h3><p className="mt-2 text-base leading-relaxed text-gray-600">Get the findings and priorities, then decide which improvement you want to pursue.</p></li>
+          </ol>
+        </section>
+
+        <section className="mb-12" aria-labelledby="scan-examples-heading">
+          <h2 id="scan-examples-heading" className="text-2xl font-bold tracking-tight text-gray-900">See examples of the work</h2>
+          <p className="mt-3 max-w-3xl text-base leading-relaxed text-gray-600">Explore a working intake assistant and a business dashboard built by Bedsun Tech. They show the kind of tools that can follow a focused review.</p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link to="/projects#website-intake" className="inline-flex min-h-11 items-center rounded-xl border border-indigo-200 px-5 py-3 font-semibold text-indigo-700 hover:bg-indigo-50">Website intake example</Link>
+            <Link to="/projects#business-dashboard" className="inline-flex min-h-11 items-center rounded-xl border border-indigo-200 px-5 py-3 font-semibold text-indigo-700 hover:bg-indigo-50">Business dashboard example</Link>
           </div>
+        </section>
+
+        <section className="mb-12" aria-labelledby="scan-faq-heading">
+          <h2 id="scan-faq-heading" className="text-2xl font-bold tracking-tight text-gray-900">Common questions</h2>
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
+            {FAQS.map(faq => (
+              <div key={faq.question} className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-gray-900">{faq.question}</h3>
+                <p className="mt-3 text-base leading-relaxed text-gray-600">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-indigo-100 bg-indigo-50 p-6 sm:p-8">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900">What would you like your business to do more easily?</h2>
+          <p className="mt-3 max-w-3xl text-base leading-relaxed text-gray-600">Send the problem in your own words. We will use that to scope the review and agree on the next step.</p>
+          <div className="mt-6"><RequestLink /></div>
         </section>
       </div>
     </>

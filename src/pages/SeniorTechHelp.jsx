@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { buildInquiryPath } from "../lib/inquiry";
 import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
@@ -118,10 +119,10 @@ export default function SeniorTechHelp() {
 
             <div className="md:col-span-4 md:flex md:justify-end">
               <Link
-                to="/contact"
+                to={buildInquiryPath("senior-tech")}
                 className="inline-flex w-full justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 md:w-auto"
               >
-                Schedule Tech Help
+                Request Tech Help
               </Link>
             </div>
           </div>
@@ -288,10 +289,10 @@ export default function SeniorTechHelp() {
             </div>
             <div className="grid gap-3 md:col-span-4">
               <Link
-                to="/contact"
+                to={buildInquiryPath("senior-tech")}
                 className="inline-flex w-full justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100"
               >
-                Schedule Tech Help
+                Request Tech Help
               </Link>
               <Link
                 to="/personal-tech-help"

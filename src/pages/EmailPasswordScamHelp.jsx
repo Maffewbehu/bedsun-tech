@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { buildInquiryPath } from "../lib/inquiry";
 import { faqPageSchema, serviceSchema } from "../lib/structuredData";
 
 function SectionTitle({ kicker, title, desc }) {
@@ -112,7 +113,7 @@ export default function EmailPasswordScamHelp() {
 
             <div className="md:col-span-4 md:flex md:justify-end">
               <Link
-                to="/contact"
+                to={buildInquiryPath("email-accounts")}
                 className="inline-flex w-full justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 md:w-auto"
               >
                 Get Email & Scam Safety Help
@@ -314,7 +315,7 @@ export default function EmailPasswordScamHelp() {
             </div>
             <div className="md:col-span-4 md:flex md:justify-end">
               <Link
-                to="/contact"
+                to={buildInquiryPath("email-accounts")}
                 className="inline-flex w-full justify-center rounded-2xl bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 md:w-auto"
               >
                 Contact Bedsun Tech

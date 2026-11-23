@@ -1,5 +1,7 @@
 import { getProductCommerce } from '../lib/productCommerce';
 
+export const budgetCompatibility = 'Tested in Microsoft Excel and LibreOffice Calc. Google Sheets compatibility has not yet been verified.';
+
 export const budgetProduct = {
   id: 'simple-budget-debt',
   name: 'Simple Budget + Debt',
@@ -103,7 +105,7 @@ export const budgetFaqs = [
   },
   {
     question: 'Which spreadsheet apps have been tested?',
-    answer: 'The workbooks have been verified in LibreOffice Calc. Direct testing in Microsoft Excel and Google Sheets is still pending, so compatibility with those apps is not yet confirmed. This page will be updated as testing is completed.',
+    answer: budgetCompatibility,
   },
   {
     question: 'Does entering a payment update my debt balance?',

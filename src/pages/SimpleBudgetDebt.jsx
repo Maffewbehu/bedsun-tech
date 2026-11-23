@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import ProductPurchase from '../components/ProductPurchase';
-import { budgetProduct, budgetFaqs, colorways, sheetPreviews, previewPath } from '../data/digitalProducts';
+import { budgetProduct, budgetFaqs, budgetCompatibility, colorways, sheetPreviews, previewPath } from '../data/digitalProducts';
 import { digitalProductSchema, faqPageSchema } from '../lib/structuredData';
 
 export default function SimpleBudgetDebt() {
@@ -35,6 +35,7 @@ export default function SimpleBudgetDebt() {
           <div className="mt-6 flex flex-wrap gap-2 text-sm font-semibold text-gray-700">
             {['Monthly budget', 'Debt tracker', 'Separate setup guide'].map(label => <span key={label} className="rounded-full border border-gray-200 bg-white px-3 py-2">{label}</span>)}
           </div>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-gray-600">{budgetCompatibility}</p>
           <a href="#workbook-preview" className="mt-4 inline-flex min-h-11 items-center font-semibold text-indigo-700 hover:text-indigo-900">Find your colorway <span aria-hidden="true" className="ml-2">↓</span></a>
         </div>
         <ProductPurchase product={budgetProduct} />

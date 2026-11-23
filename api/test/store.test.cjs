@@ -200,3 +200,42 @@ test('closing new purchases preserves existing paid downloads', async () => {
   const f = fixture(); await f.store().webhook(f.event()); f.env.STORE_CHECKOUT_ENABLED = 'false'; f.env.STORE_BUDGET_RELEASE_READY = 'false';
   assert.equal((await f.store().download(f.downloadRequest(await f.store().order(f.order)))).status, 302);
 });
+
+test('checkout analytics uses verified server product values and indicates test mode', async () => {
+  const f = fixture();
+  f.checkout.body.value = 1;
+  const live = (await f.store().checkout(f.checkout)).body.analytics;
+  assert.equal(live.live, true);
+  assert.equal(live.value, 9);
+  assert.equal(live.items[0].item_id, 'simple-budget-debt');
+  f.env.STRIPE_LIVEMODE = 'false'; f.price.livemode = false;
+  assert.equal((await f.store().checkout(f.checkout)).body.analytics.live, false);
+});
+
+test('only a fulfilled and reverified order returns an opaque analytics transaction', async () => {
+  const f = fixture();
+  assert.equal((await f.store().order(f.order)).body.analytics, undefined);
+  await f.store().webhook(f.event());
+  f.session.amount_total = 975;
+  f.session.total_details = { amount_tax: 75 };
+  const first = (await f.store().order(f.order)).body.analytics;
+  const second = (await f.store().order(f.order)).body.analytics;
+  assert.deepEqual(first, second);
+  assert.match(first.transaction_id, /^bt_[a-f0-9]{64}$/);
+  assert.equal(first.value, 9);
+  assert.equal(first.tax, 0.75);
+  assert.equal(first.currency, 'USD');
+  assert.equal(first.live, true);
+  assert(!JSON.stringify(first).includes(ID));
+  assert(!JSON.stringify(first).includes('buyer@example.test'));
+  assert(!JSON.stringify(first).includes('token'));
+  f.session.payment_status = 'unpaid';
+  await assert.rejects(f.store().order(f.order), { status: 403 });
+});
+
+test('test-mode orders cannot be mistaken for live purchase analytics', async () => {
+  const f = fixture();
+  f.env.STRIPE_LIVEMODE = 'false'; f.session.livemode = false; f.price.livemode = false;
+  await f.store().webhook(f.event('checkout.session.completed', f.session, false));
+  assert.equal((await f.store().order(f.order)).body.analytics.live, false);
+});

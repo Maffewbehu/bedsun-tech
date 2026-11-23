@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import SEO from "../components/SEO";
+import { trackAnalyticsEvent } from "../lib/analytics";
 
 const API_ENDPOINT =
   import.meta.env.VITE_AI_CONSULTANT_ENDPOINT || "/api/ai-consultant";
@@ -83,6 +84,7 @@ export default function AIConsultant() {
   const chatScrollRef = useRef(null);
   const allowNewLineRef = useRef(false);
   const enterSendLockRef = useRef(false);
+  const leadTrackedRef = useRef(false);
 
   const userMessageCount = useMemo(
     () => messages.filter((message) => message.role === "user").length,
@@ -136,7 +138,13 @@ export default function AIConsultant() {
       ]);
 
       if (data.serviceCategory) setLastCategory(data.serviceCategory);
-      if (data.leadEmailSent) setLeadSent(true);
+      if (data.success === true && data.leadEmailSent === true) {
+        setLeadSent(true);
+        if (!leadTrackedRef.current) {
+          trackAnalyticsEvent('generate_lead', { lead_source: 'ai_assistant' });
+          leadTrackedRef.current = true;
+        }
+      }
     } catch (err) {
       setError(
         err.message ||

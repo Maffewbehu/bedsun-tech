@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { purchaseSessionReference, trackAnalyticsEvent, trackVerifiedPurchase } from '../lib/analytics';
 
 export default function PurchaseComplete() {
   const [params] = useSearchParams();
-  const session = params.get('session_id');
+  const session = params.get('session_id') || purchaseSessionReference();
   const [result, setResult] = useState({ status: 'checking' });
   const [retry, setRetry] = useState(0);
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function PurchaseComplete() {
           const url = new URL(data.downloadUrl, window.location.origin);
           if (url.origin !== window.location.origin || url.pathname !== '/api/store/download') throw new Error('Unable to load your download link.');
           setResult({ ...data, downloadUrl: url.pathname + url.search });
+          trackVerifiedPurchase(data.analytics);
         } else if (++attempts < 12) {
           timer = setTimeout(check, 2000);
         } else {
@@ -49,7 +51,12 @@ export default function PurchaseComplete() {
             {result.status === 'error' && <p role="alert">{result.error}</p>}
             {result.status === 'ready' && <>
               <p>{result.productName}</p>
-              <a href={result.downloadUrl} className="inline-flex min-h-11 items-center justify-center rounded-xl bg-indigo-700 px-6 py-3 font-semibold text-white hover:bg-indigo-800">Download your ZIP</a>
+              <a href={result.downloadUrl} onClick={() => {
+                const productId = result.analytics?.items?.[0]?.item_id;
+                if (result.analytics?.live === true && ['simple-budget-debt', 'sales-expenses-dashboard'].includes(productId)) {
+                  trackAnalyticsEvent('digital_product_download_click', { product_id: productId });
+                }
+              }} className="inline-flex min-h-11 items-center justify-center rounded-xl bg-indigo-700 px-6 py-3 font-semibold text-white hover:bg-indigo-800">Download your ZIP</a>
               <p className="text-sm">Save the ZIP after downloading. Your link expires {new Date(result.expiresAt * 1000).toLocaleDateString('en-US')}. We also send it to the email entered at checkout.</p>
             </>}
             {['processing', 'error'].includes(result.status) && session && <button type="button" className="font-semibold text-indigo-700" onClick={() => { setResult({ status: 'checking' }); setRetry(value => value + 1); }}>Check again</button>}

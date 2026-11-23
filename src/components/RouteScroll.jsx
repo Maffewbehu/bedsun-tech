@@ -1,9 +1,14 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
+import { trackAnalyticsPage } from '../lib/analytics';
 
 export default function RouteScroll() {
-  const { pathname, hash } = useLocation();
+  const { pathname, hash, search } = useLocation();
   const navigationType = useNavigationType();
+
+  useEffect(() => {
+    trackAnalyticsPage();
+  }, [pathname, search]);
 
   useEffect(() => {
     if (hash) {

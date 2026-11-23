@@ -150,7 +150,7 @@ async function sendLeadEmail({ context, payload }) {
   const result = await resend.emails.send({
     from: FROM_EMAIL,
     to: TO_EMAIL,
-    reply_to: replyTo || undefined,
+    replyTo: replyTo || undefined,
     subject: `New Bedsun Tech AI Lead — ${serviceCategory}`,
     text: buildEmailText({ payload }),
     html: buildEmailHtml({ payload }),
